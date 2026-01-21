@@ -1,5 +1,5 @@
 import React from "react";
-import Iconsearch from "../../imgs/Iconsearch.svg";
+import Iconsearch from "../imgs/Iconsearch.svg";
 
 const BarraPesquisa = ({ value, onChange, autoFocus }) => {
   const inputRef = React.useRef(null);
