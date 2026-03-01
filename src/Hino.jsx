@@ -20,7 +20,7 @@ const Hino = () => {
 
   return (
     <>
-      <div className="hino-item margin" style={{ marginBottom: "0" }}>
+      <div className="hinos-separar margin" style={{ marginBottom: "0" }}>
         <Voltar />
 
         <RefHino id={hino.identificador} />

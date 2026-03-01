@@ -30,6 +30,7 @@ hr {
   align-items: center;
   cursor: pointer;
   transition: 0.3s;
+  border-width: thin;
 }
 
 .botao:hover {
@@ -215,7 +216,12 @@ hr {
 }
 .margin {
   margin-top: 1.65rem;
-  margin-left: 2rem;
+  margin-inline: 2rem;
+}
+.hinos-separar {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
 }
 .hinos-busca {
   display: flex;
