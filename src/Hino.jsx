@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import Voltar from "./Voltar";
-import RefHino from "./RefHino";
-import LetrasHinosBusca from "./LetrasHinosBusca";
 import LetraHino from "./LetraHino";
+import LetrasHinosBusca from "./LetrasHinosBusca";
+import RefHino from "./RefHino";
+import Voltar from "./Voltar";
 
 const Hino = () => {
   const { id } = useParams(); // pega o id da rota
   const [hino, setHino] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5252/api/Hino/identificador/${id}`)
+    fetch(`https://hinario-api.onrender.com/api/Hino/identificador/${id}`)
       .then((res) => res.json())
       .then((data) => setHino(data))
       .catch((err) => console.error(err));

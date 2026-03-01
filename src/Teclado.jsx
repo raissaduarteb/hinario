@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import ApagarBotao from "./ApagarBotao";
 import BotaoBusca from "./BotaoBusca";
 import Tecla from "./Tecla";
-import ApagarBotao from "./ApagarBotao";
-import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
 
 const Teclado = React.forwardRef(({ modo }, ref) => {
   const navigate = useNavigate();
@@ -57,7 +56,7 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
 
     if (textoPreview.length >= minLengthBusca) {
       fetch(
-        `http://localhost:5252/api/Hino/identificador/${textoPreview}`,
+        `https://hinario-api.onrender.com/api/Hino/identificador/${textoPreview}`,
       ).then((res) => {
         if (res.ok) {
           navigate(`/hino/${textoPreview}`);

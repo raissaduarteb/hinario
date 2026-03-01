@@ -1,9 +1,8 @@
-import React from "react";
-import LetrasHinosBusca from "./LetrasHinosBusca";
-import RefHino from "./RefHino";
 import { useEffect, useState } from "react";
-import LinhaBusca from "./LinhaBusca";
 import { useNavigate } from "react-router-dom";
+import LetrasHinosBusca from "./LetrasHinosBusca";
+import LinhaBusca from "./LinhaBusca";
+import RefHino from "./RefHino";
 
 const HinosPesquisa = ({ busca }) => {
   const [hinos, setHinos] = useState([]);
@@ -13,7 +12,9 @@ const HinosPesquisa = ({ busca }) => {
       return;
     }
 
-    fetch(`http://localhost:5252/api/Hino/pesquisar?texto=${busca.busca}`)
+    fetch(
+      `https://hinario-api.onrender.com/api/Hino/pesquisar?texto=${busca.busca}`,
+    )
       .then((res) => res.json())
       .then((data) => setHinos(data))
       .catch((err) => console.error(err));
