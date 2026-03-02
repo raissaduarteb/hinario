@@ -18,6 +18,7 @@ const BottomMenu = () => {
         <img
           src={active === "home" ? iconehomelaranja : iconehome}
           alt="casinha"
+          className="icon"
         />
         <span className="label">Home</span>
       </button>
@@ -28,6 +29,7 @@ const BottomMenu = () => {
         <img
           src={active === "selecao" ? iconeselecaolaranja : iconeselecao}
           alt="selecao"
+          className="icon"
         />
         <span className="label">Seleção</span>
       </button>
@@ -38,6 +40,7 @@ const BottomMenu = () => {
         <img
           src={active === "ajustes" ? iconeajusteslaranja : iconeajustes}
           alt="ajustes"
+          className="icon"
         />
         <span className="label">Ajustes</span>
       </button>

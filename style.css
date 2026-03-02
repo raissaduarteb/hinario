@@ -287,7 +287,7 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 10%;
+  height: 4rem;
   background: #ffffff;
   display: flex;
   justify-content: space-around;
@@ -302,20 +302,13 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
-}
-
-.menu-item.icon {
-  color: #f15a24;
-  fill: #f15a24;
 }
 
 .menu-item.active {
   color: #f15a24;
-  fill: #f15a24;
 }
-
-.menu-item.active .icon {
-  transform: translateY(-2px);
+.icon {
+  width: 15px;
 }
