@@ -30,7 +30,10 @@ const HinosPesquisa = ({ busca }) => {
             className="hino-item"
           >
             <RefHino id={hino.identificador} />
-            <LetrasHinosBusca tituloHino={hino.titulo} letraHino={hino.letra} />
+            <LetrasHinosBusca
+              tituloHino={hino.titulo}
+              letraHino={hino.trecho}
+            />
           </div>
           <LinhaBusca />
         </div>
