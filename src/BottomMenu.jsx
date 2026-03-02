@@ -9,36 +9,40 @@ const BottomMenu = () => {
         className={`menu-item ${active === "home" ? "active" : ""}`}
         onClick={() => setActive("home")}
       >
-        <object
-          data="imgs/casinha.svg"
-          width="25px"
-          height="25px"
-          className="icon"
-        />{" "}
+        <img
+          src={
+            active === "home" ? "imgs/casinhalaranja.svg" : "imgs/casinha.svg"
+          }
+          alt="casinha"
+        />
         <span className="label">Home</span>
       </button>
       <button
         className={`menu-item ${active === "selecao" ? "active" : ""}`}
         onClick={() => setActive("selecao")}
       >
-        <object
-          data="imgs/selecao.svg"
-          width="25px"
-          height="25px"
-          className="icon"
-        />{" "}
+        <img
+          src={
+            active === "selecao"
+              ? "imgs/selecaolaranja.svg"
+              : "imgs/selecao.svg"
+          }
+          alt="selecao"
+        />
         <span className="label">Seleção</span>
       </button>
       <button
         className={`menu-item ${active === "ajustes" ? "active" : ""}`}
         onClick={() => setActive("ajustes")}
       >
-        <object
-          data="imgs/ajustes.svg"
-          width="25px"
-          height="25px"
-          className="icon"
-        />{" "}
+        <img
+          src={
+            active === "ajustes"
+              ? "imgs/ajusteslaranja.svg"
+              : "imgs/ajustes.svg"
+          }
+          alt="ajustes"
+        />
         <span className="label">Ajustes</span>
       </button>
     </div>
