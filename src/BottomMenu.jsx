@@ -1,4 +1,10 @@
 import { useState } from "react";
+import iconeajustes from "../imgs/ajustes.svg";
+import iconeajusteslaranja from "../imgs/ajusteslaranja.svg";
+import iconehome from "../imgs/casinha.svg";
+import iconehomelaranja from "../imgs/casinhalaranja.svg";
+import iconeselecao from "../imgs/selecao.svg";
+import iconeselecaolaranja from "../imgs/selecaolaranja.svg";
 
 const BottomMenu = () => {
   const [active, setActive] = useState("home");
@@ -10,9 +16,7 @@ const BottomMenu = () => {
         onClick={() => setActive("home")}
       >
         <img
-          src={
-            active === "home" ? "/imgs/casinhalaranja.svg" : "/imgs/casinha.svg"
-          }
+          src={active === "home" ? iconehomelaranja : iconehome}
           alt="casinha"
         />
         <span className="label">Home</span>
@@ -22,11 +26,7 @@ const BottomMenu = () => {
         onClick={() => setActive("selecao")}
       >
         <img
-          src={
-            active === "selecao"
-              ? "/imgs/selecaolaranja.svg"
-              : "/imgs/selecao.svg"
-          }
+          src={active === "selecao" ? iconeselecaolaranja : iconeselecao}
           alt="selecao"
         />
         <span className="label">Seleção</span>
@@ -36,11 +36,7 @@ const BottomMenu = () => {
         onClick={() => setActive("ajustes")}
       >
         <img
-          src={
-            active === "ajustes"
-              ? "/imgs/ajusteslaranja.svg"
-              : "/imgs/ajustes.svg"
-          }
+          src={active === "ajustes" ? iconeajusteslaranja : iconeajustes}
           alt="ajustes"
         />
         <span className="label">Ajustes</span>
