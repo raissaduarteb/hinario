@@ -313,3 +313,65 @@ body {
 .icon {
   width: 15px;
 }
+
+.overlay {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.modal {
+  width: 100%;
+  background: #f2f2f2;
+  padding: 20px;
+  border-radius: 20px 20px 0 0;
+  animation: slideUp 0.3s ease;
+}
+
+.modal.dark {
+  background: #222;
+  color: white;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.toggle button {
+  padding: 8px 15px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.toggle .active {
+  background: orange;
+  color: white;
+}
+
+.fechar {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: orange;
+  color: white;
+  border-radius: 10px;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

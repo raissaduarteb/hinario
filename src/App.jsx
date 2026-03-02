@@ -1,14 +1,13 @@
 import React from "react";
-import Titulo from "./Titulo";
-import Teclado from "./Teclado";
-import Switch from "./Switch";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import BarraPesquisa from "./BarraPesquisa";
-import { Routes, Route } from "react-router-dom";
+import BottomMenu from "./BottomMenu";
 import Buscas from "./Buscas";
 import ComponenteBuscaHino from "./ComponenteBuscaHino";
-import { useNavigate } from "react-router-dom";
 import Hino from "./Hino";
-import BottomMenu from "./BottomMenu";
+import Switch from "./Switch";
+import Teclado from "./Teclado";
+import Titulo from "./Titulo";
 
 const App = () => {
   const tecladoRef = React.useRef();
@@ -79,6 +78,7 @@ const App = () => {
             </>
           }
         />
+        <Route path="/selecao" element={<></>} />
       </Routes>
       <BottomMenu />
     </>
