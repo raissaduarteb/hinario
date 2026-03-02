@@ -272,8 +272,8 @@ body {
   font-size: 17px;
   text-align: start;
   width: 85%;
-  margin: auto;
-  margin-top: 1rem;
+  margin: 1rem 2rem 7rem 2rem;
+  height: 100%;
 }
 .hino-refrao {
   font-weight: 500;
