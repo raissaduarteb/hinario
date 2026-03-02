@@ -246,9 +246,7 @@ hr {
   font-weight: 700;
   font-size: 0.8rem;
   align-self: center;
-  width: 100%;
   text-align: center;
-  flex: 0.4;
 }
 .tituloHino-letraHino {
   color: rgba(74, 74, 74, 1);
