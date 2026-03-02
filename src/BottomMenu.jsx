@@ -11,7 +11,7 @@ const BottomMenu = () => {
       >
         <img
           src={
-            active === "home" ? "imgs/casinhalaranja.svg" : "imgs/casinha.svg"
+            active === "home" ? "/imgs/casinhalaranja.svg" : "/imgs/casinha.svg"
           }
           alt="casinha"
         />
@@ -24,8 +24,8 @@ const BottomMenu = () => {
         <img
           src={
             active === "selecao"
-              ? "imgs/selecaolaranja.svg"
-              : "imgs/selecao.svg"
+              ? "/imgs/selecaolaranja.svg"
+              : "/imgs/selecao.svg"
           }
           alt="selecao"
         />
@@ -38,8 +38,8 @@ const BottomMenu = () => {
         <img
           src={
             active === "ajustes"
-              ? "imgs/ajusteslaranja.svg"
-              : "imgs/ajustes.svg"
+              ? "/imgs/ajusteslaranja.svg"
+              : "/imgs/ajustes.svg"
           }
           alt="ajustes"
         />
