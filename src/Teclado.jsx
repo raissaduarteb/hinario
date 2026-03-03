@@ -9,7 +9,6 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
   const { id } = useParams(); // pega o id da rota
 
   const [textoPreview, setTextoPreview] = useState("");
-  const [hino, setHino] = useState(null);
 
   React.useImperativeHandle(ref, () => ({
     LimparTudo: () => {
