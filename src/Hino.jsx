@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import LetraHino from "./LetraHino";
 import LetrasHinosBusca from "./LetrasHinosBusca";
+import Loading from "./Loading";
 import RefHino from "./RefHino";
 import Voltar from "./Voltar";
 
@@ -16,7 +17,8 @@ const Hino = () => {
       .then((data) => setHino(data))
       .catch((err) => console.error(err));
   }, [id]);
-  if (!hino) return <p>Carregando...</p>;
+
+  if (!hino) return Loading();
 
   return (
     <>
