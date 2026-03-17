@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LetrasHinosBusca from "./LetrasHinosBusca";
 import LinhaBusca from "./LinhaBusca";
@@ -6,20 +6,40 @@ import RefHino from "./RefHino";
 
 const HinosPesquisa = ({ busca }) => {
   const [hinos, setHinos] = useState([]);
+  const abortControllerRef = useRef(null);
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (busca.busca.length === 0) {
       setHinos([]);
       return;
     }
 
-    fetch(
-      `https://hinario-api.onrender.com/api/Hino/pesquisar?texto=${busca.busca}`,
-    )
-      .then((res) => res.json())
-      .then((data) => setHinos(data))
-      .catch((err) => console.error(err));
+    // Cancela a requisição anterior se ainda estiver pendente
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
+    const timeout = setTimeout(() => {
+      fetch(
+        `https://hinario-api.onrender.com/api/Hino/pesquisar?texto=${busca.busca}`,
+        { signal: controller.signal },
+      )
+        .then((res) => res.json())
+        .then((data) => setHinos(data))
+        .catch((err) => {
+          if (err.name !== "AbortError") console.error(err);
+        });
+    }, 400); // aguarda 400ms após a última digitação
+
+    return () => {
+      clearTimeout(timeout);
+      controller.abort();
+    };
   }, [busca]);
-  const navigate = useNavigate();
 
   return (
     <div className="hinos-busca">
