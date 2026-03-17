@@ -54,6 +54,7 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
     const minLengthBusca = modo === "Hinário" ? 2 : 1;
 
     if (textoPreview.length >= minLengthBusca) {
+      if (modo != "Hinário") textoPreview = "HC-" + textoPreview;
       fetch(
         `https://hinario-api.onrender.com/api/Hino/identificador/${textoPreview}`,
       ).then((res) => {
