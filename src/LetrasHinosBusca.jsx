@@ -1,5 +1,3 @@
-import React from "react";
-
 const LetrasHinosBusca = ({ tituloHino, letraHino }) => {
   return (
     <div className="tituloHino-letraHino">
@@ -18,9 +16,8 @@ const LetrasHinosBusca = ({ tituloHino, letraHino }) => {
           fontSize: "14px",
           fontWeight: 300,
         }}
-      >
-        {letraHino}
-      </span>
+        dangerouslySetInnerHTML={{ __html: letraHino.replace(/\n/g, "<br>") }}
+      />
     </div>
   );
 };
