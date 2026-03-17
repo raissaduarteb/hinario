@@ -16,7 +16,7 @@ const LetrasHinosBusca = ({ tituloHino, letraHino }) => {
           fontSize: "14px",
           fontWeight: 300,
         }}
-        dangerouslySetInnerHTML={{ __html: letraHino.replace(/\n/g, "<br>") }}
+        dangerouslySetInnerHTML={{ __html: letraHino?.replace(/\n/g, "<br>") }}
       />
     </div>
   );
