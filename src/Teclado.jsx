@@ -52,14 +52,14 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
 
   const clickBusca = () => {
     const minLengthBusca = modo === "Hinário" ? 2 : 1;
+    let identificador = modo != "Hinário" ? "HC-" + textoPreview : textoPreview;
 
-    if (textoPreview.length >= minLengthBusca) {
-      if (modo != "Hinário") textoPreview = "HC-" + textoPreview;
+    if (identificador.length >= minLengthBusca) {
       fetch(
-        `https://hinario-api.onrender.com/api/Hino/identificador/${textoPreview}`,
+        `https://hinario-api.onrender.com/api/Hino/identificador/${identificador}`,
       ).then((res) => {
         if (res.ok) {
-          navigate(`/hino/${textoPreview}`);
+          navigate(`/hino/${identificador}`);
         } else {
           className.push("botaoBusca.desativado");
         }
