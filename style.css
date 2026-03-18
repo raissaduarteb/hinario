@@ -3,6 +3,9 @@ a {
   all: unset;
   cursor: pointer;
 }
+b {
+  font-weight: 700;
+}
 hr {
   background-color: rgba(234, 234, 234, 1);
   height: 1px;
