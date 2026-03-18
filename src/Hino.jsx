@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
 import LetraHino from "./LetraHino";
@@ -6,19 +6,33 @@ import LetrasHinosBusca from "./LetrasHinosBusca";
 import Loading from "./Loading";
 import RefHino from "./RefHino";
 import Voltar from "./Voltar";
+import { fetchHinoPorIdentificador } from "./api/hinos";
 
 const Hino = () => {
   const { id } = useParams(); // pega o id da rota
-  const [hino, setHino] = useState(null);
+  const queryClient = useQueryClient();
+  const {
+    data: hino,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["hino", id],
+    queryFn: ({ signal }) => fetchHinoPorIdentificador(id, { signal }),
+    placeholderData: () => queryClient.getQueryData(["hino", id]),
+  });
 
-  useEffect(() => {
-    fetch(`https://hinario-api.onrender.com/api/Hino/identificador/${id}`)
-      .then((res) => res.json())
-      .then((data) => setHino(data))
-      .catch((err) => console.error(err));
-  }, [id]);
+  // Se veio da pesquisa, já teremos título/identificador no cache, mas talvez ainda sem a letra.
+  if (isLoading && !hino) return Loading();
 
-  if (!hino) return Loading();
+  if (isError) {
+    if (error?.status === 404) return <div className="mensagemErro">Esse hino não existe.</div>;
+    return (
+      <div className="mensagemErro">
+        Não foi possível carregar o hino agora. Tente novamente.
+      </div>
+    );
+  }
 
   return (
     <>
@@ -30,7 +44,7 @@ const Hino = () => {
           <LetrasHinosBusca tituloHino={hino.titulo} />
         </h3>
       </div>
-      <LetraHino letra={hino.letra} />
+      {hino?.letra ? <LetraHino letra={hino.letra} /> : Loading()}
     </>
   );
 };
