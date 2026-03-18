@@ -3,17 +3,19 @@ import Iconsearch from "../imgs/Iconsearch.svg";
 
 const BarraPesquisa = ({ value, onChange, autoFocus }) => {
   const inputRef = React.useRef(null);
+  const [isFocused, setIsFocused] = React.useState(autoFocus);
 
   React.useEffect(() => {
-    if (autoFocus && inputRef.current) {
+    if (isFocused && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [autoFocus]);
+  }, [isFocused]);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      e.target.blur();
+      inputRef.current?.blur();
+      setIsFocused(false);
     }
   };
 
@@ -26,6 +28,7 @@ const BarraPesquisa = ({ value, onChange, autoFocus }) => {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
+        onFocus={() => setIsFocused(true)} // volta o teclado quando clicar
         className="search-input"
         placeholder="Pesquise por número ou letras..."
       />
