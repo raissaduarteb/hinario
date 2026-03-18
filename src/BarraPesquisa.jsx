@@ -10,6 +10,13 @@ const BarraPesquisa = ({ value, onChange, autoFocus }) => {
     }
   }, [autoFocus]);
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      e.target.blur();
+    }
+  };
+
   return (
     <div className="search-container">
       <img src={Iconsearch} style={{ marginRight: "10px" }} alt="buscar" />
@@ -18,6 +25,7 @@ const BarraPesquisa = ({ value, onChange, autoFocus }) => {
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        onKeyDown={handleKeyDown}
         className="search-input"
         placeholder="Pesquise por número ou letras..."
       />
