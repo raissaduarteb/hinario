@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
 import LetraHino from "./LetraHino";
@@ -10,6 +10,7 @@ import { fetchHinoPorIdentificador } from "./api/hinos";
 
 const Hino = () => {
   const { id } = useParams(); // pega o id da rota
+  const queryClient = useQueryClient();
   const {
     data: hino,
     isLoading,
@@ -18,9 +19,11 @@ const Hino = () => {
   } = useQuery({
     queryKey: ["hino", id],
     queryFn: ({ signal }) => fetchHinoPorIdentificador(id, { signal }),
+    placeholderData: () => queryClient.getQueryData(["hino", id]),
   });
 
-  if (isLoading) return Loading();
+  // Se veio da pesquisa, já teremos título/identificador no cache, mas talvez ainda sem a letra.
+  if (isLoading && !hino) return Loading();
 
   if (isError) {
     if (error?.status === 404) return <div className="mensagemErro">Esse hino não existe.</div>;
@@ -41,7 +44,7 @@ const Hino = () => {
           <LetrasHinosBusca tituloHino={hino.titulo} />
         </h3>
       </div>
-      <LetraHino letra={hino.letra} />
+      {hino?.letra ? <LetraHino letra={hino.letra} /> : Loading()}
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import ApagarBotao from "./ApagarBotao";
 import BotaoBusca from "./BotaoBusca";
@@ -9,7 +9,6 @@ import { fetchHinoPorIdentificador } from "./api/hinos";
 const Teclado = React.forwardRef(({ modo }, ref) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { id } = useParams(); // pega o id da rota
 
   const [textoPreview, setTextoPreview] = useState("");
   const [buscando, setBuscando] = useState(false);
@@ -64,7 +63,7 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
       setMensagemErro("");
       setBuscando(true);
       queryClient
-        .prefetchQuery({
+        .fetchQuery({
           queryKey: ["hino", identificador],
           queryFn: ({ signal }) => fetchHinoPorIdentificador(identificador, { signal }),
         })

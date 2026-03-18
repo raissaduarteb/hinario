@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import LetrasHinosBusca from "./LetrasHinosBusca";
 import LinhaBusca from "./LinhaBusca";
 import RefHino from "./RefHino";
@@ -8,6 +9,7 @@ const HinosPesquisa = ({ busca }) => {
   const [hinos, setHinos] = useState([]);
   const abortControllerRef = useRef(null);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (busca.busca.length === 0) {
@@ -29,7 +31,19 @@ const HinosPesquisa = ({ busca }) => {
         { signal: controller.signal },
       )
         .then((res) => res.json())
-        .then((data) => setHinos(data))
+        .then((data) => {
+          setHinos(data);
+
+          // Aproveita o retorno do endpoint de pesquisa para hidratar o cache do hino.
+          // Se o objeto não tiver `letra`, o `Hino.jsx` ainda pode buscar o detalhe completo.
+          for (const hino of data ?? []) {
+            if (!hino?.identificador) continue;
+            queryClient.setQueryData(["hino", hino.identificador], (prev) => ({
+              ...prev,
+              ...hino,
+            }));
+          }
+        })
         .catch((err) => {
           if (err.name !== "AbortError") console.error(err);
         });
