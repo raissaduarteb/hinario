@@ -71,6 +71,22 @@ body {
 .botaoBusca:hover {
   background-color: rgb(198, 63, 18);
 }
+
+.botaoBusca:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.mensagemErro {
+  width: 100%;
+  max-width: 260px;
+  text-align: center;
+  color: rgb(160, 46, 12);
+  font-family: "Figtree", sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
 .botao.zero {
   grid-column: 2; /* força o zero na coluna central */
 }

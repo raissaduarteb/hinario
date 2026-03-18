@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import ApagarBotao from "./ApagarBotao";
 import BotaoBusca from "./BotaoBusca";
 import Tecla from "./Tecla";
+import { fetchHinoPorIdentificador } from "./api/hinos";
 
 const Teclado = React.forwardRef(({ modo }, ref) => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { id } = useParams(); // pega o id da rota
 
   const [textoPreview, setTextoPreview] = useState("");
+  const [buscando, setBuscando] = useState(false);
+  const [mensagemErro, setMensagemErro] = useState("");
 
   React.useImperativeHandle(ref, () => ({
     LimparTudo: () => {
       setTextoPreview("");
+      setMensagemErro("");
     },
   }));
 
@@ -55,15 +61,26 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
     let identificador = modo != "Hinário" ? "HC-" + textoPreview : textoPreview;
 
     if (identificador.length >= minLengthBusca) {
-      fetch(
-        `https://hinario-api.onrender.com/api/Hino/identificador/${identificador}`,
-      ).then((res) => {
-        if (res.ok) {
+      setMensagemErro("");
+      setBuscando(true);
+      queryClient
+        .prefetchQuery({
+          queryKey: ["hino", identificador],
+          queryFn: ({ signal }) => fetchHinoPorIdentificador(identificador, { signal }),
+        })
+        .then(() => {
           navigate(`/hino/${identificador}`);
-        } else {
-          className.push("botaoBusca.desativado");
-        }
-      });
+        })
+        .catch((err) => {
+          if (err?.status === 404) {
+            setMensagemErro("Esse hino não existe.");
+            return;
+          }
+          setMensagemErro("Não foi possível buscar o hino agora. Tente novamente.");
+        })
+        .finally(() => setBuscando(false));
+    } else {
+      setMensagemErro("");
     }
   };
 
@@ -72,6 +89,7 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
       <div className="textpreview">
         {textoPreview} {textoPreview && <ApagarBotao onApagar={ApagarUltimo} />}
       </div>
+      {mensagemErro ? <div className="mensagemErro">{mensagemErro}</div> : null}
       <div className="tecbotao">
         <div
           className={
@@ -90,7 +108,7 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
           ))}
         </div>
 
-        <BotaoBusca onClickBusca={clickBusca} />
+        <BotaoBusca onClickBusca={clickBusca} loading={buscando} />
       </div>
     </div>
   );
