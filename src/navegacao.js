@@ -83,7 +83,9 @@ export const useSwipe = (onSwipeLeft, onSwipeRight, minDistance = 50) => {
 
     const diff = touchStartX.current - e.changedTouches[0].clientX;
 
-    if (Math.abs(diff) >= minDistance) {
+    const opacity = Math.max(0, 1 - Math.abs(diff) / 200);
+
+    if (opacity < 0.3) {
       const direction = diff > 0 ? -1 : 1; // -1 esquerda, 1 direita
       setExiting(true);
       setDragX(direction * window.innerWidth); // joga para fora da tela

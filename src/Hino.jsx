@@ -31,7 +31,7 @@ const Hino = () => {
       () => irParaProximo(id, navigate),
       () => irParaAnterior(id, navigate),
     );
-  const opacity = Math.max(0, 1 - Math.abs(dragX) / 600);
+  const opacity = Math.max(0, 1 - Math.abs(dragX) / 200);
   const isDragging = dragX !== 0 && !exiting;
 
   if (isLoading && !hino) return Loading();
