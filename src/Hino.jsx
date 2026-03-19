@@ -23,11 +23,15 @@ const Hino = () => {
     queryFn: ({ signal }) => fetchHinoPorIdentificador(id, { signal }),
     placeholderData: () => queryClient.getQueryData(["hino", id]),
   });
+
   const navigate = useNavigate();
-  const { handleTouchStart, handleTouchEnd } = useSwipe(
+
+  const { handleTouchStart, handleTouchEnd, handleTouchMove, dragX } = useSwipe(
     () => irParaProximo(id, navigate),
     () => irParaAnterior(id, navigate),
   );
+  const opacity = Math.max(0.6, 1 - Math.abs(dragX) / 600);
+  const isDragging = dragX !== 0;
 
   if (isLoading && !hino) return Loading();
 
@@ -45,7 +49,15 @@ const Hino = () => {
     <div
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      style={{ touchAction: "pan-y" }} // mantém scroll vertical, bloqueia horizontal
+      onTouchMove={handleTouchMove}
+      style={{
+        touchAction: "pan-y",
+        transform: `translateX(${dragX * 0.3}px)`,
+        opacity: opacity,
+        transition: isDragging
+          ? "none"
+          : "transform 0.3s ease, opacity 0.3s ease",
+      }}
     >
       <div className="hinos-separar margin" style={{ marginBottom: "0" }}>
         <Voltar />
