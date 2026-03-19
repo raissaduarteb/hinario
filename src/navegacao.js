@@ -1,8 +1,9 @@
 const ordemTipos = ["H", "C", "S", "HC", "L"];
 
 export const parseIdentificador = (id) => {
-  const [tipo, numero] = id.split("-");
-  return { tipo, numero: Number(numero) };
+  const match = id.match(/^([A-Za-z]+)(\d+)$/);
+  if (!match) return { tipo: "", numero: 0 };
+  return { tipo: match[1], numero: Number(match[2]) };
 };
 
 export const irParaProximo = async (identificador, navigate) => {
@@ -32,7 +33,7 @@ export const irParaProximo = async (identificador, navigate) => {
 export const irParaAnterior = async (identificador, navigate) => {
   const { tipo, numero } = parseIdentificador(identificador);
 
-  let res = await fetch(`/api/hinos/${tipo}/${numero}/anterior`);
+  let res = await fetch(`/api/hino/${tipo}/${numero}/anterior`);
   let data = await res.json();
 
   if (data) {
@@ -43,7 +44,7 @@ export const irParaAnterior = async (identificador, navigate) => {
   const index = ordemTipos.indexOf(tipo);
 
   for (let i = index - 1; i >= 0; i--) {
-    res = await fetch(`/api/hinos/${ordemTipos[i]}/ultimo`);
+    res = await fetch(`/api/hino/${ordemTipos[i]}/ultimo`);
     data = await res.json();
 
     if (data) {
