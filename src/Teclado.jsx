@@ -1,6 +1,6 @@
+import { useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
 import ApagarBotao from "./ApagarBotao";
 import BotaoBusca from "./BotaoBusca";
 import Tecla from "./Tecla";
@@ -65,7 +65,8 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
       queryClient
         .fetchQuery({
           queryKey: ["hino", identificador],
-          queryFn: ({ signal }) => fetchHinoPorIdentificador(identificador, { signal }),
+          queryFn: ({ signal }) =>
+            fetchHinoPorIdentificador(identificador, { signal }),
         })
         .then(() => {
           navigate(`/hino/${identificador}`);
@@ -75,7 +76,9 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
             setMensagemErro("Esse hino não existe.");
             return;
           }
-          setMensagemErro("Não foi possível buscar o hino agora. Tente novamente.");
+          setMensagemErro(
+            "Não foi possível buscar o hino agora. Tente novamente.",
+          );
         })
         .finally(() => setBuscando(false));
     } else {
@@ -86,7 +89,10 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
   return (
     <div className="main">
       <div className="textpreview">
-        {textoPreview} {textoPreview && <ApagarBotao onApagar={ApagarUltimo} />}
+        {textoPreview}{" "}
+        {textoPreview && (
+          <ApagarBotao onApagar={ApagarUltimo} ativo={textoPreview !== ""} />
+        )}
       </div>
       {mensagemErro ? <div className="mensagemErro">{mensagemErro}</div> : null}
       <div className="tecbotao">

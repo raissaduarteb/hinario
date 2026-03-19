@@ -1,10 +1,8 @@
-import React from "react";
-
 const ApagarBotao = ({ onApagar }) => {
   return (
     <img
       onClick={onApagar}
-      className="botao-Apagar"
+      className={`botao-Apagar ${ativo ? "visivel" : "oculto"}`}
       src="imgs/deletebutton.png"
       alt="botao de apagar"
     ></img>

@@ -186,6 +186,16 @@ body {
   text-align: center;
   cursor: pointer;
   width: 30px;
+
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  transform: scale(0.8);
+}
+.botao-Apagar.visivel {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .search-container {

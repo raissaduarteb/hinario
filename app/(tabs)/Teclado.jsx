@@ -1,8 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import ApagarBotao from "./ApagarBotao";
 import BotaoBusca from "./BotaoBusca";
 import Tecla from "./Tecla";
-import ApagarBotao from "./ApagarBotao";
-import { useNavigate } from "react-router-dom";
 
 const Teclado = React.forwardRef(({ modo }, ref) => {
   const navigate = useNavigate();
