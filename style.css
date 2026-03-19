@@ -410,6 +410,14 @@ body {
 .seta-proximo {
   transform: scaleX(-1);
 }
+
+.seta:hover {
+  background-color: #f15a24;
+  transition: 0.2s;
+}
+.seta:hover img {
+  filter: brightness(100);
+}
 @keyframes slideUp {
   from {
     transform: translateY(100%);
