@@ -1,3 +1,4 @@
+import { useRef } from "react";
 const ordemTipos = ["H", "C", "S", "HC", "L"];
 
 export const parseIdentificador = (id) => {
@@ -58,4 +59,30 @@ export const irParaAnterior = async (identificador, navigate) => {
       return;
     }
   }
+};
+
+export const useSwipe = (onSwipeLeft, onSwipeRight, minDistance = 50) => {
+  const touchStartX = useRef(null);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+
+    if (Math.abs(diff) >= minDistance) {
+      if (diff > 0) {
+        onSwipeLeft(); // arrastou para esquerda → próximo
+      } else {
+        onSwipeRight(); // arrastou para direita → anterior
+      }
+    }
+
+    touchStartX.current = null;
+  };
+
+  return { handleTouchStart, handleTouchEnd };
 };
