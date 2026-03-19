@@ -42,7 +42,11 @@ const Hino = () => {
   }
 
   return (
-    <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+    <div
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      style={{ touchAction: "pan-y" }} // mantém scroll vertical, bloqueia horizontal
+    >
       <div className="hinos-separar margin" style={{ marginBottom: "0" }}>
         <Voltar />
 
