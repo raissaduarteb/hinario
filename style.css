@@ -23,7 +23,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
   margin-bottom: 7rem;
 }
 
@@ -98,6 +98,7 @@ body {
   justify-items: center;
   transition: 1s;
   font-family: "Figtree", sans-serif;
+  align-items: center;
 }
 
 .teclado-expansivo {
