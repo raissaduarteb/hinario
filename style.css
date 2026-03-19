@@ -396,8 +396,7 @@ body {
   margin: 1.3rem;
 }
 .seta {
-  background-color: transparent;
-  opacity: 0.9;
+  background-color: rgba(250, 250, 250, 0.7);
   border-style: solid;
   border-color: #f15a24;
   border-width: 1.5px;
@@ -409,6 +408,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(2px);
 }
 .seta-proximo {
   transform: scaleX(-1);
