@@ -406,6 +406,9 @@ body {
   border-radius: 100%;
   cursor: pointer;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .seta-proximo {
   transform: scaleX(-1);
