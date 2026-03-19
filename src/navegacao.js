@@ -107,5 +107,6 @@ export const useSwipe = (onSwipeLeft, onSwipeRight, minDistance = 50) => {
     dragX,
     exiting,
     opacity,
+    setOpacity,
   };
 };

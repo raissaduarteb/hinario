@@ -1,5 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { fetchHinoPorIdentificador } from "./api/hinos";
 import { irParaAnterior, irParaProximo, useSwipe } from "./navegacao";
 
@@ -20,8 +21,7 @@ const Hino = () => {
     error,
   } = useQuery({
     queryKey: ["hino", id],
-    queryFn: ({ signal }) => fetchHinoPorIdentificador(id, { signal }),
-    placeholderData: () => queryClient.getQueryData(["hino", id]),
+    queryFn: () => fetchHinoPorIdentificador(id),
   });
 
   const navigate = useNavigate();
@@ -33,11 +33,18 @@ const Hino = () => {
     dragX,
     exiting,
     opacity,
+    setOpacity,
   } = useSwipe(
     () => irParaProximo(id, navigate),
     () => irParaAnterior(id, navigate),
   );
   const isDragging = dragX !== 0 && !exiting;
+
+  useEffect(() => {
+    if (!isLoading && hino) {
+      setOpacity(1);
+    }
+  }, [isLoading, hino, setOpacity]);
 
   if (isLoading && !hino) return Loading();
 
