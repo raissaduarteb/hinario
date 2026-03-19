@@ -38,6 +38,8 @@ const Hino = () => {
 
   return (
     <>
+      <Setas />
+
       <div className="hinos-separar margin" style={{ marginBottom: "0" }}>
         <Voltar />
 
@@ -47,7 +49,6 @@ const Hino = () => {
         </h3>
       </div>
       {hino?.letra ? <LetraHino letra={hino.letra} /> : Loading()}
-      <Setas />
     </>
   );
 };
