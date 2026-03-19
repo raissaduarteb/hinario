@@ -87,19 +87,11 @@ export const useSwipe = (onSwipeLeft, onSwipeRight, minDistance = 50) => {
     const diff = touchStartX.current - e.changedTouches[0].clientX;
     const opacityAtEnd = Math.max(0, 1 - Math.abs(diff) / 100);
 
-    const opacity = Math.max(0, 1 - Math.abs(diff) / 200);
-
-    if (opacityAtEnd < 0.5) {
-      setExiting(true);
+    if (opacityAtEnd < 0.8) {
       setOpacity(0);
       setDragX(0);
-      setTimeout(() => {
-        setExiting(false);
-        setOpacity(1);
-        setDragX(0);
-        if (diff > 0) onSwipeLeft();
-        else onSwipeRight();
-      }, 300);
+      if (diff > 0) onSwipeLeft();
+      else onSwipeRight();
     } else {
       setOpacity(1);
       setDragX(0);
