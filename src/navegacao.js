@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 const ordemTipos = ["H", "C", "S", "HC", "L"];
 
 export const parseIdentificador = (id) => {
-  const match = id.match(/^([A-Za-z]+)(\d+)$/);
+  const match = id.match(/^([A-Za-z]+)-?(\d+)$/);
   if (!match) return { tipo: "", numero: 0 };
   return { tipo: match[1], numero: Number(match[2]) };
 };

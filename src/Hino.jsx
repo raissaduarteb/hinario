@@ -46,30 +46,37 @@ const Hino = () => {
   }
 
   return (
-    <div
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      onTouchMove={handleTouchMove}
-      style={{
-        touchAction: "pan-y",
-        transform: `translateX(${dragX * 0.3}px)`,
-        opacity: opacity,
-        transition: isDragging
-          ? "none"
-          : "transform 0.3s ease, opacity 0.3s ease",
-      }}
-    >
-      <div className="hinos-separar margin" style={{ marginBottom: "0" }}>
-        <Voltar />
+    <>
+      <div
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onTouchMove={handleTouchMove}
+        style={{
+          touchAction: "pan-y",
+          transform: `translateX(${dragX * 0.3}px)`,
+          opacity: opacity,
+          transition: isDragging
+            ? "none"
+            : "transform 0.3s ease, opacity 0.3s ease",
+        }}
+      >
+        <div
+          className="hinos-separar margin"
+          style={{
+            marginBottom: "0",
+          }}
+        >
+          <Voltar />
 
-        <RefHino id={hino.identificador} />
-        <h3 style={{ margin: 0 }}>
-          <LetrasHinosBusca tituloHino={hino.titulo} />
-        </h3>
+          <RefHino id={hino.identificador} />
+          <h3 style={{ margin: 0 }}>
+            <LetrasHinosBusca tituloHino={hino.titulo} />
+          </h3>
+        </div>
+        {hino?.letra ? <LetraHino letra={hino.letra} /> : Loading()}
       </div>
-      {hino?.letra ? <LetraHino letra={hino.letra} /> : Loading()}
       <Setas />
-    </div>
+    </>
   );
 };
 
