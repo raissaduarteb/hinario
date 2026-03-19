@@ -1,4 +1,3 @@
-import { useRef } from "react";
 const ordemTipos = ["H", "C", "S", "HC", "L"];
 
 export const parseIdentificador = (id) => {
@@ -60,6 +59,7 @@ export const irParaAnterior = async (identificador, navigate) => {
     }
   }
 };
+import { useRef } from "react";
 
 export const useSwipe = (onSwipeLeft, onSwipeRight, minDistance = 50) => {
   const touchStartX = useRef(null);

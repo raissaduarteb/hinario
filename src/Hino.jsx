@@ -1,7 +1,8 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchHinoPorIdentificador } from "./api/hinos";
+import { irParaAnterior, irParaProximo, useSwipe } from "./navegacao";
+
 import LetraHino from "./LetraHino";
 import LetrasHinosBusca from "./LetrasHinosBusca";
 import Loading from "./Loading";
@@ -22,8 +23,12 @@ const Hino = () => {
     queryFn: ({ signal }) => fetchHinoPorIdentificador(id, { signal }),
     placeholderData: () => queryClient.getQueryData(["hino", id]),
   });
+  const navigate = useNavigate();
+  const { handleTouchStart, handleTouchEnd } = useSwipe(
+    () => irParaProximo(id, navigate),
+    () => irParaAnterior(id, navigate),
+  );
 
-  // Se veio da pesquisa, já teremos título/identificador no cache, mas talvez ainda sem a letra.
   if (isLoading && !hino) return Loading();
 
   if (isError) {
@@ -37,7 +42,7 @@ const Hino = () => {
   }
 
   return (
-    <>
+    <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
       <div className="hinos-separar margin" style={{ marginBottom: "0" }}>
         <Voltar />
 
@@ -48,7 +53,7 @@ const Hino = () => {
       </div>
       {hino?.letra ? <LetraHino letra={hino.letra} /> : Loading()}
       <Setas />
-    </>
+    </div>
   );
 };
 
