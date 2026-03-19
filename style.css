@@ -242,7 +242,7 @@ body {
 }
 .margin {
   margin-top: 1.65rem;
-  margin-inline: 2rem;
+  margin-inline: 1.3rem;
 }
 .hinos-separar {
   display: flex;
@@ -293,7 +293,7 @@ body {
   font-size: 17px;
   text-align: start;
   width: 85%;
-  margin: 1rem 1rem 7rem 1rem;
+  margin: 1rem 1.3rem 7rem 1.3rem;
   height: 100%;
 }
 .hino-refrao {
