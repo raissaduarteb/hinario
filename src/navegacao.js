@@ -65,45 +65,55 @@ export const useSwipe = (onSwipeLeft, onSwipeRight, minDistance = 50) => {
   const touchStartX = useRef(null);
   const [dragX, setDragX] = useState(0);
   const [exiting, setExiting] = useState(false);
+  const [opacity, setOpacity] = useState(1);
 
   const handleTouchStart = (e) => {
     if (exiting) return;
 
     touchStartX.current = e.touches[0].clientX;
     setDragX(0);
+    setOpacity(1);
   };
   const handleTouchMove = (e) => {
     if (touchStartX.current === null || exiting) return;
     const diff = e.touches[0].clientX - touchStartX.current;
     setDragX(diff);
+    setOpacity(Math.max(0, 1 - Math.abs(diff) / 100));
   };
 
   const handleTouchEnd = (e) => {
     if (touchStartX.current === null || exiting) return;
 
     const diff = touchStartX.current - e.changedTouches[0].clientX;
+    const opacityAtEnd = Math.max(0, 1 - Math.abs(diff) / 100);
 
     const opacity = Math.max(0, 1 - Math.abs(diff) / 200);
 
-    if (opacity < 0.3) {
-      const direction = diff > 0 ? -1 : 1; // -1 esquerda, 1 direita
+    if (opacityAtEnd < 0.5) {
       setExiting(true);
-      setDragX(direction * window.innerWidth); // joga para fora da tela
-
-      // espera a animação terminar antes de navegar
+      setOpacity(0);
+      setDragX(0);
       setTimeout(() => {
         setExiting(false);
+        setOpacity(1);
         setDragX(0);
         if (diff > 0) onSwipeLeft();
         else onSwipeRight();
       }, 300);
     } else {
-      // não completou, volta ao lugar
+      setOpacity(1);
       setDragX(0);
     }
 
     touchStartX.current = null;
   };
 
-  return { handleTouchStart, handleTouchEnd, handleTouchMove, dragX, exiting };
+  return {
+    handleTouchStart,
+    handleTouchEnd,
+    handleTouchMove,
+    dragX,
+    exiting,
+    opacity,
+  };
 };
