@@ -1,12 +1,13 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
+import { fetchHinoPorIdentificador } from "./api/hinos";
 import LetraHino from "./LetraHino";
 import LetrasHinosBusca from "./LetrasHinosBusca";
 import Loading from "./Loading";
 import RefHino from "./RefHino";
+import Setas from "./Setas";
 import Voltar from "./Voltar";
-import { fetchHinoPorIdentificador } from "./api/hinos";
 
 const Hino = () => {
   const { id } = useParams(); // pega o id da rota
@@ -26,7 +27,8 @@ const Hino = () => {
   if (isLoading && !hino) return Loading();
 
   if (isError) {
-    if (error?.status === 404) return <div className="mensagemErro">Esse hino não existe.</div>;
+    if (error?.status === 404)
+      return <div className="mensagemErro">Esse hino não existe.</div>;
     return (
       <div className="mensagemErro">
         Não foi possível carregar o hino agora. Tente novamente.
@@ -45,6 +47,7 @@ const Hino = () => {
         </h3>
       </div>
       {hino?.letra ? <LetraHino letra={hino.letra} /> : Loading()}
+      <Setas />
     </>
   );
 };
