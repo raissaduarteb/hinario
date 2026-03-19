@@ -1,7 +1,7 @@
 const ordemTipos = ["H", "C", "S", "HC", "L"];
 
 export const parseIdentificador = (id) => {
-  const [tipo, numero] = id.split("/");
+  const [tipo, numero] = id.split("-");
   return { tipo, numero: Number(numero) };
 };
 
