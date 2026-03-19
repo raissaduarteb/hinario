@@ -64,32 +64,44 @@ export const irParaAnterior = async (identificador, navigate) => {
 export const useSwipe = (onSwipeLeft, onSwipeRight, minDistance = 50) => {
   const touchStartX = useRef(null);
   const [dragX, setDragX] = useState(0);
+  const [exiting, setExiting] = useState(false);
 
   const handleTouchStart = (e) => {
+    if (exiting) return;
+
     touchStartX.current = e.touches[0].clientX;
     setDragX(0);
   };
   const handleTouchMove = (e) => {
-    if (touchStartX.current === null) return;
+    if (touchStartX.current === null || exiting) return;
     const diff = e.touches[0].clientX - touchStartX.current;
     setDragX(diff);
   };
 
   const handleTouchEnd = (e) => {
-    if (touchStartX.current === null) return;
+    if (touchStartX.current === null || exiting) return;
 
     const diff = touchStartX.current - e.changedTouches[0].clientX;
 
     if (Math.abs(diff) >= minDistance) {
-      if (diff > 0) {
-        onSwipeLeft(); // arrastou para esquerda → próximo
-      } else {
-        onSwipeRight(); // arrastou para direita → anterior
-      }
+      const direction = diff > 0 ? -1 : 1; // -1 esquerda, 1 direita
+      setExiting(true);
+      setDragX(direction * window.innerWidth); // joga para fora da tela
+
+      // espera a animação terminar antes de navegar
+      setTimeout(() => {
+        setExiting(false);
+        setDragX(0);
+        if (diff > 0) onSwipeLeft();
+        else onSwipeRight();
+      }, 300);
+    } else {
+      // não completou, volta ao lugar
+      setDragX(0);
     }
-    setDragX(0);
+
     touchStartX.current = null;
   };
 
-  return { handleTouchStart, handleTouchEnd, handleTouchMove, dragX };
+  return { handleTouchStart, handleTouchEnd, handleTouchMove, dragX, exiting };
 };

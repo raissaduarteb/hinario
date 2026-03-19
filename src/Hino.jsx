@@ -26,12 +26,13 @@ const Hino = () => {
 
   const navigate = useNavigate();
 
-  const { handleTouchStart, handleTouchEnd, handleTouchMove, dragX } = useSwipe(
-    () => irParaProximo(id, navigate),
-    () => irParaAnterior(id, navigate),
-  );
-  const opacity = Math.max(0.6, 1 - Math.abs(dragX) / 600);
-  const isDragging = dragX !== 0;
+  const { handleTouchStart, handleTouchEnd, handleTouchMove, dragX, exiting } =
+    useSwipe(
+      () => irParaProximo(id, navigate),
+      () => irParaAnterior(id, navigate),
+    );
+  const opacity = Math.max(0, 1 - Math.abs(dragX) / 600);
+  const isDragging = dragX !== 0 && !exiting;
 
   if (isLoading && !hino) return Loading();
 
