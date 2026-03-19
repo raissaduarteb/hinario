@@ -385,7 +385,30 @@ body {
   color: white;
   border-radius: 10px;
 }
-
+.setas {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  width: 90%;
+  bottom: 78px;
+  left: 0;
+  margin: 1.3rem;
+}
+.seta {
+  background-color: transparent;
+  opacity: 0.9;
+  border-style: solid;
+  border-color: #f15a24;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  cursor: pointer;
+  text-align: center;
+}
+.seta-proximo {
+  transform: scaleX(-1);
+}
 @keyframes slideUp {
   from {
     transform: translateY(100%);
