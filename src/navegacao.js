@@ -9,7 +9,9 @@ export const parseIdentificador = (id) => {
 export const irParaProximo = async (identificador, navigate) => {
   const { tipo, numero } = parseIdentificador(identificador);
 
-  let res = await fetch(`/api/hino/${tipo}/${numero}/proximo`);
+  let res = await fetch(
+    `https://hinario-api.onrender.com/api/hino/${tipo}/${numero}/proximo`,
+  );
   let data = await res.json();
 
   if (data) {
@@ -20,7 +22,9 @@ export const irParaProximo = async (identificador, navigate) => {
   const index = ordemTipos.indexOf(tipo);
 
   for (let i = index + 1; i < ordemTipos.length; i++) {
-    res = await fetch(`/api/hino/${ordemTipos[i]}/primeiro`);
+    res = await fetch(
+      `https://hinario-api.onrender.com/api/hino/${ordemTipos[i]}/primeiro`,
+    );
     data = await res.json();
 
     if (data) {
@@ -33,7 +37,9 @@ export const irParaProximo = async (identificador, navigate) => {
 export const irParaAnterior = async (identificador, navigate) => {
   const { tipo, numero } = parseIdentificador(identificador);
 
-  let res = await fetch(`/api/hino/${tipo}/${numero}/anterior`);
+  let res = await fetch(
+    `https://hinario-api.onrender.com/api/hino/${tipo}/${numero}/anterior`,
+  );
   let data = await res.json();
 
   if (data) {
