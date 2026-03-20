@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import IconeSol from "../imgs/Sun.svg";
+import IconeLetra from "../imgs/text_fields.svg";
 
 const AjustesModal = ({ open, onClose }) => {
   const [darkMode, setDarkMode] = useState(() => {
@@ -33,31 +35,27 @@ const AjustesModal = ({ open, onClose }) => {
         className={`modal ${darkMode ? "dark" : ""}`}
         onClick={(e) => e.stopPropagation()}
       >
-        /* Modo Claro/Escuro */}
-          <div className="section">
-            <img src="imgs" alt="Sun icon for light mode theme selection" style={{ width: "22%" }}></img>
-            <div className="toggle">
-              <button
-                className={`toggle-option ${!darkMode ? "active" : ""}`}
-                onClick={() => setDarkMode(false)}
-              >
-                Claro
-              </button>
-              <button
-                className={`toggle-option ${darkMode ? "active" : ""}`}
-                onClick={() => setDarkMode(true)}
-              >
-                Escuro
-              </button>
-            </div>
-          </div>
-          {/* Ajustes de Fonte */}
+        {/* Modo Claro/Escuro */}
         <div className="section">
-          <img
-            src="/imgs/text_fields.svg"
-            alt="icon fonte"
-            style={{ width: "18%" }}
-          ></img>
+          <img src={IconeSol} alt="sol" style={{ width: "22%" }}></img>
+          <div className="toggle">
+            <button
+              className={`toggle-option ${!darkMode ? "active" : ""}`}
+              onClick={() => setDarkMode(false)}
+            >
+              Claro
+            </button>
+            <button
+              className={`toggle-option ${darkMode ? "active" : ""}`}
+              onClick={() => setDarkMode(true)}
+            >
+              Escuro
+            </button>
+          </div>
+        </div>
+        {/* Ajustes de Fonte */}
+        <div className="section">
+          <img src={IconeLetra} alt="icon fonte" style={{ width: "18%" }}></img>
           <div className="font-controls">
             <button onClick={decreaseFont} disabled={fontSize <= 12}>
               -

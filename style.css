@@ -268,7 +268,7 @@ body {
 }
 
 .dark-mode .botaoVoltar {
-  filter: brightness(20);
+  filter: brightness(100);
 }
 .margin {
   margin-top: 1.65rem;
