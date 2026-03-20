@@ -30,7 +30,7 @@ const BarraPesquisa = ({ value, onChange, autoFocus }) => {
         onKeyDown={handleKeyDown}
         onFocus={() => setIsFocused(true)} // volta o teclado quando clicar
         className="search-input"
-        placeholder="Pesquise por número ou letras..."
+        placeholder="Pesquise por hinos, letras..."
       />
     </div>
   );

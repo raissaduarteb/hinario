@@ -5,6 +5,7 @@ const AjustesModal = ({ open, onClose }) => {
     const saved = localStorage.getItem("darkMode");
     return saved ? JSON.parse(saved) : false;
   });
+
   const [fontSize, setFontSize] = useState(() => {
     const saved = localStorage.getItem("fontSize");
     return saved ? parseInt(saved) : 16;
@@ -32,23 +33,9 @@ const AjustesModal = ({ open, onClose }) => {
         className={`modal ${darkMode ? "dark" : ""}`}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Ajustes de Fonte */}
-        <div className="section">
-          <h3>Ajustes de Fonte</h3>
-          <div className="font-controls">
-            <button onClick={decreaseFont} disabled={fontSize <= 12}>
-              -
-            </button>
-            <span>{fontSize}px</span>
-            <button onClick={increaseFont} disabled={fontSize >= 30}>
-              +
-            </button>
-          </div>
-        </div>
-
         {/* Modo Claro/Escuro */}
         <div className="section">
-          <h3>Modo</h3>
+          <img src="/imgs/Sun.svg" alt="sol" style={{ width: "22%" }}></img>
           <div className="toggle">
             <button
               className={`toggle-option ${!darkMode ? "active" : ""}`}
@@ -64,9 +51,26 @@ const AjustesModal = ({ open, onClose }) => {
             </button>
           </div>
         </div>
+        {/* Ajustes de Fonte */}
+        <div className="section">
+          <img
+            src="/imgs/text_fields.svg"
+            alt="icon fonte"
+            style={{ width: "18%" }}
+          ></img>
+          <div className="font-controls">
+            <button onClick={decreaseFont} disabled={fontSize <= 12}>
+              -
+            </button>
+            <span>{fontSize}px</span>
+            <button onClick={increaseFont} disabled={fontSize >= 30}>
+              +
+            </button>
+          </div>
+        </div>
 
         <button className="fechar" onClick={onClose}>
-          Fechar
+          x
         </button>
       </div>
     </div>

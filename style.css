@@ -13,7 +13,7 @@ hr {
   border-style: none;
 }
 html {
-  background-color: rgba(250, 250, 250, 1);
+  background-color: inherit;
   color: #222;
 }
 body {
@@ -146,7 +146,6 @@ body {
   display: flex;
   width: fit-content;
   background: #e8e8e8;
-  padding: 6px;
   border-radius: 30px;
   gap: 6px;
   user-select: none;
@@ -375,7 +374,7 @@ body {
   bottom: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0);
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -387,6 +386,9 @@ body {
   padding: 20px;
   border-radius: 20px 20px 0 0;
   animation: slideUp 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .modal.dark {
@@ -424,13 +426,9 @@ body {
 }
 
 .section {
-  margin-bottom: 30px;
-}
-
-.section h3 {
-  margin: 0 0 15px 0;
-  font-size: 18px;
-  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .font-controls {
@@ -550,11 +548,15 @@ body {
 .dark-mode div,
 .dark-mode li,
 .dark-mode a {
-  color: #ffffff !important;
+  color: #f6f6f6 !important;
 }
 
 .dark-mode .main {
   background-color: #383838;
+}
+
+.dark-mode .search-container {
+  background-color: #dedede;
 }
 
 .dark-mode .botao {
@@ -606,21 +608,25 @@ html.dark-mode {
 }
 
 .dark-mode .font-controls button:disabled {
-  background-color: #333;
+  background-color: #a7a0a0;
   color: #888;
 }
 
 .dark-mode .overlay {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .dark-mode .seta {
-  background-color: rgba(50, 50, 50, 0.8);
-  border-color: rgba(233, 78, 26, 1);
+  background-color: rgba(255, 254, 254, 0);
+  border-color: rgb(244, 240, 239);
+}
+.dark-mode .seta img {
+  filter: brightness(10);
 }
 
 .dark-mode .seta:hover {
   background-color: rgba(233, 78, 26, 1);
+  border-color: rgba(233, 78, 26, 1);
 }
 
 .dark-mode hr {
@@ -630,7 +636,6 @@ html.dark-mode {
 .dark-mode input,
 .dark-mode textarea,
 .dark-mode select {
-  background-color: #333;
-  color: white;
-  border-color: #555;
+  background-color: #dedede;
+  color: #555555;
 }
