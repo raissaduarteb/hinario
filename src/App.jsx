@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import BarraPesquisa from "./BarraPesquisa";
 import BottomMenu from "./BottomMenu";
 import Buscas from "./Buscas";
@@ -12,9 +12,23 @@ import Titulo from "./Titulo";
 const App = () => {
   const tecladoRef = React.useRef();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [modo, setModo] = React.useState("Hinário");
-  const [busca, setBusca] = React.useState("");
+  const [busca, setBusca] = React.useState(() => {
+    const saved = localStorage.getItem("busca");
+    return saved || "";
+  });
+
+  React.useEffect(() => {
+    localStorage.setItem("busca", busca);
+  }, [busca]);
+
+  React.useEffect(() => {
+    if (location.state?.clearInput) {
+      setBusca("");
+    }
+  }, [location.state]);
 
   const handleSwitch = () => {
     tecladoRef.current.LimparTudo();

@@ -1,6 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ApagarBotao from "./ApagarBotao";
 import BotaoBusca from "./BotaoBusca";
 import Tecla from "./Tecla";
@@ -8,11 +8,19 @@ import { fetchHinoPorIdentificador } from "./api/hinos";
 
 const Teclado = React.forwardRef(({ modo }, ref) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const queryClient = useQueryClient();
 
   const [textoPreview, setTextoPreview] = useState("");
   const [buscando, setBuscando] = useState(false);
   const [mensagemErro, setMensagemErro] = useState("");
+
+  React.useEffect(() => {
+    if (location.state?.clearInput) {
+      setTextoPreview("");
+      setMensagemErro("");
+    }
+  }, [location.state]);
 
   React.useImperativeHandle(ref, () => ({
     LimparTudo: () => {
@@ -69,7 +77,7 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
             fetchHinoPorIdentificador(identificador, { signal }),
         })
         .then(() => {
-          navigate(`/hino/${identificador}`, { state: { from: 'teclado' } });
+          navigate(`/hino/${identificador}`, { state: { from: "teclado" } });
         })
         .catch((err) => {
           if (err?.status === 404) {

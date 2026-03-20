@@ -7,12 +7,13 @@ const Voltar = () => {
 
   const handleVoltar = () => {
     const from = location.state?.from;
+    console.log(from);
     if (from === "teclado") {
-      navigate("/teclado");
+      navigate("/", { state: { clearInput: true } });
     } else if (from === "pesquisa") {
       navigate("/pesquisa");
     } else {
-      navigate("/pesquisa");
+      navigate("/", { state: { clearInput: true } });
     }
   };
 

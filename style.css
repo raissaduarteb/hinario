@@ -579,7 +579,7 @@ body {
 }
 
 .dark-mode .search-container {
-  background-color: #dedede;
+  background-color: #484848;
 }
 
 .dark-mode .botao {
@@ -657,8 +657,8 @@ html.dark-mode {
 .dark-mode input,
 .dark-mode textarea,
 .dark-mode select {
-  background-color: #dedede;
-  color: #555555;
+  background-color: #484848;
+  color: #ffffff;
 }
 .dark-mode .search-input::placeholder {
   color: rgb(152, 152, 152);
