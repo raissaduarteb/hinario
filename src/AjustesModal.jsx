@@ -3,6 +3,7 @@ import IconeSol from "../imgs/Sun.svg";
 import IconeLetra from "../imgs/text_fields.svg";
 
 const AjustesModal = ({ open, onClose }) => {
+  const [isClosing, setIsClosing] = useState(false);
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem("darkMode");
     return saved ? JSON.parse(saved) : false;
@@ -27,26 +28,40 @@ const AjustesModal = ({ open, onClose }) => {
   const increaseFont = () => setFontSize((prev) => Math.min(prev + 2, 30));
   const decreaseFont = () => setFontSize((prev) => Math.max(prev - 2, 12));
 
-  if (!open) return null;
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsClosing(false);
+      onClose();
+    }, 300);
+  };
+
+  if (!open && !isClosing) return null;
 
   return (
-    <div className="toggle-wrapper overlay" onClick={onClose}>
+    <div className="toggle-wrapper overlay" onClick={handleClose}>
       <div
-        className={`modal ${darkMode ? "dark" : ""}`}
+        className={`modal ${darkMode ? "dark" : ""} ${isClosing ? "closing" : ""}`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modo Claro/Escuro */}
         <div className="section">
-          <img src={IconeSol} alt="sol" style={{ width: "22%" }}></img>
-          <div className="toggle">
+          <img src={IconeSol} alt="sol" style={{ width: "10%" }}></img>
+          <div className="toggle-wrapper modo-toggle">
+            <div
+              className="toggle-slider"
+              style={{
+                transform: `translateX(${darkMode ? "100%" : "0"})`,
+              }}
+            />
             <button
-              className={`toggle-option ${!darkMode ? "active" : ""}`}
+              className={`toggle-option toggle-option-ajustes ${!darkMode ? "selected" : ""}`}
               onClick={() => setDarkMode(false)}
             >
               Claro
             </button>
             <button
-              className={`toggle-option ${darkMode ? "active" : ""}`}
+              className={`toggle-option toggle-option-ajustes ${darkMode ? "selected" : ""}`}
               onClick={() => setDarkMode(true)}
             >
               Escuro
@@ -55,7 +70,7 @@ const AjustesModal = ({ open, onClose }) => {
         </div>
         {/* Ajustes de Fonte */}
         <div className="section">
-          <img src={IconeLetra} alt="icon fonte" style={{ width: "18%" }}></img>
+          <img src={IconeLetra} alt="icon fonte" style={{ width: "12%" }}></img>
           <div className="font-controls">
             <button onClick={decreaseFont} disabled={fontSize <= 12}>
               -
@@ -66,10 +81,6 @@ const AjustesModal = ({ open, onClose }) => {
             </button>
           </div>
         </div>
-
-        <button className="fechar" onClick={onClose}>
-          x
-        </button>
       </div>
     </div>
   );
