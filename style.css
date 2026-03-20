@@ -269,7 +269,8 @@ body {
 .botaoVoltar {
   cursor: pointer;
   border-radius: 50%;
-  width: 40px;
+  /* width: 40px; */
+  flex-grow: 1;
   height: 40px;
   display: flex;
   align-items: center;
@@ -313,7 +314,8 @@ body {
   font-size: 0.9rem;
   align-self: center;
   text-align: center;
-  width: 4rem;
+  /* width: 4rem; */
+  flex-grow: 2;
 }
 .tituloHino-letraHino {
   color: rgba(74, 74, 74, 1);

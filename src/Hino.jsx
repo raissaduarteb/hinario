@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchHinoPorIdentificador } from "./api/hinos";
 import { irParaAnterior, irParaProximo, useSwipe } from "./navegacao";
 
@@ -79,10 +79,9 @@ const Hino = () => {
             marginBottom: "0",
           }}
         >
-          <Voltar />
-
-          <RefHino id={hino.identificador} />
-          <h3 style={{ margin: 0 }}>
+          <Voltar style={{ flexGrow: 1 }} />
+          <RefHino style={{ flexGrow: 2 }} id={hino.identificador} />
+          <h3 style={{ margin: 0, flexGrow: 12 }}>
             <LetrasHinosBusca tituloHino={hino.titulo} />
           </h3>
         </div>
