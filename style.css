@@ -14,9 +14,11 @@ hr {
 }
 html {
   background-color: rgba(250, 250, 250, 1);
+  color: #222;
 }
 body {
-  margin: 10px 0 0 0;
+  padding: 10px 0;
+  margin: 0;
   touch-action: pan-x pan-y;
 }
 .main {
@@ -250,6 +252,18 @@ body {
 
 .botaoVoltar {
   cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: 0.3s;
+}
+
+.dark-mode .botaoVoltar {
+  filter: brightness(20);
 }
 .margin {
   margin-top: 1.65rem;
@@ -259,6 +273,7 @@ body {
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  align-items: center;
 }
 .hinos-busca {
   display: flex;
@@ -304,14 +319,19 @@ body {
   font-size: 17px;
   text-align: start;
   width: 85%;
-  margin: 1rem 1.3rem 7rem 1.3rem;
+  padding: 1rem 1.3rem 7rem 1.3rem;
   height: 100%;
+}
+
+.dark-mode .hino {
+  color: #ffffff;
 }
 .hino-refrao {
   font-weight: 500;
 }
 .hino-estrofe {
   font-weight: 400;
+  font-size: var(--font-size, 16px);
 }
 .bottomMenu {
   position: fixed;
@@ -326,6 +346,12 @@ body {
   box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.05);
   font-family: "Figtree", sans-serif;
   color: rgba(74, 74, 74, 1);
+}
+
+.dark-mode .bottomMenu {
+  background: #222;
+  color: #ffffff;
+  box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.3);
 }
 
 .menu-item {
@@ -377,15 +403,75 @@ body {
 
 .toggle button {
   padding: 8px 15px;
-  border: none;
-  background: #ddd;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #333;
   cursor: pointer;
   margin-left: 5px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.dark-mode .toggle button {
+  background: #444;
+  color: white;
+  border-color: #555;
 }
 
 .toggle .active {
-  background: orange;
+  background: rgba(233, 78, 26, 1);
   color: white;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.section h3 {
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.font-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.font-controls button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.font-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.font-controls span {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.fechar {
+  width: 100%;
+  padding: 12px;
+  background: rgba(233, 78, 26, 1);
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .fechar {
@@ -404,7 +490,7 @@ body {
   width: 90%;
   bottom: 51px;
   left: 0;
-  margin: 1.3rem;
+  padding: 1.3rem;
 }
 .seta {
   background-color: rgba(250, 250, 250, 0.7);
@@ -439,4 +525,112 @@ body {
   to {
     transform: translateY(0);
   }
+}
+
+/* Modo Escuro */
+.dark-mode,
+.dark-mode html,
+.dark-mode body {
+  background-color: #383838 !important;
+  color: #ffffff !important;
+}
+
+.dark-mode * {
+  color: inherit;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6,
+.dark-mode p,
+.dark-mode span,
+.dark-mode div,
+.dark-mode li,
+.dark-mode a {
+  color: #ffffff !important;
+}
+
+.dark-mode .main {
+  background-color: #383838;
+}
+
+.dark-mode .botao {
+  color: white;
+  border-color: white;
+  background-color: transparent;
+}
+
+.dark-mode .botao:hover {
+  color: rgba(233, 78, 26, 1);
+}
+
+.dark-mode .mensagemErro {
+  color: #ffcccc;
+}
+
+.dark-mode .hinos-separar {
+  background-color: transparent;
+}
+
+html.dark-mode {
+  background-color: #383838;
+}
+.dark-mode .modal {
+  background-color: #2a2a2a;
+  color: white;
+}
+
+.dark-mode .fechar {
+  background-color: rgba(233, 78, 26, 1);
+  color: white;
+}
+
+.dark-mode .toggle-option {
+  background-color: #444;
+  color: white;
+  border: 1px solid #555;
+}
+
+.dark-mode .toggle-option.active {
+  background-color: rgba(233, 78, 26, 1);
+  color: white;
+}
+
+.dark-mode .font-controls button {
+  background-color: #444;
+  color: white;
+  border: 1px solid #555;
+}
+
+.dark-mode .font-controls button:disabled {
+  background-color: #333;
+  color: #888;
+}
+
+.dark-mode .overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dark-mode .seta {
+  background-color: rgba(50, 50, 50, 0.8);
+  border-color: rgba(233, 78, 26, 1);
+}
+
+.dark-mode .seta:hover {
+  background-color: rgba(233, 78, 26, 1);
+}
+
+.dark-mode hr {
+  background-color: #444;
+}
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+  background-color: #333;
+  color: white;
+  border-color: #555;
 }

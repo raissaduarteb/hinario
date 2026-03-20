@@ -49,7 +49,7 @@ const BottomMenu = () => {
           className={`menu-item ${active === "ajustes" ? "active" : ""}`}
           onClick={() => {
             setActive("ajustes"); // botão ativado
-            // setOpenAjustes(true); entrar nos ajustes
+            setOpenAjustes(true);
           }}
         >
           <img
