@@ -294,8 +294,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: left;
-  margin: 1rem 1.5rem;
-  gap: 0.5rem;
+  margin: 1rem 1.5rem 3rem 1rem;
   text-align: initial;
 }
 .hino-item {
