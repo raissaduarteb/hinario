@@ -63,6 +63,7 @@ body {
   transition: 0.3s;
   font-family: "Figtree", sans-serif;
   font-weight: 600;
+  border: none;
 }
 
 .botaoBusca.desativado {
@@ -147,7 +148,6 @@ body {
   width: fit-content;
   background: #e8e8e8;
   border-radius: 30px;
-  gap: 6px;
   user-select: none;
   font-family: "Figtree", sans-serif;
   font-weight: 400;
@@ -172,6 +172,9 @@ body {
   color: #d04a22;
   font-weight: 600;
 }
+.dark-mode .toggle-option.selected {
+  color: white;
+}
 .toggle-slider {
   position: absolute;
   top: 6px;
@@ -182,6 +185,9 @@ body {
   border-radius: 26px;
   z-index: 1;
   transition: transform 0.3s ease;
+}
+.dark-mode .toggle-slider {
+  background: rgba(233, 78, 26, 1);
 }
 .botao-Apagar {
   text-align: center;
@@ -530,7 +536,7 @@ body {
 .dark-mode html,
 .dark-mode body {
   background-color: #383838 !important;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 
 .dark-mode * {
@@ -548,7 +554,7 @@ body {
 .dark-mode div,
 .dark-mode li,
 .dark-mode a {
-  color: #f6f6f6 !important;
+  color: #f6f6f6;
 }
 
 .dark-mode .main {
@@ -591,9 +597,7 @@ html.dark-mode {
 }
 
 .dark-mode .toggle-option {
-  background-color: #444;
-  color: white;
-  border: 1px solid #555;
+  color: rgb(74, 74, 74);
 }
 
 .dark-mode .toggle-option.active {
@@ -638,4 +642,7 @@ html.dark-mode {
 .dark-mode select {
   background-color: #dedede;
   color: #555555;
+}
+.dark-mode .search-input::placeholder {
+  color: rgb(152, 152, 152);
 }

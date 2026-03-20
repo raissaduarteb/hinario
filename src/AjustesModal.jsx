@@ -33,25 +33,25 @@ const AjustesModal = ({ open, onClose }) => {
         className={`modal ${darkMode ? "dark" : ""}`}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Modo Claro/Escuro */}
-        <div className="section">
-          <img src="/imgs/Sun.svg" alt="sol" style={{ width: "22%" }}></img>
-          <div className="toggle">
-            <button
-              className={`toggle-option ${!darkMode ? "active" : ""}`}
-              onClick={() => setDarkMode(false)}
-            >
-              Claro
-            </button>
-            <button
-              className={`toggle-option ${darkMode ? "active" : ""}`}
-              onClick={() => setDarkMode(true)}
-            >
-              Escuro
-            </button>
+        /* Modo Claro/Escuro */}
+          <div className="section">
+            <img src="imgs" alt="Sun icon for light mode theme selection" style={{ width: "22%" }}></img>
+            <div className="toggle">
+              <button
+                className={`toggle-option ${!darkMode ? "active" : ""}`}
+                onClick={() => setDarkMode(false)}
+              >
+                Claro
+              </button>
+              <button
+                className={`toggle-option ${darkMode ? "active" : ""}`}
+                onClick={() => setDarkMode(true)}
+              >
+                Escuro
+              </button>
+            </div>
           </div>
-        </div>
-        {/* Ajustes de Fonte */}
+          {/* Ajustes de Fonte */}
         <div className="section">
           <img
             src="/imgs/text_fields.svg"
