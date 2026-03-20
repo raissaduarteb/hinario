@@ -45,7 +45,7 @@ body {
   border-width: thin;
 }
 
-.botao:hover {
+.botao:active {
   color: rgba(233, 78, 26, 1);
 }
 
@@ -70,7 +70,7 @@ body {
   background-color: grey;
   cursor: not-allowed;
 }
-.botaoBusca:hover {
+.botaoBusca:active {
   background-color: rgb(198, 63, 18);
 }
 
@@ -522,11 +522,11 @@ body {
   transform: scaleX(-1);
 }
 
-.seta:hover {
+.seta:active {
   background-color: #f15a24;
   transition: 0.2s;
 }
-.seta:hover img {
+.seta:active img {
   filter: brightness(100);
 }
 @keyframes slideUp {
@@ -587,7 +587,7 @@ body {
   background-color: transparent;
 }
 
-.dark-mode .botao:hover {
+.dark-mode .botao:active {
   color: rgba(233, 78, 26, 1);
 }
 
@@ -644,7 +644,7 @@ html.dark-mode {
   filter: brightness(10);
 }
 
-.dark-mode .seta:hover {
+.dark-mode .seta:active {
   background-color: rgba(233, 78, 26, 1);
   border-color: rgba(233, 78, 26, 1);
 }
