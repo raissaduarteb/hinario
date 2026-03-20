@@ -11,6 +11,7 @@ import iconeselecaolaranja from "../imgs/selecaolaranja.svg";
 
 const BottomMenu = () => {
   const [active, setActive] = useState("home");
+  const [prevActive, setPrevActive] = useState("home");
   const navigate = useNavigate();
   const [openAjustes, setOpenAjustes] = useState(false);
 
@@ -48,6 +49,9 @@ const BottomMenu = () => {
         <button
           className={`menu-item ${active === "ajustes" ? "active" : ""}`}
           onClick={() => {
+            if (active !== "ajustes") {
+              setPrevActive(active);
+            }
             setActive("ajustes"); // botão ativado
             setOpenAjustes(true);
           }}
@@ -60,7 +64,13 @@ const BottomMenu = () => {
           <span className="label">Ajustes</span>
         </button>
       </div>
-      <AjustesModal open={openAjustes} onClose={() => setOpenAjustes(false)} />
+      <AjustesModal
+        open={openAjustes}
+        onClose={() => {
+          setOpenAjustes(false);
+          setActive(prevActive);
+        }}
+      />
     </>
   );
 };
