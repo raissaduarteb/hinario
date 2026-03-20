@@ -44,7 +44,7 @@ export const irParaAnterior = async (identificador, navigate) => {
   let data = await res.json();
 
   if (data) {
-    navigate(`/hino/${data.id}`);
+    navigate(`/hino/${data.identificador.replace("-", "")}`);
     return;
   }
 
@@ -55,7 +55,7 @@ export const irParaAnterior = async (identificador, navigate) => {
     data = await res.json();
 
     if (data) {
-      navigate(`/hino/${data.id}`);
+      navigate(`/hino/${data.identificador.replace("-", "")}`);
       return;
     }
   }
