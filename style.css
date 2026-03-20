@@ -156,6 +156,10 @@ body {
   font-family: "Figtree", sans-serif;
   font-weight: 400;
   margin: auto;
+  height: 2.5rem;
+}
+.dark-mode .toggle-wrapper {
+  background: #484848;
 }
 .toggle-option-ajustes {
   padding: 8px 9px !important;
@@ -172,6 +176,7 @@ body {
   color: #666;
   min-width: 70px;
   text-align: center;
+  align-self: center;
 }
 
 .toggle-option.selected {
@@ -193,7 +198,7 @@ body {
   transition: transform 0.3s ease;
 }
 .dark-mode .toggle-slider {
-  background: rgba(233, 78, 26, 1);
+  background: rgb(56 56 56);
 }
 .botao-Apagar {
   text-align: center;
@@ -579,7 +584,7 @@ body {
 
 .dark-mode .botao {
   color: white;
-  border-color: white;
+  border-color: #858585;
   background-color: transparent;
 }
 
@@ -609,7 +614,7 @@ html.dark-mode {
 }
 
 .dark-mode .toggle-option {
-  color: rgb(74, 74, 74);
+  color: rgb(164, 164, 164);
 }
 
 .dark-mode .toggle-option.active {

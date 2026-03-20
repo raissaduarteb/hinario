@@ -60,7 +60,7 @@ const HinosPesquisa = ({ busca }) => {
       {hinos.map((hino) => (
         <div key={hino.id}>
           <div
-            onClick={() => navigate(`/hino/${hino.identificador}`)}
+            onClick={() => navigate(`/hino/${hino.identificador}`, { state: { from: 'pesquisa' } })}
             className="hino-item"
           >
             <RefHino id={hino.identificador} />

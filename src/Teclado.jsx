@@ -69,7 +69,7 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
             fetchHinoPorIdentificador(identificador, { signal }),
         })
         .then(() => {
-          navigate(`/hino/${identificador}`);
+          navigate(`/hino/${identificador}`, { state: { from: 'teclado' } });
         })
         .catch((err) => {
           if (err?.status === 404) {
