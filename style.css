@@ -115,7 +115,7 @@ body {
   color: rgba(34, 34, 34, 1);
   font-family: "Ysabeau Office", sans-serif;
   margin: 5px;
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -465,7 +465,6 @@ body {
 .font-controls button {
   width: 40px;
   height: 40px;
-  border: 1px solid #ccc;
   background: #fff;
   border-radius: 50%;
   font-size: 20px;
@@ -474,6 +473,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #666;
 }
 
 .font-controls button:disabled {
@@ -624,12 +624,13 @@ html.dark-mode {
 .dark-mode .font-controls button {
   background-color: #444;
   color: white;
-  border: 1px solid #555;
+}
+.dark-mode .font-controls button:active {
+  background-color: rgba(233, 78, 26, 1);
 }
 
 .dark-mode .font-controls button:disabled {
-  background-color: #a7a0a0;
-  color: #888;
+  background-color: #a3a3a3;
 }
 
 .dark-mode .overlay {
