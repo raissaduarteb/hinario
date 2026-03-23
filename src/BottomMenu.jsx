@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import AjustesModal from "./AjustesModal";
 
 import iconeajustes from "../imgs/ajustes.svg";
@@ -13,34 +13,42 @@ const BottomMenu = () => {
   const [active, setActive] = useState("home");
   const [prevActive, setPrevActive] = useState("home");
   const navigate = useNavigate();
+  const location = useLocation();
+  const isHinoPage = location.pathname.startsWith("/hino");
   const [openAjustes, setOpenAjustes] = useState(false);
 
   return (
     <>
       <div className="bottomMenu">
         <button
-          className={`menu-item ${active === "home" ? "active" : ""}`}
+          className={`menu-item ${!isHinoPage && active === "home" ? "active" : ""}`}
           onClick={() => {
             setActive("home");
             navigate("/");
           }}
         >
           <img
-            src={active === "home" ? iconehomelaranja : iconehome}
+            src={
+              !isHinoPage && active === "home" ? iconehomelaranja : iconehome
+            }
             alt="casinha"
             className="icon"
           />
           <span className="label">Home</span>
         </button>
         <button
-          className={`menu-item ${active === "selecao" ? "active" : ""}`}
+          className={`menu-item ${!isHinoPage && active === "selecao" ? "active" : ""}`}
           onClick={() => {
             setActive("selecao");
             navigate("/selecao");
           }}
         >
           <img
-            src={active === "selecao" ? iconeselecaolaranja : iconeselecao}
+            src={
+              !isHinoPage && active === "selecao"
+                ? iconeselecaolaranja
+                : iconeselecao
+            }
             alt="selecao"
             className="icon"
           />
@@ -68,7 +76,7 @@ const BottomMenu = () => {
         open={openAjustes}
         onClose={() => {
           setOpenAjustes(false);
-          setActive(prevActive);
+          setActive(null);
         }}
       />
     </>
