@@ -4,6 +4,7 @@ import BarraPesquisa from "./BarraPesquisa";
 import BottomMenu from "./BottomMenu";
 import Buscas from "./Buscas";
 import ComponenteBuscaHino from "./ComponenteBuscaHino";
+import { FontSizeProvider } from "./FontSizeContext";
 import Hino from "./Hino";
 import Switch from "./Switch";
 import Teclado from "./Teclado";
@@ -42,59 +43,61 @@ const App = () => {
 
   return (
     <>
-      <Titulo />
+      <FontSizeProvider>
+        <Titulo />
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
+        <Routes>
+          <Route
+            path="/"
+            element={
               <div>
-                <BarraPesquisa
-                  value={busca}
-                  onChange={(texto) => {
-                    setBusca(texto);
-                    if (texto.length > 0) {
-                      navigate("/pesquisa");
-                    }
-                  }}
+                <div>
+                  <BarraPesquisa
+                    value={busca}
+                    onChange={(texto) => {
+                      setBusca(texto);
+                      if (texto.length > 0) {
+                        navigate("/pesquisa");
+                      }
+                    }}
+                  />
+                </div>
+                <Switch
+                  options={["Hinário", "Harpa Cristã"]}
+                  selectedOption={modo}
+                  onChange={(value) => setModo(value)}
+                  onClickSwitch={() => tecladoRef.current.LimparTudo()}
+                />
+
+                <Teclado
+                  ref={tecladoRef}
+                  modo={modo}
+                  setHinoSelecionado={setHinoSelecionado}
                 />
               </div>
-              <Switch
-                options={["Hinário", "Harpa Cristã"]}
-                selectedOption={modo}
-                onChange={(value) => setModo(value)}
-                onClickSwitch={() => tecladoRef.current.LimparTudo()}
-              />
-
-              <Teclado
-                ref={tecladoRef}
-                modo={modo}
-                setHinoSelecionado={setHinoSelecionado}
-              />
-            </div>
-          }
-        />
-        <Route
-          path="/pesquisa"
-          element={
-            <>
-              <Buscas value={busca} onChange={setBusca} />{" "}
-              <ComponenteBuscaHino busca={busca} />
-            </>
-          }
-        />
-        <Route
-          path="/hino/:id"
-          element={
-            <>
-              <Hino />
-            </>
-          }
-        />
-        <Route path="/selecao" element={<></>} />
-      </Routes>
-      <BottomMenu />
+            }
+          />
+          <Route
+            path="/pesquisa"
+            element={
+              <>
+                <Buscas value={busca} onChange={setBusca} />{" "}
+                <ComponenteBuscaHino busca={busca} />
+              </>
+            }
+          />
+          <Route
+            path="/hino/:id"
+            element={
+              <>
+                <Hino />
+              </>
+            }
+          />
+          <Route path="/selecao" element={<></>} />
+        </Routes>
+        <BottomMenu />
+      </FontSizeProvider>
     </>
   );
 };

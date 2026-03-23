@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import IconeSol from "../imgs/Sun.svg";
 import IconeLetra from "../imgs/text_fields.svg";
+import { useFontSize } from "./FontSizeContext";
 
 const AjustesModal = ({ open, onClose }) => {
   const [isClosing, setIsClosing] = useState(false);
@@ -9,14 +10,10 @@ const AjustesModal = ({ open, onClose }) => {
     return saved ? JSON.parse(saved) : false;
   });
 
-  const [fontSize, setFontSize] = useState(() => {
-    const saved = localStorage.getItem("fontSize");
-    return saved ? parseInt(saved) : 16;
-  });
+  const { fontSize, setFontSize } = useFontSize();
 
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
-    localStorage.setItem("fontSize", fontSize);
     if (darkMode) {
       document.body.classList.add("dark-mode");
     } else {

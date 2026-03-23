@@ -642,7 +642,7 @@ html.dark-mode {
   border-color: rgb(244, 240, 239);
 }
 .dark-mode .seta img {
-  filter: brightness(10);
+  filter: brightness(100);
 }
 
 .dark-mode .seta:active {
