@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import IconeSol from "../imgs/Sun.svg";
 import IconeLetra from "../imgs/text_fields.svg";
 import { useFontSize } from "./FontSizeContext";
 
 const AjustesModal = ({ open, onClose }) => {
   const [isClosing, setIsClosing] = useState(false);
+  const location = useLocation();
+  const isHinoPage = location.pathname.startsWith("/hino");
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem("darkMode");
     return saved ? JSON.parse(saved) : false;
@@ -66,17 +69,23 @@ const AjustesModal = ({ open, onClose }) => {
           </div>
         </div>
         {/* Ajustes de Fonte */}
-        <div className="section">
-          <img src={IconeLetra} alt="icon fonte" style={{ width: "19%" }}></img>
-          <div className="font-controls">
-            <button onClick={decreaseFont} disabled={fontSize <= 12}>
-              -
-            </button>
-            <button onClick={increaseFont} disabled={fontSize >= 30}>
-              +
-            </button>
+        {isHinoPage && (
+          <div className="section">
+            <img
+              src={IconeLetra}
+              alt="icon fonte"
+              style={{ width: "19%" }}
+            ></img>
+            <div className="font-controls">
+              <button onClick={decreaseFont} disabled={fontSize <= 12}>
+                -
+              </button>
+              <button onClick={increaseFont} disabled={fontSize >= 30}>
+                +
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
