@@ -67,7 +67,7 @@ const AjustesModal = ({ open, onClose }) => {
         </div>
         {/* Ajustes de Fonte */}
         <div className="section">
-          <img src={IconeLetra} alt="icon fonte" style={{ width: "12%" }}></img>
+          <img src={IconeLetra} alt="icon fonte" style={{ width: "19%" }}></img>
           <div className="font-controls">
             <button onClick={decreaseFont} disabled={fontSize <= 12}>
               -
