@@ -75,7 +75,6 @@ const AjustesModal = ({ open, onClose }) => {
             <button onClick={decreaseFont} disabled={fontSize <= 12}>
               -
             </button>
-            <span>{fontSize}px</span>
             <button onClick={increaseFont} disabled={fontSize >= 30}>
               +
             </button>
