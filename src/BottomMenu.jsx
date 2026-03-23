@@ -10,18 +10,30 @@ import iconeselecao from "../imgs/selecao.svg";
 import iconeselecaolaranja from "../imgs/selecaolaranja.svg";
 
 const BottomMenu = () => {
-  const [active, setActive] = useState("home");
-  const [prevActive, setPrevActive] = useState("home");
   const navigate = useNavigate();
   const location = useLocation();
   const isHinoPage = location.pathname.startsWith("/hino");
+  const isPesquisaPage = location.pathname === "/pesquisa";
+  const isSelecaoPage = location.pathname === "/selecao";
+  const isHomePage = location.pathname === "/";
+
+  // Estado inicial baseado na rota
+  const getInitialActive = () => {
+    if (isHomePage) return "home";
+    if (isSelecaoPage) return "selecao";
+    if (isPesquisaPage || isHinoPage) return null;
+    return "home";
+  };
+
+  const [active, setActive] = useState(getInitialActive());
+  const [prevActive, setPrevActive] = useState(getInitialActive());
   const [openAjustes, setOpenAjustes] = useState(false);
 
   return (
     <>
       <div className="bottomMenu">
         <button
-          className={`menu-item ${!isHinoPage && active === "home" ? "active" : ""}`}
+          className={`menu-item ${!isPesquisaPage && !isHinoPage && active === "home" ? "active" : ""}`}
           onClick={() => {
             setActive("home");
             navigate("/");
@@ -29,7 +41,9 @@ const BottomMenu = () => {
         >
           <img
             src={
-              !isHinoPage && active === "home" ? iconehomelaranja : iconehome
+              !isPesquisaPage && !isHinoPage && active === "home"
+                ? iconehomelaranja
+                : iconehome
             }
             alt="casinha"
             className="icon"
@@ -37,7 +51,7 @@ const BottomMenu = () => {
           <span className="label">Home</span>
         </button>
         <button
-          className={`menu-item ${!isHinoPage && active === "selecao" ? "active" : ""}`}
+          className={`menu-item ${!isPesquisaPage && !isHinoPage && active === "selecao" ? "active" : ""}`}
           onClick={() => {
             setActive("selecao");
             navigate("/selecao");
@@ -45,7 +59,7 @@ const BottomMenu = () => {
         >
           <img
             src={
-              !isHinoPage && active === "selecao"
+              !isPesquisaPage && !isHinoPage && active === "selecao"
                 ? iconeselecaolaranja
                 : iconeselecao
             }
@@ -76,7 +90,15 @@ const BottomMenu = () => {
         open={openAjustes}
         onClose={() => {
           setOpenAjustes(false);
-          setActive(null);
+          // Comportamento baseado na rota
+          if (isHomePage) {
+            setActive("home");
+          } else if (isSelecaoPage) {
+            setActive("selecao");
+          } else {
+            // Pesquisa e Hino: ficam desativados
+            setActive(null);
+          }
         }}
       />
     </>
