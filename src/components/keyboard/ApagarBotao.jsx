@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import deleteButton from "../imgs/deletebutton.png";
+import deleteButton from "../../../imgs/deletebutton.png";
 
 const ApagarBotao = ({ onApagar, ativo }) => {
   const [visivel, setVisivel] = useState(false);

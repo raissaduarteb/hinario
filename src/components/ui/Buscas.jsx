@@ -1,8 +1,7 @@
-import React from "react";
-import BarraPesquisa from "./assets/BarraPesquisa";
-import Voltar from "./Voltar";
+import Voltar from "../hymn/Voltar";
+import BarraPesquisa from "./BarraPesquisa";
 
-const Buscas = ({ busca, setBusca, value, onChange }) => {
+const Buscas = ({ value, onChange }) => {
   return (
     <div className="pesquisaBuscas">
       <Voltar />

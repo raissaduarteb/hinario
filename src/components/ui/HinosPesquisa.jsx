@@ -1,9 +1,9 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
+import RefHino from "../hymn/RefHino";
 import LetrasHinosBusca from "./LetrasHinosBusca";
 import LinhaBusca from "./LinhaBusca";
-import RefHino from "./RefHino";
 
 const HinosPesquisa = ({ busca }) => {
   const [hinos, setHinos] = useState([]);
@@ -60,7 +60,11 @@ const HinosPesquisa = ({ busca }) => {
       {hinos.map((hino) => (
         <div key={hino.id}>
           <div
-            onClick={() => navigate(`/hino/${hino.identificador}`, { state: { from: 'pesquisa' } })}
+            onClick={() =>
+              navigate(`/hino/${hino.identificador}`, {
+                state: { from: "pesquisa" },
+              })
+            }
             className="hino-item"
           >
             <RefHino id={hino.identificador} />

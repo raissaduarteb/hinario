@@ -1,14 +1,14 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchHinoPorIdentificador } from "./api/hinos";
-import { irParaAnterior, irParaProximo, useSwipe } from "./navegacao";
+import { fetchHinoPorIdentificador } from "../../utils/api/hinos";
+import { irParaAnterior, irParaProximo, useSwipe } from "../../utils/navegacao";
 
+import LetrasHinosBusca from "../ui/LetrasHinosBusca";
+import Loading from "../ui/Loading";
+import Setas from "../ui/Setas";
 import LetraHino from "./LetraHino";
-import LetrasHinosBusca from "./LetrasHinosBusca";
-import Loading from "./Loading";
 import RefHino from "./RefHino";
-import Setas from "./Setas";
 import Voltar from "./Voltar";
 
 const Hino = () => {

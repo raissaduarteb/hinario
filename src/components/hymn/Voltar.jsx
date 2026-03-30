@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import voltarIcon from "../imgs/voltar.svg";
+import voltarIcon from "../../../imgs/voltar.svg";
 
 const Voltar = () => {
   const navigate = useNavigate();

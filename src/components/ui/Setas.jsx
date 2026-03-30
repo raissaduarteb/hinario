@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import SetasIcon from "../imgs/setahino.svg";
-import { irParaAnterior, irParaProximo } from "./navegacao";
+import SetasIcon from "../../../imgs/setahino.svg";
+import { irParaAnterior, irParaProximo } from "../../utils/navegacao";
 
 const Setas = () => {
   const navigate = useNavigate();

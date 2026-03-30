@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import IconeSol from "../imgs/Sun.svg";
-import IconeLetra from "../imgs/text_fields.svg";
-import { useFontSize } from "./FontSizeContext";
+import IconeSol from "../../../imgs/Sun.svg";
+import IconeLetra from "../../../imgs/text_fields.svg";
+import { useFontSize } from "../../contexts/FontSizeContext";
 
 const AjustesModal = ({ open, onClose }) => {
   const [isClosing, setIsClosing] = useState(false);

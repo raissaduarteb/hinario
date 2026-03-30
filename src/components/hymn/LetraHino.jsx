@@ -1,4 +1,4 @@
-import { useFontSize } from "./FontSizeContext";
+import { useFontSize } from "../../contexts/FontSizeContext";
 
 const LetraHino = ({ letra }) => {
   const { fontSize } = useFontSize();

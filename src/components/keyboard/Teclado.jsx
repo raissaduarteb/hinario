@@ -1,10 +1,10 @@
 import { useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { fetchHinoPorIdentificador } from "../../utils/api/hinos";
 import ApagarBotao from "./ApagarBotao";
 import BotaoBusca from "./BotaoBusca";
 import Tecla from "./Tecla";
-import { fetchHinoPorIdentificador } from "./api/hinos";
 
 const Teclado = React.forwardRef(({ modo }, ref) => {
   const navigate = useNavigate();

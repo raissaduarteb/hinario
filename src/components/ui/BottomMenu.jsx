@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import AjustesModal from "./AjustesModal";
 
-import iconeajustes from "../imgs/ajustes.svg";
-import iconeajusteslaranja from "../imgs/ajusteslaranja.svg";
-import iconehome from "../imgs/casinha.svg";
-import iconehomelaranja from "../imgs/casinhalaranja.svg";
-import iconeselecao from "../imgs/selecao.svg";
-import iconeselecaolaranja from "../imgs/selecaolaranja.svg";
+import iconeajustes from "../../../imgs/ajustes.svg";
+import iconeajusteslaranja from "../../../imgs/ajusteslaranja.svg";
+import iconehome from "../../../imgs/casinha.svg";
+import iconehomelaranja from "../../../imgs/casinhalaranja.svg";
+import iconeselecao from "../../../imgs/selecao.svg";
+import iconeselecaolaranja from "../../../imgs/selecaolaranja.svg";
 
 const BottomMenu = () => {
   const navigate = useNavigate();

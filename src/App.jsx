@@ -1,45 +1,37 @@
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import BarraPesquisa from "./BarraPesquisa";
-import BottomMenu from "./BottomMenu";
-import Buscas from "./Buscas";
-import ComponenteBuscaHino from "./ComponenteBuscaHino";
-import { FontSizeProvider } from "./FontSizeContext";
-import Hino from "./Hino";
-import Switch from "./Switch";
-import Teclado from "./Teclado";
-import Titulo from "./Titulo";
+import Hino from "./components/hymn/Hino";
+import Teclado from "./components/keyboard/Teclado";
+import BarraPesquisa from "./components/ui/BarraPesquisa";
+import BottomMenu from "./components/ui/BottomMenu";
+import Buscas from "./components/ui/Buscas";
+import ComponenteBuscaHino from "./components/ui/ComponenteBuscaHino";
+import Switch from "./components/ui/Switch";
+import Titulo from "./components/ui/Titulo";
+import { FontSizeProvider } from "./contexts/FontSizeContext";
+import { useBuscaState } from "./hooks/useBuscaState";
+import { useHinoSelecionado } from "./hooks/useHinoSelecionado";
+import { useModoState } from "./hooks/useModoState";
 
 const App = () => {
   const tecladoRef = React.useRef();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [modo, setModo] = React.useState("Hinário");
-  const [busca, setBusca] = React.useState(() => {
-    const saved = localStorage.getItem("busca");
-    return saved || "";
-  });
+  const { modo, setModo } = useModoState();
+  const { busca, setBusca } = useBuscaState();
+  const { hinoSelecionado, setHinoSelecionado } = useHinoSelecionado();
 
-  React.useEffect(() => {
-    localStorage.setItem("busca", busca);
-  }, [busca]);
-
+  // Limpar busca quando voltando de rotas específicas
   React.useEffect(() => {
     if (location.state?.clearInput) {
       setBusca("");
     }
-  }, [location.state]);
+  }, [location.state, setBusca]);
 
   const handleSwitch = () => {
     tecladoRef.current.LimparTudo();
   };
-
-  const [hinoSelecionado, setHinoSelecionado] = React.useState({
-    id: "",
-    titulo: "",
-    letra: "",
-  });
 
   return (
     <>
