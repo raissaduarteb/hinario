@@ -46,7 +46,7 @@ const Hino = () => {
     }
   }, [isLoading, hino, setOpacity]);
 
-  if (isLoading && !hino) return Loading();
+  if (isLoading && !hino) return <Loading />;
 
   if (isError) {
     if (error?.status === 404)
