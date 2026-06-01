@@ -748,7 +748,7 @@ html.dark-mode {
 .containersuperior {
   display: flex;
   align-items: center;
-  padding: 0.3rem 1rem;
+  padding: 0.3rem 1.5rem;
   position: relative;
 }
 
