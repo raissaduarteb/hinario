@@ -1,17 +1,14 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, Text, View } from "react-native";
 import { FontSizeProvider } from "./src/contexts/FontSizeContext";
 import { useBuscaState } from "./src/hooks/useBuscaState";
 import { useHinoSelecionado } from "./src/hooks/useHinoSelecionado";
 import { useModoState } from "./src/hooks/useModoState";
-
 const queryClient = new QueryClient();
-
 export default function App() {
   const { modo, setModo } = useModoState();
   const { busca, setBusca, isLoading: isBuscaLoading } = useBuscaState();
   const { hinoSelecionado, setHinoSelecionado } = useHinoSelecionado();
-
   if (isBuscaLoading) {
     return (
       <SafeAreaView style={styles.container}>
@@ -19,7 +16,6 @@ export default function App() {
       </SafeAreaView>
     );
   }
-
   return (
     <QueryClientProvider client={queryClient}>
       <FontSizeProvider>
@@ -34,8 +30,7 @@ export default function App() {
     </QueryClientProvider>
   );
 }
-
-const styles = StyleSheet.create({
+const styles = ({
   container: {
     flex: 1,
     backgroundColor: "#fff",

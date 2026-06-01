@@ -1,50 +1,227 @@
-# Welcome to your Expo app 👋
+# 🎵 Hinário Mobile - React Native
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicativo mobile do Hinário em React Native com Expo.
 
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## 🚀 Quick Start
 
 ```bash
-npm run reset-project
+# 1. Instalar dependências
+npm install
+
+# 2. Converter imagens (importante!)
+# Ver MOBILE_IMAGES_SETUP.md para instruções
+
+# 3. Rodar a app
+npm start
+
+# 4. Escanear QR code com Expo Go (iOS) ou Expo (Android)
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 📱 Telas Disponíveis
 
-## Learn more
+| Tela         | Rota         | Função                             |
+| ------------ | ------------ | ---------------------------------- |
+| **Home**     | `/`          | Teclado numérico + busca por texto |
+| **Pesquisa** | `/pesquisa`  | Resultados de busca por texto      |
+| **Hino**     | `/hino/[id]` | Visualizar hino com swipe          |
+| **Seleção**  | `/selecao`   | Hinos favoritos (placeholder)      |
 
-To learn more about developing your project with Expo, look at the following resources:
+## 🎮 Recursos Implementados
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+✅ **Teclado Numérico**
 
-## Join the community
+- Buscar hinos por ID (ex: H123, C45)
+- Modo Hinário e Harpa Cristã
+- Validação de entrada em tempo real
 
-Join our community of developers creating universal apps.
+✅ **Busca por Texto**
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Pesquisa em tempo real
+- Debounce automático (400ms)
+- Cache de resultados com React Query
+
+✅ **Visualizador de Hino**
+
+- Swipe esquerda/direita para navegar
+- Tamanho de fonte ajustável (12-30px)
+- Dark mode
+- Referência do hino (ID)
+
+✅ **Persistência de Dados**
+
+- Dark mode salvo (AsyncStorage)
+- Tamanho de fonte salvo (AsyncStorage)
+- Cache automático de hinos (React Query)
+
+## 📦 Estrutura do Projeto
+
+```
+mobile/
+├── app/                     # Rotas Expo Router
+│   ├── _layout.js          # Root layout
+│   ├── index.js            # Home
+│   ├── pesquisa.js         # Pesquisa
+│   ├── selecao.js          # Seleção
+│   └── hino/[id].js        # Detalhe hino
+│
+├── src/
+│   ├── components/         # Componentes React Native
+│   │   ├── hymn/          # Componentes de hino (4)
+│   │   ├── keyboard/      # Teclado (4)
+│   │   └── ui/            # Shared UI (12)
+│   ├── hooks/             # Custom hooks (3)
+│   ├── contexts/          # Context API (1)
+│   └── utils/             # Utilitários (API, navegação)
+│
+├── imgs/                  # Imagens (precisa converter SVG→PNG)
+├── package.json
+└── README.md
+```
+
+## 🔧 Instalação & Setup
+
+### Pré-requisitos
+
+- Node.js 18+
+- Expo CLI: `npm install -g expo-cli`
+- Expo Go app (iOS ou Android)
+
+### Passos
+
+```bash
+# 1. Entrar na pasta mobile
+cd mobile
+
+# 2. Instalar dependências
+npm install
+
+# 3. IMPORTANTE: Converter imagens SVG → PNG
+# Siga o guia em: ../MOBILE_IMAGES_SETUP.md
+mkdir -p imgs
+# (converter arquivos SVG web para PNG)
+
+# 4. Rodar dev server
+npm start
+
+# 5. Escolher opção:
+#    - Pressione 'i' para iOS simulator
+#    - Pressione 'a' para Android emulator
+#    - Escaneie QR code para dispositivo físico
+```
+
+## 🎨 Funcionalidades
+
+### Home Page
+
+1. **Switch Modo**: Selecione "Hinário" ou "Harpa Cristã"
+2. **Teclado**: Digite ID do hino (H123, C45, etc)
+3. **Busca**: Pesquise por título ou letra
+
+### Pesquisa
+
+- Digite qualquer termo
+- Resultados aparecem em tempo real
+- Clique para visualizar hino completo
+
+### Visualizador
+
+- Veja texto completo com letra redimensionável
+- Deslize para próximo/anterior hino
+- Ajustes de dark mode e fonte no modal
+
+### Ajustes
+
+- Dark mode / Light mode
+- Tamanho de fonte (+/-)
+- Modo automático via AsyncStorage
+
+## 🌐 API Conectada
+
+**Base URL**: `https://hinario-api.onrender.com/api`
+
+Endpoints:
+
+- `GET /Hino/pesquisar?texto=...` - Buscar por texto
+- `GET /Hino/{id}` - Detalhes do hino
+
+## 📚 Documentação
+
+1. **[MOBILE_STRUCTURE.md](./MOBILE_STRUCTURE.md)** - Arquitetura completa
+2. **[../MOBILE_IMAGES_SETUP.md](../MOBILE_IMAGES_SETUP.md)** - Como converter imagens
+3. **[../MOBILE_CREATION_SUMMARY.md](../MOBILE_CREATION_SUMMARY.md)** - Resumo do que foi criado
+
+## 🐛 Troubleshooting
+
+### Imagens não aparecem
+
+```
+Erro: "Cannot load image"
+Solução: Converter SVGs para PNG (ver MOBILE_IMAGES_SETUP.md)
+```
+
+### App não conecta à API
+
+```
+Erro: "Cannot fetch from API"
+Solução: Verificar internet e URL base da API
+```
+
+### Expo Go não abre
+
+```
+Erro: "Cannot open link"
+Solução: Instalar Expo Go, escanear QR novamente
+```
+
+### Erro de módulo
+
+```
+Erro: "Cannot resolve module"
+Solução: npm install && npm start
+```
+
+## 📝 Componentes Criados (20)
+
+**Hymn** (4):
+
+- Hino.js
+- LetraHino.js
+- RefHino.js
+- Voltar.js
+
+**Keyboard** (4):
+
+- Teclado.js
+- Tecla.js
+- ApagarBotao.js
+- BotaoBusca.js
+
+**UI** (12):
+
+- Loading.js
+- Titulo.js
+- BottomMenu.js
+- AjustesModal.js
+- BarraPesquisa.js
+- Buscas.js
+- HinosPesquisa.js
+- LetrasHinosBusca.js
+- LinhaBusca.js
+- Setas.js
+- Switch.js
+- ComponenteBuscaHino.js
+
+## 🚀 Próximos Passos
+
+- [ ] Converter SVG → PNG (URGENTE)
+- [ ] Testar em Expo Go
+- [ ] Corrigir erros de runtime
+- [ ] Implementar Seleção (favoritos)
+- [ ] Otimizar performance
+- [ ] Build para iOS
+- [ ] Build para Android
+- [ ] Deploy App Store / Play Store
+
+## 📄 Licença
+
+MIT

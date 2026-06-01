@@ -109,10 +109,10 @@ As seguintes funções estão disponíveis em `src/utils/api/hinos.js`:
 
 ```javascript
 // Buscar hino específico
-await fetchHinoPorIdentificador(identificador)
+await fetchHinoPorIdentificador(identificador);
 
 // Pesquisar hinos
-await fetchHinosPorPesquisa(texto)
+await fetchHinosPorPesquisa(texto);
 ```
 
 ## 💾 AsyncStorage
@@ -139,10 +139,12 @@ Nota: `useBuscaState()` já implementa isso automaticamente!
 ### Menu de Debug
 
 Shake no celular ou pressione:
+
 - `Ctrl+M` (Android)
 - `Cmd+D` (iOS)
 
 Opções:
+
 - **Reload** - Recarrega o app
 - **Debug remote JS** - Abre DevTools
 - **Show performance monitor** - Monitor de performance
@@ -150,7 +152,7 @@ Opções:
 ### Logs
 
 ```javascript
-console.log("Mensagem");  // Aparecerá no terminal
+console.log("Mensagem"); // Aparecerá no terminal
 console.warn("Aviso");
 console.error("Erro");
 ```
@@ -180,18 +182,21 @@ eas build --platform ios
 
 **P: Como importo um componente?**
 R: Use caminhos relativos:
+
 ```javascript
 import Hino from "../components/hymn/Hino";
 ```
 
 **P: Como acesso dados persisted?**
 R: Use os custom hooks:
+
 ```javascript
 const { busca, setBusca } = useBuscaState();
 ```
 
 **P: Como faço requisições à API?**
 R: Use as funções em `src/utils/api/hinos.js`:
+
 ```javascript
 import { fetchHinoPorIdentificador } from "../utils/api/hinos";
 const hino = await fetchHinoPorIdentificador("H123");
