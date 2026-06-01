@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Repertorio } from "../../utils/api/repertorios.js";
-import Voltar from "../hymn/Voltar.jsx";
 import LinhaBusca from "../ui/LinhaBusca.jsx";
 import SetaSelecao from "./SetaSelecao.jsx";
 
@@ -46,7 +45,6 @@ const Selecao = () => {
   return (
     <>
       <div className="selecaoalign margin">
-        <Voltar />
         <div className="tituloSelecao">SELEÇÕES DE HINOS</div>
       </div>
       {data.repertorios.map((repertorio) => {
@@ -58,16 +56,16 @@ const Selecao = () => {
               onClick={() => toggleRepertorio(repertorio.id)}
               style={{ cursor: "pointer", userSelect: "none" }}
             >
-              <div className="repertorio-nome">
-                {repertorio.nome}
-              </div>
+              <div className="repertorio-nome">{repertorio.nome}</div>
               <div className="repertorio-data">
                 | {formatarData(repertorio.data)}
               </div>
               <SetaSelecao isOpen={isOpen} />
             </div>
 
-            <div className={`lista-hinos ${isOpen ? "lista-hinos--aberta" : ""}`}>
+            <div
+              className={`lista-hinos ${isOpen ? "lista-hinos--aberta" : ""}`}
+            >
               <div className="lista-hinos-inner">
                 {repertorio.itens.map((item) => {
                   return (
