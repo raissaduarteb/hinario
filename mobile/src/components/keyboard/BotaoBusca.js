@@ -19,7 +19,7 @@ export default function BotaoBusca({
     </TouchableOpacity>
   );
 }
-const styles = ({
+const styles = {
   button: {
     backgroundColor: "#E94E1A",
     paddingVertical: 12,
@@ -38,4 +38,4 @@ const styles = ({
     fontSize: 16,
     fontWeight: "600",
   },
-});
+};

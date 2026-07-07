@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import AdminApp from "./admin/AdminApp";
 import Hino from "./components/hymn/Hino";
 import Teclado from "./components/keyboard/Teclado";
 import Selecao from "./components/selecao/Selecao";
@@ -33,6 +34,10 @@ const App = () => {
   const handleSwitch = () => {
     tecladoRef.current.LimparTudo();
   };
+
+  if (location.pathname.startsWith("/admin")) {
+    return <AdminApp />;
+  }
 
   return (
     <>

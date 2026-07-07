@@ -6,7 +6,7 @@ export default function RefHino({ id }) {
     </View>
   );
 }
-const styles = ({
+const styles = {
   container: {
     paddingVertical: 4,
     paddingHorizontal: 8,
@@ -16,4 +16,4 @@ const styles = ({
     color: "#666",
     fontWeight: "600",
   },
-});
+};

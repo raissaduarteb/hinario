@@ -1,68 +1,61 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Animated, Text, TouchableOpacity, View } from "react-native";
-export default function Switch({
-  options = [],
-  selectedOption,
-  onChange,
-  onSwitch,
-}) {
+
+export default function Switch({ options = [], selectedOption, onChange, onSwitch }) {
   const [selected, setSelected] = useState(selectedOption);
-  const slideAnim = React.useRef(new Animated.Value(0)).current;
+  const [containerWidth, setContainerWidth] = useState(0);
+  const slideAnim = useRef(new Animated.Value(options.indexOf(selectedOption) || 0)).current;
+
+  const sliderWidth = containerWidth > 0 ? (containerWidth - 8) / options.length : 0;
+
   useEffect(() => {
     setSelected(selectedOption);
     const index = options.indexOf(selectedOption);
-    Animated.timing(slideAnim, {
-      toValue: index * 100,
-      duration: 300,
-      useNativeDriver: false,
-    }).start();
-  }, [selectedOption]);
-  const index = options.indexOf(selected);
-  function handleSelect(option) {
+    if (containerWidth > 0) {
+      Animated.timing(slideAnim, {
+        toValue: index,
+        duration: 250,
+        useNativeDriver: false,
+      }).start();
+    }
+  }, [selectedOption, containerWidth]);
+
+  const handleSelect = (option) => {
     setSelected(option);
     onChange?.(option);
     onSwitch?.();
     const newIndex = options.indexOf(option);
     Animated.timing(slideAnim, {
-      toValue: newIndex * 100,
-      duration: 300,
+      toValue: newIndex,
+      duration: 250,
       useNativeDriver: false,
     }).start();
-  }
+  };
+
+  const translateX = sliderWidth > 0
+    ? slideAnim.interpolate({
+        inputRange: options.map((_, i) => i),
+        outputRange: options.map((_, i) => i * sliderWidth),
+      })
+    : 0;
+
   return (
-    <View style={styles.container}>
-      <Animated.View
-        style={[
-          styles.slider,
-          {
-            transform: [
-              {
-                translateX: slideAnim.interpolate({
-                  inputRange: [0, 100],
-                  outputRange: [0, (100 / options.length) * 100],
-                }),
-              },
-            ],
-          },
-        ]}
-      />
-      {options.map((option, idx) => (
+    <View
+      style={styles.container}
+      onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
+    >
+      {sliderWidth > 0 && (
+        <Animated.View
+          style={[styles.slider, { width: sliderWidth, transform: [{ translateX }] }]}
+        />
+      )}
+      {options.map((option) => (
         <TouchableOpacity
           key={option}
-          style={[
-            styles.option,
-            {
-              flex: 1,
-            },
-          ]}
+          style={styles.option}
           onPress={() => handleSelect(option)}
         >
-          <Text
-            style={[
-              styles.optionText,
-              selected === option && styles.optionTextSelected,
-            ]}
-          >
+          <Text style={[styles.optionText, selected === option && styles.optionTextSelected]}>
             {option}
           </Text>
         </TouchableOpacity>
@@ -70,38 +63,40 @@ export default function Switch({
     </View>
   );
 }
-const styles = ({
+
+const styles = {
   container: {
     flexDirection: "row",
-    backgroundColor: "#f0f0f0",
-    borderRadius: 8,
+    backgroundColor: "#e8e8e8",
+    borderRadius: 30,
     padding: 4,
-    marginVertical: 12,
+    marginVertical: 8,
     position: "relative",
     overflow: "hidden",
+    height: 44,
   },
   slider: {
     position: "absolute",
     top: 4,
     left: 4,
-    right: 4,
-    height: 40,
-    backgroundColor: "#E94E1A",
-    borderRadius: 6,
+    bottom: 4,
+    backgroundColor: "#fff",
+    borderRadius: 26,
+    zIndex: 0,
   },
   option: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    zIndex: 1,
   },
   optionText: {
     fontSize: 14,
-    fontWeight: "600",
-    color: "#333",
-    zIndex: 1,
+    fontWeight: "500",
+    color: "#666",
   },
   optionTextSelected: {
-    color: "#fff",
+    color: "#E94E1A",
+    fontWeight: "600",
   },
-});
+};

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Repertorio } from "../../utils/api/repertorios.js";
+import Loading from "../ui/Loading.jsx";
 import LinhaBusca from "../ui/LinhaBusca.jsx";
 import SetaSelecao from "./SetaSelecao.jsx";
 
@@ -22,7 +23,7 @@ const Selecao = () => {
     }
   }, [data]);
 
-  if (isLoading) return <div>Carregando</div>;
+  if (isLoading) return <Loading />;
   if (error) return <div>Erro ao carregar repertório.</div>;
 
   const formatarData = (data) => {

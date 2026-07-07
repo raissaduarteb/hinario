@@ -2,11 +2,13 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RefHino from "../hymn/RefHino";
+import Loading from "./Loading";
 import LetrasHinosBusca from "./LetrasHinosBusca";
 import LinhaBusca from "./LinhaBusca";
 
 const HinosPesquisa = ({ busca }) => {
   const [hinos, setHinos] = useState([]);
+  const [carregando, setCarregando] = useState(false);
   const abortControllerRef = useRef(null);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -14,6 +16,7 @@ const HinosPesquisa = ({ busca }) => {
   useEffect(() => {
     if (busca.busca.length === 0) {
       setHinos([]);
+      setCarregando(false);
       return;
     }
 
@@ -24,6 +27,8 @@ const HinosPesquisa = ({ busca }) => {
 
     const controller = new AbortController();
     abortControllerRef.current = controller;
+
+    setCarregando(true);
 
     const timeout = setTimeout(() => {
       fetch(
@@ -46,6 +51,9 @@ const HinosPesquisa = ({ busca }) => {
         })
         .catch((err) => {
           if (err.name !== "AbortError") console.error(err);
+        })
+        .finally(() => {
+          if (!controller.signal.aborted) setCarregando(false);
         });
     }, 400); // aguarda 400ms após a última digitação
 
@@ -54,6 +62,8 @@ const HinosPesquisa = ({ busca }) => {
       controller.abort();
     };
   }, [busca]);
+
+  if (carregando) return <Loading />;
 
   return (
     <div className="hinos-busca">

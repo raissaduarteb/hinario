@@ -6,31 +6,39 @@ import { fetchHinoPorIdentificador } from "../../utils/api/hinos";
 import ApagarBotao from "./ApagarBotao";
 import BotaoBusca from "./BotaoBusca";
 import Tecla from "./Tecla";
-function Teclado({ modo, onLimparTudo }) {
+
+const LINHAS_HINARIO = [
+  ["C", "H", "S"],
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+
+const LINHAS_HARPA = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+
+function Teclado({ modo }) {
   const router = useRouter();
   const queryClient = useQueryClient();
   const params = useLocalSearchParams();
   const [textoPreview, setTextoPreview] = useState("");
   const [buscando, setBuscando] = useState(false);
   const [mensagemErro, setMensagemErro] = useState("");
+
   useEffect(() => {
     if (params?.clearInput) {
       setTextoPreview("");
       setMensagemErro("");
     }
   }, [params?.clearInput]);
-  const LimparTudo = () => {
-    setTextoPreview("");
-    setMensagemErro("");
-    onLimparTudo?.();
-  };
-  const teclas =
-    modo === "Hinário"
-      ? ["C", "H", "S", 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
-      : [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
   const ApagarUltimo = () => {
     setTextoPreview((prev) => prev.slice(0, -1));
   };
+
   const tratarEntrada = (valor) => {
     const ehNumero = typeof valor === "number";
     if (!ehNumero) {
@@ -40,20 +48,16 @@ function Teclado({ modo, onLimparTudo }) {
     if (textoPreview.length === 0 && ehNumero && modo === "Hinário") {
       setTextoPreview("H");
     }
-    // ❌ Não permitir 0 isolado
     if (valor === 0 && textoPreview.length === 0) return;
-    // ❌ Não permitir C0, H0, S0 (mantém só a letra)
-    if (valor === 0 && ["C", "H", "S"].includes(textoPreview)) {
-      return;
-    }
-    // Limite de tamanho
+    if (valor === 0 && ["C", "H", "S"].includes(textoPreview)) return;
     const maxLength = modo === "Hinário" ? 4 : 3;
     if (textoPreview.length >= maxLength) return;
     setTextoPreview((prev) => prev + valor);
   };
+
   const clickBusca = () => {
     const minLengthBusca = modo === "Hinário" ? 2 : 1;
-    let identificador =
+    const identificador =
       modo !== "Hinário" ? "HC-" + textoPreview : textoPreview;
     if (identificador.length >= minLengthBusca) {
       setMensagemErro("");
@@ -84,49 +88,56 @@ function Teclado({ modo, onLimparTudo }) {
       setMensagemErro("");
     }
   };
+
+  const linhas = modo === "Hinário" ? LINHAS_HINARIO : LINHAS_HARPA;
+
   return (
     <View style={styles.container}>
       <View style={styles.previewContainer}>
-        <Text style={styles.previewText}>{textoPreview}</Text>
-        {textoPreview && (
-          <ApagarBotao onApagar={ApagarUltimo} ativo={textoPreview !== ""} />
-        )}
+        <Text style={styles.previewText}>{textoPreview || " "}</Text>
+        <ApagarBotao onApagar={ApagarUltimo} ativo={textoPreview !== ""} />
       </View>
+
       {mensagemErro ? (
         <Text style={styles.errorMessage}>{mensagemErro}</Text>
       ) : null}
-      <View style={styles.tecbotao}>
-        <View
-          style={
-            modo === "Hinário"
-              ? styles.teclado
-              : [styles.teclado, styles.teclado_expansivo]
-          }
-        >
-          {teclas.map((v, i) => (
-            <Tecla key={i} numero={v} onClickTecla={() => tratarEntrada(v)} />
-          ))}
+
+      <View style={styles.teclado}>
+        {linhas.map((linha, i) => (
+          <View key={i} style={styles.linha}>
+            {linha.map((v) => (
+              <Tecla key={v} numero={v} onClickTecla={() => tratarEntrada(v)} />
+            ))}
+          </View>
+        ))}
+        <View style={styles.linha}>
+          <Tecla spacer />
+          <Tecla numero={0} onClickTecla={() => tratarEntrada(0)} />
+          <Tecla spacer />
         </View>
-        <BotaoBusca onClickBusca={clickBusca} loading={buscando} />
       </View>
+
+      <BotaoBusca onClickBusca={clickBusca} loading={buscando} />
     </View>
   );
 }
+
 const styles = {
   container: {
-    flex: 1,
-    paddingHorizontal: 16,
-    paddingVertical: 20,
+    paddingHorizontal: 12,
+    paddingVertical: 12,
     backgroundColor: "#fff",
   },
   previewContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingVertical: 16,
-    marginBottom: 12,
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+    marginBottom: 4,
     borderBottomWidth: 1,
     borderBottomColor: "#e0e0e0",
+    minHeight: 44,
   },
   previewText: {
     fontSize: 24,
@@ -135,20 +146,16 @@ const styles = {
   },
   errorMessage: {
     color: "#E94E1A",
-    fontSize: 14,
-    marginBottom: 12,
-  },
-  tecbotao: {
-    flex: 1,
+    fontSize: 13,
+    textAlign: "center",
+    marginBottom: 4,
   },
   teclado: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    marginBottom: 20,
+    marginVertical: 8,
   },
-  teclado_expansivo: {
-    justifyContent: "space-around",
+  linha: {
+    flexDirection: "row",
   },
 };
+
 export default Teclado;

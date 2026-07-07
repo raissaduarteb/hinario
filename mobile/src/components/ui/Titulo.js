@@ -1,15 +1,17 @@
 import { Image, Text, View } from "react-native";
-import { loadImage } from "../../utils/imageLoader";
-const LogoLaranja = loadImage("LogoLaranja.png");
+
+const logoLaranja = require("../../../imgs/LogoLaranja.png");
+
 export default function Titulo() {
   return (
     <View style={styles.container}>
-      <Image source={LogoLaranja} style={styles.logo} />
+      <Image source={logoLaranja} style={styles.logo} />
       <Text style={styles.title}>Hinário</Text>
     </View>
   );
 }
-const styles = ({
+
+const styles = {
   container: {
     flexDirection: "row",
     alignItems: "center",
@@ -27,4 +29,4 @@ const styles = ({
     fontWeight: "700",
     color: "#E94E1A",
   },
-});
+};

@@ -1,40 +1,44 @@
-import { Text } from "react-native";
-export default function Tecla({ numero, onClickTecla }) {
+import { Text, TouchableOpacity } from "react-native";
+
+export default function Tecla({ numero, onClickTecla, spacer = false }) {
+  if (spacer) return <TouchableOpacity style={styles.button} disabled />;
+
   const isLetter = isNaN(numero);
   return (
-    <Text
-      onPress={() => onClickTecla(numero)}
-      style={[
-        styles.button,
-        numero === 0 && styles.zeroButton,
-        isLetter && styles.letterButton,
-      ]}
+    <TouchableOpacity
+      onPress={onClickTecla}
+      style={[styles.button, isLetter && styles.letterButton]}
+      activeOpacity={0.6}
     >
-      {numero}
-    </Text>
+      <Text style={[styles.text, isLetter && styles.letterText]}>{numero}</Text>
+    </TouchableOpacity>
   );
 }
-const styles = ({
+
+const styles = {
   button: {
     flex: 1,
-    textAlign: "center",
-    textAlignVertical: "center",
-    fontSize: 18,
-    fontWeight: "300",
-    backgroundColor: "#f0f0f0",
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 8,
     marginHorizontal: 4,
     marginVertical: 4,
-    padding: 12,
-    color: "#333",
-  },
-  zeroButton: {
-    borderColor: "#ccc",
-    backgroundColor: "#fafafa",
+    height: 64,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f0f0f0",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#ddd",
   },
   letterButton: {
-    fontWeight: "800",
+    backgroundColor: "#fff",
+    borderColor: "#ccc",
   },
-});
+  text: {
+    fontSize: 22,
+    fontWeight: "300",
+    color: "#333",
+  },
+  letterText: {
+    fontWeight: "800",
+    fontSize: 20,
+  },
+};

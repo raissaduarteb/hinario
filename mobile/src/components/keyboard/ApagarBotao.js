@@ -1,39 +1,19 @@
-import { useEffect, useState } from "react";
-import { Image, TouchableOpacity } from "react-native";
-import { loadImage } from "../../utils/imageLoader";
-const deleteButton = loadImage("deletebutton.png");
+import { Ionicons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
+
 export default function ApagarBotao({ onApagar, ativo }) {
-  const [visivel, setVisivel] = useState(false);
-  useEffect(() => {
-    if (ativo) {
-      setVisivel(true);
-    } else {
-      setVisivel(false);
-    }
-  }, [ativo]);
+  if (!ativo) return null;
   return (
-    <TouchableOpacity
-      onPress={onApagar}
-      style={[styles.button, !visivel && styles.hidden]}
-    >
-      <Image source={deleteButton} style={styles.icon} />
+    <TouchableOpacity onPress={onApagar} style={styles.button}>
+      <Ionicons name="backspace-outline" size={26} color="#666" />
     </TouchableOpacity>
   );
 }
-const styles = ({
+
+const styles = {
   button: {
-    width: 40,
-    height: 40,
+    padding: 8,
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: 8,
   },
-  hidden: {
-    display: "none",
-  },
-  icon: {
-    width: 24,
-    height: 24,
-    resizeMode: "contain",
-  },
-});
+};

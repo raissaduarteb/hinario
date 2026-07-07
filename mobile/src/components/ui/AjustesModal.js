@@ -1,32 +1,38 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { Image, Modal, Text, TouchableOpacity, View } from "react-native";
+import { Modal, Text, TouchableOpacity, View } from "react-native";
 import { useFontSize } from "../../contexts/FontSizeContext";
 import { useModoState } from "../../hooks/useModoState";
-import { loadImage } from "../../utils/imageLoader";
-const IconeSol = loadImage("Sun.png");
-const IconeLetra = loadImage("text_fields.png");
+
 export default function AjustesModal({ open, onClose }) {
   const router = useRouter();
   const isHinoPage = router.pathname?.startsWith("/hino") ?? false;
   const { modo, setModo } = useModoState();
   const { fontSize, setFontSize } = useFontSize();
+
   const increaseFont = () => setFontSize((prev) => Math.min(prev + 2, 30));
   const decreaseFont = () => setFontSize((prev) => Math.max(prev - 2, 12));
+
   return (
     <Modal
       visible={open}
       transparent={true}
-      animationType="fade"
+      animationType="slide"
       onRequestClose={onClose}
     >
-      <View style={styles.overlay}>
-        <View style={[styles.modal, modo === "Escuro" && styles.modalDark]}>
-          <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <Text style={styles.closeButtonText}>✕</Text>
-          </TouchableOpacity>
-          {/* Modo Claro/Escuro */}
+      <TouchableOpacity
+        style={styles.overlay}
+        activeOpacity={1}
+        onPress={onClose}
+      >
+        <View style={styles.modal}>
           <View style={styles.section}>
-            <Image source={IconeSol} style={styles.sectionIcon} />
+            <Ionicons
+              name="sunny-outline"
+              size={22}
+              color="#666"
+              style={styles.sectionIcon}
+            />
             <View style={styles.modoToggle}>
               <TouchableOpacity
                 style={[
@@ -62,10 +68,15 @@ export default function AjustesModal({ open, onClose }) {
               </TouchableOpacity>
             </View>
           </View>
-          {/* Ajustes de Fonte */}
+
           {isHinoPage && (
             <View style={styles.section}>
-              <Image source={IconeLetra} style={styles.sectionIcon} />
+              <Ionicons
+                name="text-outline"
+                size={22}
+                color="#666"
+                style={styles.sectionIcon}
+              />
               <View style={styles.fontControls}>
                 <TouchableOpacity
                   style={[
@@ -91,78 +102,62 @@ export default function AjustesModal({ open, onClose }) {
               </View>
             </View>
           )}
+
+          <TouchableOpacity style={styles.fechar} onPress={onClose}>
+            <Text style={styles.fecharText}>Fechar</Text>
+          </TouchableOpacity>
         </View>
-      </View>
+      </TouchableOpacity>
     </Modal>
   );
 }
+
 const styles = {
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.3)",
+    justifyContent: "flex-end",
   },
   modal: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
+    backgroundColor: "#f2f2f2",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     padding: 24,
-    width: "80%",
-    maxWidth: 400,
-    elevation: 5,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-  },
-  modalDark: {
-    backgroundColor: "#1e1e1e",
-  },
-  closeButton: {
-    position: "absolute",
-    top: 12,
-    right: 12,
-    padding: 8,
-  },
-  closeButtonText: {
-    fontSize: 24,
-    color: "#666",
+    paddingBottom: 32,
+    gap: 8,
   },
   section: {
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 16,
+    paddingVertical: 12,
   },
   sectionIcon: {
-    width: 24,
-    height: 24,
     marginRight: 16,
-    resizeMode: "contain",
   },
   modoToggle: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: "#f0f0f0",
-    borderRadius: 8,
+    backgroundColor: "#e8e8e8",
+    borderRadius: 30,
     padding: 4,
   },
   toggleOption: {
     flex: 1,
     paddingVertical: 8,
-    paddingHorizontal: 12,
     alignItems: "center",
-    borderRadius: 6,
+    borderRadius: 26,
   },
   toggleOptionSelected: {
-    backgroundColor: "#E94E1A",
+    backgroundColor: "#fff",
   },
   toggleOptionText: {
     fontSize: 14,
-    fontWeight: "600",
-    color: "#333",
+    fontWeight: "500",
+    color: "#666",
   },
   toggleOptionTextSelected: {
-    color: "#fff",
+    color: "#E94E1A",
+    fontWeight: "600",
   },
   fontControls: {
     flex: 1,
@@ -175,11 +170,11 @@ const styles = {
     height: 40,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 8,
-    backgroundColor: "#f0f0f0",
+    borderRadius: 20,
+    backgroundColor: "#fff",
   },
   fontButtonDisabled: {
-    opacity: 0.5,
+    opacity: 0.4,
   },
   fontButtonText: {
     fontSize: 20,
@@ -189,6 +184,15 @@ const styles = {
   fontSizeDisplay: {
     fontSize: 14,
     color: "#666",
-    marginHorizontal: 12,
+  },
+  fechar: {
+    marginTop: 8,
+    alignItems: "center",
+    paddingVertical: 12,
+  },
+  fecharText: {
+    fontSize: 15,
+    fontWeight: "600",
+    color: "#E94E1A",
   },
 };

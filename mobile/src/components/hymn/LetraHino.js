@@ -17,7 +17,7 @@ export default function LetraHino({ letra }) {
     </View>
   );
 }
-const styles = ({
+const styles = {
   container: {
     paddingHorizontal: 16,
     paddingVertical: 20,
@@ -27,4 +27,4 @@ const styles = ({
     lineHeight: 24,
     fontFamily: "System",
   },
-});
+};

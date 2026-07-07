@@ -1,35 +1,20 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { Image, Text, TouchableOpacity } from "react-native";
-import { loadImage } from "../../utils/imageLoader";
-const voltarIcon = loadImage("voltar.png");
+import { TouchableOpacity } from "react-native";
+
 export default function Voltar() {
   const router = useRouter();
-  const handleVoltar = () => {
-    router.back();
-  };
   return (
-    <TouchableOpacity style={styles.button} onPress={handleVoltar}>
-      {voltarIcon ? (
-        <Image source={voltarIcon} style={styles.icon} />
-      ) : (
-        <Text style={styles.fallbackText}>←</Text>
-      )}
+    <TouchableOpacity style={styles.button} onPress={() => router.back()}>
+      <Ionicons name="arrow-back" size={24} color="#333" />
     </TouchableOpacity>
   );
 }
-const styles = ({
+
+const styles = {
   button: {
     padding: 8,
     justifyContent: "center",
     alignItems: "center",
   },
-  icon: {
-    width: 24,
-    height: 24,
-    resizeMode: "contain",
-  },
-  fallbackText: {
-    fontSize: 20,
-    color: "#333",
-  },
-});
+};
