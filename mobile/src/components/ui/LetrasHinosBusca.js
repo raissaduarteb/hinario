@@ -1,9 +1,18 @@
 import { Text, View } from "react-native";
+import { useTheme } from "../../contexts/ThemeContext";
+import TextoFormatado from "./TextoFormatado";
 export default function LetrasHinosBusca({ tituloHino, letraHino }) {
+  const { isDark } = useTheme();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{tituloHino}</Text>
-      {letraHino && <Text style={styles.excerpt}>{letraHino}</Text>}
+      <Text style={[styles.title, isDark && styles.titleDark]}>
+        {tituloHino}
+      </Text>
+      {letraHino && (
+        <Text style={[styles.excerpt, isDark && styles.excerptDark]}>
+          <TextoFormatado texto={letraHino} />
+        </Text>
+      )}
     </View>
   );
 }
@@ -19,10 +28,16 @@ const styles = ({
     marginBottom: 4,
     color: "#333",
   },
+  titleDark: {
+    color: "#fff",
+  },
   excerpt: {
     fontSize: 13,
     fontWeight: "300",
     color: "#666",
     lineHeight: 18,
+  },
+  excerptDark: {
+    color: "#aaa",
   },
 });

@@ -1,13 +1,13 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { usePathname } from "expo-router";
 import { Modal, Text, TouchableOpacity, View } from "react-native";
 import { useFontSize } from "../../contexts/FontSizeContext";
-import { useModoState } from "../../hooks/useModoState";
+import { useTheme } from "../../contexts/ThemeContext";
 
 export default function AjustesModal({ open, onClose }) {
-  const router = useRouter();
-  const isHinoPage = router.pathname?.startsWith("/hino") ?? false;
-  const { modo, setModo } = useModoState();
+  const pathname = usePathname();
+  const isHinoPage = pathname?.startsWith("/hino") ?? false;
+  const { theme, setTheme, isDark } = useTheme();
   const { fontSize, setFontSize } = useFontSize();
 
   const increaseFont = () => setFontSize((prev) => Math.min(prev + 2, 30));
@@ -25,26 +25,28 @@ export default function AjustesModal({ open, onClose }) {
         activeOpacity={1}
         onPress={onClose}
       >
-        <View style={styles.modal}>
+        <View style={[styles.modal, isDark && styles.modalDark]}>
           <View style={styles.section}>
             <Ionicons
               name="sunny-outline"
               size={22}
-              color="#666"
+              color={isDark ? "#aaa" : "#666"}
               style={styles.sectionIcon}
             />
-            <View style={styles.modoToggle}>
+            <View style={[styles.modoToggle, isDark && styles.modoToggleDark]}>
               <TouchableOpacity
                 style={[
                   styles.toggleOption,
-                  modo !== "Escuro" && styles.toggleOptionSelected,
+                  theme !== "escuro" &&
+                    (isDark ? styles.toggleOptionSelectedDark : styles.toggleOptionSelected),
                 ]}
-                onPress={() => setModo("Claro")}
+                onPress={() => setTheme("claro")}
               >
                 <Text
                   style={[
                     styles.toggleOptionText,
-                    modo !== "Escuro" && styles.toggleOptionTextSelected,
+                    isDark && styles.toggleOptionTextDark,
+                    theme !== "escuro" && styles.toggleOptionTextSelected,
                   ]}
                 >
                   Claro
@@ -53,14 +55,16 @@ export default function AjustesModal({ open, onClose }) {
               <TouchableOpacity
                 style={[
                   styles.toggleOption,
-                  modo === "Escuro" && styles.toggleOptionSelected,
+                  theme === "escuro" &&
+                    (isDark ? styles.toggleOptionSelectedDark : styles.toggleOptionSelected),
                 ]}
-                onPress={() => setModo("Escuro")}
+                onPress={() => setTheme("escuro")}
               >
                 <Text
                   style={[
                     styles.toggleOptionText,
-                    modo === "Escuro" && styles.toggleOptionTextSelected,
+                    isDark && styles.toggleOptionTextDark,
+                    theme === "escuro" && styles.toggleOptionTextSelected,
                   ]}
                 >
                   Escuro
@@ -74,30 +78,53 @@ export default function AjustesModal({ open, onClose }) {
               <Ionicons
                 name="text-outline"
                 size={22}
-                color="#666"
+                color={isDark ? "#aaa" : "#666"}
                 style={styles.sectionIcon}
               />
               <View style={styles.fontControls}>
                 <TouchableOpacity
                   style={[
                     styles.fontButton,
+                    isDark && styles.fontButtonDark,
                     fontSize <= 12 && styles.fontButtonDisabled,
                   ]}
                   onPress={decreaseFont}
                   disabled={fontSize <= 12}
                 >
-                  <Text style={styles.fontButtonText}>−</Text>
+                  <Text
+                    style={[
+                      styles.fontButtonText,
+                      isDark && styles.fontButtonTextDark,
+                    ]}
+                  >
+                    −
+                  </Text>
                 </TouchableOpacity>
-                <Text style={styles.fontSizeDisplay}>{fontSize}px</Text>
+                <Text
+                  style={[
+                    styles.fontSizeDisplay,
+                    isDark && styles.fontSizeDisplayDark,
+                  ]}
+                >
+                  {fontSize}px
+                </Text>
                 <TouchableOpacity
                   style={[
                     styles.fontButton,
+                    isDark && styles.fontButtonDark,
                     fontSize >= 30 && styles.fontButtonDisabled,
                   ]}
                   onPress={increaseFont}
                   disabled={fontSize >= 30}
                 >
-                  <Text style={styles.fontButtonText}>+</Text>
+                  <Text
+                    style={[
+                      styles.fontButtonText,
+                      isDark && styles.fontButtonTextDark,
+                    ]}
+                  >
+                    +
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -126,6 +153,9 @@ const styles = {
     paddingBottom: 32,
     gap: 8,
   },
+  modalDark: {
+    backgroundColor: "#2a2a2a",
+  },
   section: {
     flexDirection: "row",
     alignItems: "center",
@@ -141,6 +171,9 @@ const styles = {
     borderRadius: 30,
     padding: 4,
   },
+  modoToggleDark: {
+    backgroundColor: "#1e1e1e",
+  },
   toggleOption: {
     flex: 1,
     paddingVertical: 8,
@@ -150,10 +183,16 @@ const styles = {
   toggleOptionSelected: {
     backgroundColor: "#fff",
   },
+  toggleOptionSelectedDark: {
+    backgroundColor: "#3a3a3a",
+  },
   toggleOptionText: {
     fontSize: 14,
     fontWeight: "500",
     color: "#666",
+  },
+  toggleOptionTextDark: {
+    color: "#aaa",
   },
   toggleOptionTextSelected: {
     color: "#E94E1A",
@@ -173,6 +212,9 @@ const styles = {
     borderRadius: 20,
     backgroundColor: "#fff",
   },
+  fontButtonDark: {
+    backgroundColor: "#3a3a3a",
+  },
   fontButtonDisabled: {
     opacity: 0.4,
   },
@@ -181,9 +223,15 @@ const styles = {
     fontWeight: "600",
     color: "#333",
   },
+  fontButtonTextDark: {
+    color: "#fff",
+  },
   fontSizeDisplay: {
     fontSize: 14,
     color: "#666",
+  },
+  fontSizeDisplayDark: {
+    color: "#aaa",
   },
   fechar: {
     marginTop: 8,

@@ -17,7 +17,7 @@ export const irParaProximo = async (identificador, navigate) => {
   let data = await res.json();
 
   if (data) {
-    navigate(`hino/${data.identificador.replace("-", "")}`);
+    navigate.push(`hino/${data.identificador.replace("-", "")}`);
     return;
   }
 
@@ -30,7 +30,7 @@ export const irParaProximo = async (identificador, navigate) => {
     data = await res.json();
 
     if (data) {
-      navigate(`hino/${data.identificador.replace("-", "")}`);
+      navigate.push(`hino/${data.identificador.replace("-", "")}`);
       return;
     }
   }
@@ -45,7 +45,7 @@ export const irParaAnterior = async (identificador, navigate) => {
   let data = await res.json();
 
   if (data) {
-    navigate(`hino/${data.identificador.replace("-", "")}`);
+    navigate.push(`hino/${data.identificador.replace("-", "")}`);
     return;
   }
 
@@ -58,7 +58,7 @@ export const irParaAnterior = async (identificador, navigate) => {
     data = await res.json();
 
     if (data) {
-      navigate(`hino/${data.identificador.replace("-", "")}`);
+      navigate.push(`hino/${data.identificador.replace("-", "")}`);
       return;
     }
   }

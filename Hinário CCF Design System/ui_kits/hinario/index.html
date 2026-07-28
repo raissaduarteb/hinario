@@ -1,0 +1,25 @@
+<!-- @dsCard group="Hinário App" viewport="460x900" name="Hinário CCF — app" subtitle="Interactive click-through: search · lyrics · seleções · dark reader" -->
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hinário CCF</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  html,body{margin:0;height:100%;background:#e6e6e6;font-family:var(--font-body)}
+  #root{min-height:100%;display:flex;align-items:center;justify-content:center;padding:20px}
+  .phone{position:relative;width:402px;height:860px;border-radius:56px;background:var(--surface-app);
+    border:13px solid #0e0e0e;box-shadow:0 30px 70px rgba(0,0,0,.35);overflow:hidden}
+  .phone[data-theme="dark"]{background:rgb(45,45,45)}
+  .viewport{position:absolute;inset:0;border-radius:44px;overflow:hidden}
+  .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:150px;height:30px;
+    background:#0e0e0e;border-radius:0 0 18px 18px;z-index:10}
+  .home-indicator{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:130px;height:5px;
+    border-radius:5px;background:var(--c7);z-index:10;opacity:.9}
+</style>
+</head><body>
+<div id="root"></div>
+<script src="data.js"></script>
+<script type="text/babel" src="app.jsx"></script>
+</body></html>

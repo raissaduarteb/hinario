@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useRef } from "react";
 import { TextInput, TouchableOpacity, View } from "react-native";
+import { useTheme } from "../../contexts/ThemeContext";
 
 export default function BarraPesquisa({
   value,
@@ -9,6 +10,7 @@ export default function BarraPesquisa({
   editable = true,
   onPress,
 }) {
+  const { isDark } = useTheme();
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -18,20 +20,23 @@ export default function BarraPesquisa({
   }, [autoFocus, editable]);
 
   const inner = (
-    <View style={styles.container} pointerEvents={editable ? "auto" : "none"}>
+    <View
+      style={[styles.container, isDark && styles.containerDark]}
+      pointerEvents={editable ? "auto" : "none"}
+    >
       <Ionicons
         name="search-outline"
         size={20}
-        color="#999"
+        color={isDark ? "#888" : "#999"}
         style={styles.icon}
       />
       <TextInput
         ref={inputRef}
-        style={styles.input}
+        style={[styles.input, isDark && styles.inputDark]}
         value={value}
         onChangeText={onChange}
         placeholder="Pesquise por hinos, letras..."
-        placeholderTextColor="#999"
+        placeholderTextColor={isDark ? "#888" : "#999"}
         editable={editable}
       />
     </View>
@@ -57,6 +62,9 @@ const styles = {
     paddingHorizontal: 12,
     marginVertical: 8,
   },
+  containerDark: {
+    backgroundColor: "#2a2a2a",
+  },
   icon: {
     marginRight: 8,
   },
@@ -65,5 +73,8 @@ const styles = {
     paddingVertical: 12,
     fontSize: 14,
     color: "#333",
+  },
+  inputDark: {
+    color: "#fff",
   },
 };

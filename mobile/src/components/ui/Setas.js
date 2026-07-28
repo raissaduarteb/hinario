@@ -1,14 +1,16 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { TouchableOpacity, View } from "react-native";
+import { useTheme } from "../../contexts/ThemeContext";
 import { irParaAnterior, irParaProximo } from "../../utils/navegacao";
 
 export default function Setas() {
   const router = useRouter();
   const { id } = useLocalSearchParams();
+  const { isDark } = useTheme();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, isDark && styles.containerDark]}>
       <TouchableOpacity
         style={styles.button}
         onPress={() => irParaAnterior(id, router)}
@@ -34,6 +36,10 @@ const styles = {
     backgroundColor: "#fff",
     borderTopWidth: 1,
     borderTopColor: "#e0e0e0",
+  },
+  containerDark: {
+    backgroundColor: "#1e1e1e",
+    borderTopColor: "#333",
   },
   button: {
     width: 48,

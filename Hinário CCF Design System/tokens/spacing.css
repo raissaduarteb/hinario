@@ -1,0 +1,24 @@
+/* ── Hinário CCF · Spacing, radii, elevation ─────────────────
+   Radii and shadows transcribed verbatim from the Figma source. */
+:root {
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Radii (exact from source) */
+  --radius-button: 12px;   /* primary button (Buscar) */
+  --radius-tile: 20px;     /* keypad tiles */
+  --radius-pill: 20px;     /* search bar */
+  --radius-badge: 8px;     /* song-number badge */
+  --radius-full: 999px;    /* circular page-nav / segmented */
+
+  /* Elevation */
+  --shadow-search: inset 0 0 0 0.5px var(--df), 0 1px 3px 0 rgba(0, 0, 0, 0.22);
+  --shadow-nav: 0 -3px 5px 0 rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.22);
+}

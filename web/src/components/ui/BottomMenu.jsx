@@ -39,16 +39,18 @@ const BottomMenu = () => {
             navigate("/");
           }}
         >
-          <img
-            src={
-              !isPesquisaPage && !isHinoPage && active === "home"
-                ? iconehomelaranja
-                : iconehome
-            }
-            alt="casinha"
-            className="icon"
-          />
-          <span className="label">Home</span>
+          <span className="menu-item-inner">
+            <img
+              src={
+                !isPesquisaPage && !isHinoPage && active === "home"
+                  ? iconehomelaranja
+                  : iconehome
+              }
+              alt="casinha"
+              className="icon"
+            />
+            <span className="label">Home</span>
+          </span>
         </button>
         <button
           className={`menu-item ${!isPesquisaPage && !isHinoPage && active === "selecao" ? "active" : ""}`}
@@ -57,16 +59,18 @@ const BottomMenu = () => {
             navigate("/selecao");
           }}
         >
-          <img
-            src={
-              !isPesquisaPage && !isHinoPage && active === "selecao"
-                ? iconeselecaolaranja
-                : iconeselecao
-            }
-            alt="selecao"
-            className="icon"
-          />
-          <span className="label">Seleção</span>
+          <span className="menu-item-inner">
+            <img
+              src={
+                !isPesquisaPage && !isHinoPage && active === "selecao"
+                  ? iconeselecaolaranja
+                  : iconeselecao
+              }
+              alt="selecao"
+              className="icon"
+            />
+            <span className="label">Seleção</span>
+          </span>
         </button>
         <button
           className={`menu-item ${active === "ajustes" ? "active" : ""}`}
@@ -78,12 +82,14 @@ const BottomMenu = () => {
             setOpenAjustes(true);
           }}
         >
-          <img
-            src={active === "ajustes" ? iconeajusteslaranja : iconeajustes}
-            alt="ajustes"
-            className="icon"
-          />
-          <span className="label">Ajustes</span>
+          <span className="menu-item-inner">
+            <img
+              src={active === "ajustes" ? iconeajusteslaranja : iconeajustes}
+              alt="ajustes"
+              className="icon"
+            />
+            <span className="label">Ajustes</span>
+          </span>
         </button>
       </div>
       <AjustesModal

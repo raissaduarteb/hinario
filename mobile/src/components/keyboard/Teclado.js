@@ -2,6 +2,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
+import { useTheme } from "../../contexts/ThemeContext";
 import { fetchHinoPorIdentificador } from "../../utils/api/hinos";
 import ApagarBotao from "./ApagarBotao";
 import BotaoBusca from "./BotaoBusca";
@@ -24,6 +25,7 @@ function Teclado({ modo }) {
   const router = useRouter();
   const queryClient = useQueryClient();
   const params = useLocalSearchParams();
+  const { isDark } = useTheme();
   const [textoPreview, setTextoPreview] = useState("");
   const [buscando, setBuscando] = useState(false);
   const [mensagemErro, setMensagemErro] = useState("");
@@ -92,9 +94,16 @@ function Teclado({ modo }) {
   const linhas = modo === "Hinário" ? LINHAS_HINARIO : LINHAS_HARPA;
 
   return (
-    <View style={styles.container}>
-      <View style={styles.previewContainer}>
-        <Text style={styles.previewText}>{textoPreview || " "}</Text>
+    <View style={[styles.container, isDark && styles.containerDark]}>
+      <View
+        style={[
+          styles.previewContainer,
+          isDark && styles.previewContainerDark,
+        ]}
+      >
+        <Text style={[styles.previewText, isDark && styles.previewTextDark]}>
+          {textoPreview || " "}
+        </Text>
         <ApagarBotao onApagar={ApagarUltimo} ativo={textoPreview !== ""} />
       </View>
 
@@ -128,6 +137,9 @@ const styles = {
     paddingVertical: 12,
     backgroundColor: "#fff",
   },
+  containerDark: {
+    backgroundColor: "#1e1e1e",
+  },
   previewContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -139,10 +151,16 @@ const styles = {
     borderBottomColor: "#e0e0e0",
     minHeight: 44,
   },
+  previewContainerDark: {
+    borderBottomColor: "#333",
+  },
   previewText: {
     fontSize: 24,
     fontWeight: "600",
     color: "#333",
+  },
+  previewTextDark: {
+    color: "#fff",
   },
   errorMessage: {
     color: "#E94E1A",

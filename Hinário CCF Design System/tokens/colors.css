@@ -1,0 +1,72 @@
+/* ── Hinário CCF · Color tokens ──────────────────────────────
+   Palette extracted verbatim from the Figma "Ungrouped" variable
+   collection (w, b, c1–c9, l1). c1 = lightest gray → c9 = darkest.
+   l1 is the brand orange (laranja). */
+:root {
+  /* Base palette */
+  --w: rgb(255, 255, 255);
+  --b: rgb(0, 0, 0);
+  --c1: rgb(233, 233, 233);
+  --c2: rgb(215, 215, 215);
+  --c3: rgb(194, 194, 194);
+  --c4: rgb(165, 165, 165);
+  --c5: rgb(130, 130, 130);
+  --c6: rgb(101, 101, 101);
+  --c7: rgb(74, 74, 74);
+  --c8: rgb(49, 49, 49);
+  --c9: rgb(34, 34, 34);
+  --l1: rgb(233, 78, 26); /* brand orange */
+
+  /* Extra surface/neutral values seen across screens */
+  --fa: rgb(250, 250, 250); /* app background (off-white) */
+  --fb: rgb(251, 251, 251);
+  --ea: rgb(234, 234, 234);
+  --df: rgb(223, 223, 223); /* hairline borders / dividers */
+  --peach: rgb(251, 222, 212); /* orange tint (active pill, soft badge) */
+
+  /* ── Semantic aliases · Light (default) ── */
+  --surface-app: var(--fa);
+  --surface-card: var(--w);
+  --surface-raised: var(--w);
+  --surface-sunken: var(--c1);
+  --surface-brand: var(--l1);
+  --surface-brand-tint: var(--peach);
+
+  --text-primary: var(--c9);
+  --text-body: var(--c8);
+  --text-secondary: var(--c7);
+  --text-muted: var(--c5);
+  --text-placeholder: var(--c3);
+  --text-on-brand: var(--fa);
+
+  --border-hairline: var(--df);
+  --border-strong: var(--c9);
+  --border-brand: var(--l1);
+
+  --brand: var(--l1);
+  --brand-contrast: var(--fa);
+
+  --icon-default: var(--c7);
+  --icon-brand: var(--l1);
+
+  --scrim: rgba(0, 0, 0, 0.22);
+}
+
+/* ── Semantic aliases · Dark ── */
+:root[data-theme="dark"], .dark {
+  --surface-app: rgb(45, 45, 45);
+  --surface-card: rgb(45, 45, 45);
+  --surface-raised: rgb(79, 79, 79);
+  --surface-sunken: rgb(30, 30, 30);
+
+  --text-primary: rgb(223, 223, 222);
+  --text-body: rgb(213, 209, 209);
+  --text-secondary: rgb(194, 194, 194);
+  --text-muted: rgb(130, 130, 130);
+  --text-placeholder: rgb(130, 130, 130);
+
+  --border-hairline: rgb(79, 79, 79);
+  --border-strong: rgb(213, 209, 209);
+
+  --icon-default: rgb(213, 209, 209);
+}

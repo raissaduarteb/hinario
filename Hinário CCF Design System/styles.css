@@ -1,0 +1,15 @@
+/* Hinário CCF Design System — global entry point.
+   Consumers link this one file. @imports only. */
+
+/* Raw Figma variable tokens used by the iOS device-chrome components
+   (imported first so the curated hinário tokens below take precedence). */
+@import "./components/ios-device/fig-tokens.css";
+
+@import "./tokens/fonts.css";
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+
+/* Bitmap fills for the iOS device-chrome components. */
+@import "./components/ios-device/fig-assets.css";
+

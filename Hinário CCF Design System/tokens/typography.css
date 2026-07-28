@@ -1,0 +1,25 @@
+/* ── Hinário CCF · Typography tokens ─────────────────────────
+   Ysabeau Office — display / brand voice (logo wordmark, headers,
+   screen titles). Figtree — UI + body (search, buttons, lyrics,
+   numbers). Values transcribed from the Figma text runs. */
+:root {
+  --font-display: "Ysabeau Office", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Weights */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium: 500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold: 700; /* @kind font */
+
+  /* Type scale (px, from source) */
+  --fs-keypad: 40px;   /* keypad glyphs C H S 0–9 */
+  --fs-title: 20px;    /* screen title "Hinário", section headers */
+  --fs-song: 16px;     /* lyrics / list titles */
+  --fs-body: 14px;     /* search field, nav labels */
+  --fs-label: 12px;    /* foundation labels, badges */
+  --fs-caption: 10px;
+
+  --lh-tight: 100%; /* @kind font */
+  --lh-lyrics: 1.4; /* @kind font */
+}

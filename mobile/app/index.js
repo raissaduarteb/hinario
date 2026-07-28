@@ -1,18 +1,18 @@
 import { useRouter } from "expo-router";
-import { ScrollView, useColorScheme, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Teclado from "../src/components/keyboard/Teclado";
 import BarraPesquisa from "../src/components/ui/BarraPesquisa";
 import BottomMenu from "../src/components/ui/BottomMenu";
 import Switch from "../src/components/ui/Switch";
 import Titulo from "../src/components/ui/Titulo";
+import { useTheme } from "../src/contexts/ThemeContext";
 import { useModoState } from "../src/hooks/useModoState";
 
 export default function Home() {
   const router = useRouter();
   const { modo, setModo } = useModoState();
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === "dark";
+  const { isDark } = useTheme();
 
   return (
     <SafeAreaView style={[styles.container, isDark && styles.containerDark]}>

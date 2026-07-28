@@ -3,19 +3,17 @@ import Iconsearch from "../../../imgs/Iconsearch.svg";
 
 const BarraPesquisa = ({ value, onChange, autoFocus }) => {
   const inputRef = React.useRef(null);
-  const [isFocused, setIsFocused] = React.useState(autoFocus);
 
   React.useEffect(() => {
-    if (isFocused && inputRef.current) {
+    if (autoFocus && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [isFocused]);
+  }, [autoFocus]);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
       inputRef.current?.blur();
-      setIsFocused(false);
     }
   };
 
@@ -28,7 +26,6 @@ const BarraPesquisa = ({ value, onChange, autoFocus }) => {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
-        onFocus={() => setIsFocused(true)} // volta o teclado quando clicar
         className="search-input"
         placeholder="Pesquise por hinos, letras..."
       />

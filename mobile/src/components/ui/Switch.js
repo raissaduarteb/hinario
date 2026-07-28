@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Animated, Text, TouchableOpacity, View } from "react-native";
+import { useTheme } from "../../contexts/ThemeContext";
 
 export default function Switch({ options = [], selectedOption, onChange, onSwitch }) {
+  const { isDark } = useTheme();
   const [selected, setSelected] = useState(selectedOption);
   const [containerWidth, setContainerWidth] = useState(0);
   const slideAnim = useRef(new Animated.Value(options.indexOf(selectedOption) || 0)).current;
@@ -41,12 +43,16 @@ export default function Switch({ options = [], selectedOption, onChange, onSwitc
 
   return (
     <View
-      style={styles.container}
+      style={[styles.container, isDark && styles.containerDark]}
       onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
     >
       {sliderWidth > 0 && (
         <Animated.View
-          style={[styles.slider, { width: sliderWidth, transform: [{ translateX }] }]}
+          style={[
+            styles.slider,
+            isDark && styles.sliderDark,
+            { width: sliderWidth, transform: [{ translateX }] },
+          ]}
         />
       )}
       {options.map((option) => (
@@ -55,7 +61,13 @@ export default function Switch({ options = [], selectedOption, onChange, onSwitc
           style={styles.option}
           onPress={() => handleSelect(option)}
         >
-          <Text style={[styles.optionText, selected === option && styles.optionTextSelected]}>
+          <Text
+            style={[
+              styles.optionText,
+              isDark && styles.optionTextDark,
+              selected === option && styles.optionTextSelected,
+            ]}
+          >
             {option}
           </Text>
         </TouchableOpacity>
@@ -75,6 +87,9 @@ const styles = {
     overflow: "hidden",
     height: 44,
   },
+  containerDark: {
+    backgroundColor: "#1e1e1e",
+  },
   slider: {
     position: "absolute",
     top: 4,
@@ -83,6 +98,9 @@ const styles = {
     backgroundColor: "#fff",
     borderRadius: 26,
     zIndex: 0,
+  },
+  sliderDark: {
+    backgroundColor: "#3a3a3a",
   },
   option: {
     flex: 1,
@@ -94,6 +112,9 @@ const styles = {
     fontSize: 14,
     fontWeight: "500",
     color: "#666",
+  },
+  optionTextDark: {
+    color: "#aaa",
   },
   optionTextSelected: {
     color: "#E94E1A",

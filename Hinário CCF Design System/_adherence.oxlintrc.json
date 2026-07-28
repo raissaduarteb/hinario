@@ -1,0 +1,874 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "assets/icons/**",
+              "components/brand/**",
+              "components/content/**",
+              "components/forms/**",
+              "components/ios-device/**",
+              "components/navigation/**",
+              "components/reader/**",
+              "components/system/**",
+              "ui_kits/hinario/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Figtree|Ysabeau Office))/i]",
+        "message": "Font not provided by the design system. Available: Figtree, Ysabeau Office."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ABCAndMike'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|text1|text2|key|ref|className|style|children)$/]",
+        "message": "<ABCAndMike> doesn't accept that prop. Declared props: className, style, mode, text1, text2."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ABCAndMike'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<ABCAndMike> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='AccessoryBarIPhoneFind'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|icon1|icon2|icon3|icon4|key|ref|className|style|children)$/]",
+        "message": "<AccessoryBarIPhoneFind> doesn't accept that prop. Declared props: className, style, mode, icon1, icon2, icon3, icon4."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='AccessoryBarIPhoneFind'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<AccessoryBarIPhoneFind> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='AccessoryBarIPhoneFindAnd'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|text1|icon3|key|ref|className|style|children)$/]",
+        "message": "<AccessoryBarIPhoneFindAnd> doesn't accept that prop. Declared props: className, style, mode, text1, icon3."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='AccessoryBarIPhoneFindAnd'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<AccessoryBarIPhoneFindAnd> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='AccessoryBarIPhoneToolbar'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|type|icon1|icon2|icon3|icon4|key|ref|className|style|children)$/]",
+        "message": "<AccessoryBarIPhoneToolbar> doesn't accept that prop. Declared props: className, style, mode, type, icon1, icon2, icon3, icon4."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='AccessoryBarIPhoneToolbar'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<AccessoryBarIPhoneToolbar> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='AccessoryBarIPhoneToolbar'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:1 symbol|2 symbols|3 symbols|4 symbols|5 symbols|6 symbols)$/]",
+        "message": "<AccessoryBarIPhoneToolbar> type must be one of '1 symbol' | '2 symbols' | '3 symbols' | '4 symbols' | '5 symbols' | '6 symbols'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='AppHeader'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|onBack|onMenu|key|ref|className|style|children)$/]",
+        "message": "<AppHeader> doesn't accept that prop. Declared props: title, onBack, onMenu."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Autocorrection'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|option1|option2|option3|key|ref|className|style|children)$/]",
+        "message": "<Autocorrection> doesn't accept that prop. Declared props: className, style, mode, option1, option2, option3."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Autocorrection'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<Autocorrection> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BackgroundIPhone'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|key|ref|className|style|children)$/]",
+        "message": "<BackgroundIPhone> doesn't accept that prop. Declared props: className, style, mode."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BackgroundIPhone'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<BackgroundIPhone> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BatteryDark'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|status|level|key|ref|className|style|children)$/]",
+        "message": "<BatteryDark> doesn't accept that prop. Declared props: className, style, status, level."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BatteryDark'] > JSXAttribute[name.name='status'] > Literal[value!=/^(?:normal|charging)$/]",
+        "message": "<BatteryDark> status must be one of 'normal' | 'charging'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BatteryDark'] > JSXAttribute[name.name='level'] > Literal[value!=/^(?:10|100|50)$/]",
+        "message": "<BatteryDark> level must be one of '10' | '100' | '50'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BatteryLight'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|status|level|key|ref|className|style|children)$/]",
+        "message": "<BatteryLight> doesn't accept that prop. Declared props: className, style, status, level."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BatteryLight'] > JSXAttribute[name.name='status'] > Literal[value!=/^(?:normal|charging)$/]",
+        "message": "<BatteryLight> status must be one of 'normal' | 'charging'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BatteryLight'] > JSXAttribute[name.name='level'] > Literal[value!=/^(?:10|100|50)$/]",
+        "message": "<BatteryLight> level must be one of '10' | '100' | '50'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='NavTab'] > JSXAttribute > JSXIdentifier[name!=/^(?:key|label|icon|key|ref|className|style|children)$/]",
+        "message": "<NavTab> doesn't accept that prop. Declared props: key, label, icon."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ButtonSymbol'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|state|symbol|property2|key|ref|className|style|children)$/]",
+        "message": "<ButtonSymbol> doesn't accept that prop. Declared props: className, style, state, symbol, property2."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ButtonSymbol'] > JSXAttribute[name.name='state'] > Literal[value!=/^(?:default|disabled|_button - symbol - dark)$/]",
+        "message": "<ButtonSymbol> state must be one of 'default' | 'disabled' | '_button - symbol - dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ButtonSymbol'] > JSXAttribute[name.name='property2'] > Literal[value!=/^(?:disabled|default)$/]",
+        "message": "<ButtonSymbol> property2 must be one of 'disabled' | 'default'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ChevronLeft'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|size|key|ref|className|style|children)$/]",
+        "message": "<ChevronLeft> doesn't accept that prop. Declared props: className, style, size."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ChevronLeft'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:20|24|32|40|48|16)$/]",
+        "message": "<ChevronLeft> size must be one of '20' | '24' | '32' | '40' | '48' | '16'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Copy'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|key|ref|className|style|children)$/]",
+        "message": "<Copy> doesn't accept that prop. Declared props: className, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='EmojiTabs'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|text1|text2|text3|key|ref|className|style|children)$/]",
+        "message": "<EmojiTabs> doesn't accept that prop. Declared props: className, style, mode, text1, text2, text3."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='EmojiTabs'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<EmojiTabs> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FieldBG'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|key|ref|className|style|children)$/]",
+        "message": "<FieldBG> doesn't accept that prop. Declared props: className, style, mode."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FieldBG'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<FieldBG> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FieldFind'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|state|total|searchText|current|text1|text2|text3|text4|key|ref|className|style|children)$/]",
+        "message": "<FieldFind> doesn't accept that prop. Declared props: className, style, mode, state, total, searchText, current, text1, text2, text3, text4."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FieldFind'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<FieldFind> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FieldFind'] > JSXAttribute[name.name='state'] > Literal[value!=/^(?:default|typing|focused|text entered)$/]",
+        "message": "<FieldFind> state must be one of 'default' | 'typing' | 'focused' | 'text entered'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FieldReplace'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|state|replaceText|text1|text2|key|ref|className|style|children)$/]",
+        "message": "<FieldReplace> doesn't accept that prop. Declared props: className, style, mode, state, replaceText, text1, text2."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FieldReplace'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:dark|light)$/]",
+        "message": "<FieldReplace> mode must be one of 'dark' | 'light'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FieldReplace'] > JSXAttribute[name.name='state'] > Literal[value!=/^(?:default|typing|focused|text entered)$/]",
+        "message": "<FieldReplace> state must be one of 'default' | 'typing' | 'focused' | 'text entered'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Frame1'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|text1|key|ref|className|style|children)$/]",
+        "message": "<Frame1> doesn't accept that prop. Declared props: className, style, text1."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Group4'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|text1|text2|text3|key|ref|className|style|children)$/]",
+        "message": "<Group4> doesn't accept that prop. Declared props: className, style, text1, text2, text3."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Icon'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|size|key|ref|className|style|children)$/]",
+        "message": "<Icon> doesn't accept that prop. Declared props: name, size."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Indicator'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|type|key|ref|className|style|children)$/]",
+        "message": "<Indicator> doesn't accept that prop. Declared props: className, style, type."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Indicator'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:camera|microphone|none)$/]",
+        "message": "<Indicator> type must be one of 'camera' | 'microphone' | 'none'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Keyboard'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|type|text1|text2|text3|text4|key|ref|className|style|children)$/]",
+        "message": "<Keyboard> doesn't accept that prop. Declared props: className, style, type, text1, text2, text3, text4."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Keyboard'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:default|numbers and punctuation|emoji|find|find and replace)$/]",
+        "message": "<Keyboard> type must be one of 'default' | 'numbers and punctuation' | 'emoji' | 'find' | 'find and replace'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KeyboardIPhoneLayouts'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|type|icon1|icon2|icon3|icon4|key|ref|className|style|children)$/]",
+        "message": "<KeyboardIPhoneLayouts> doesn't accept that prop. Declared props: className, style, mode, type, icon1, icon2, icon3, icon4."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KeyboardIPhoneLayouts'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<KeyboardIPhoneLayouts> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KeyboardIPhoneLayouts'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:letters - lowercase|letters - uppercase|numbers|characters)$/]",
+        "message": "<KeyboardIPhoneLayouts> type must be one of 'letters - lowercase' | 'letters - uppercase' | 'numbers' | 'characters'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KeypadTile'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|bold|key|ref|className|style|children)$/]",
+        "message": "<KeypadTile> doesn't accept that prop. Declared props: children, bold."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KeysIPhone'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|type|character|letter|punctuation|symbol|text1|key|ref|className|style|children)$/]",
+        "message": "<KeysIPhone> doesn't accept that prop. Declared props: className, style, mode, type, character, letter, punctuation, symbol, text1."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KeysIPhone'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<KeysIPhone> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KeysIPhone'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:uppercase|lowercase|punctuation|special charaters \\(not capitalized\\)|symbol|return|return-prominent|123|#\\+|abc|123 small)$/]",
+        "message": "<KeysIPhone> type must be one of 'uppercase' | 'lowercase' | 'punctuation' | 'special charaters (not capitalized)' | 'symbol' | 'return' | 'return-prominent' | '123' | '#+' | 'abc' | '123 small'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KeysIPhoneNumeric'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|type|line1|line2|text1|key|ref|className|style|children)$/]",
+        "message": "<KeysIPhoneNumeric> doesn't accept that prop. Declared props: className, style, mode, type, line1, line2, text1."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KeysIPhoneNumeric'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<KeysIPhoneNumeric> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KeysIPhoneNumeric'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:number|number \\+ abc|math)$/]",
+        "message": "<KeysIPhoneNumeric> type must be one of 'number' | 'number + abc' | 'math'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KeysIPhoneSpace'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|config|icon1|icon2|key|ref|className|style|children)$/]",
+        "message": "<KeysIPhoneSpace> doesn't accept that prop. Declared props: className, style, mode, config, icon1, icon2."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KeysIPhoneSpace'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<KeysIPhoneSpace> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KeysIPhoneSpace'] > JSXAttribute[name.name='config'] > Literal[value!=/^(?:default|email|url)$/]",
+        "message": "<KeysIPhoneSpace> config must be one of 'default' | 'email' | 'url'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='LiquidGlassRegularSmall'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|state|key|ref|className|style|children)$/]",
+        "message": "<LiquidGlassRegularSmall> doesn't accept that prop. Declared props: className, style, mode, state."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='LiquidGlassRegularSmall'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<LiquidGlassRegularSmall> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='LiquidGlassRegularSmall'] > JSXAttribute[name.name='state'] > Literal[value!=/^(?:default|primary)$/]",
+        "message": "<LiquidGlassRegularSmall> state must be one of 'default' | 'primary'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Logo'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|height|key|ref|className|style|children)$/]",
+        "message": "<Logo> doesn't accept that prop. Declared props: variant, height."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Logo'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:full|mark)$/]",
+        "message": "<Logo> variant must be one of 'full' | 'mark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='LyricsHeader'] > JSXAttribute > JSXIdentifier[name!=/^(?:number|title|onBack|key|ref|className|style|children)$/]",
+        "message": "<LyricsHeader> doesn't accept that prop. Declared props: number, title, onBack."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='LyricsVerse'] > JSXAttribute > JSXIdentifier[name!=/^(?:text|emphasis|key|ref|className|style|children)$/]",
+        "message": "<LyricsVerse> doesn't accept that prop. Declared props: text, emphasis."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='MaskCircle'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|key|ref|className|style|children)$/]",
+        "message": "<MaskCircle> doesn't accept that prop. Declared props: className, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='MusicNote'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|key|ref|className|style|children)$/]",
+        "message": "<MusicNote> doesn't accept that prop. Declared props: className, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='NetworkSignalDark'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|property1|key|ref|className|style|children)$/]",
+        "message": "<NetworkSignalDark> doesn't accept that prop. Declared props: className, style, property1."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='NetworkSignalDark'] > JSXAttribute[name.name='property1'] > Literal[value!=/^(?:0 bars|1 bars|2 bars|3 bars|4 bars)$/]",
+        "message": "<NetworkSignalDark> property1 must be one of '0 bars' | '1 bars' | '2 bars' | '3 bars' | '4 bars'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='NetworkSignalLight'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|strength|key|ref|className|style|children)$/]",
+        "message": "<NetworkSignalLight> doesn't accept that prop. Declared props: className, style, strength."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='NetworkSignalLight'] > JSXAttribute[name.name='strength'] > Literal[value!=/^(?:0 bars|1 bars|3 bars|4 bars|2 bars)$/]",
+        "message": "<NetworkSignalLight> strength must be one of '0 bars' | '1 bars' | '3 bars' | '4 bars' | '2 bars'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Next'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|enabled|text1|key|ref|className|style|children)$/]",
+        "message": "<Next> doesn't accept that prop. Declared props: className, style, mode, enabled, text1."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Next'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<Next> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Notch'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|visible|key|ref|className|style|children)$/]",
+        "message": "<Notch> doesn't accept that prop. Declared props: className, style, visible."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='PageNav'] > JSXAttribute > JSXIdentifier[name!=/^(?:onPrev|onNext|prevDisabled|nextDisabled|key|ref|className|style|children)$/]",
+        "message": "<PageNav> doesn't accept that prop. Declared props: onPrev, onNext, prevDisabled, nextDisabled."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Previous'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|enabled|text1|key|ref|className|style|children)$/]",
+        "message": "<Previous> doesn't accept that prop. Declared props: className, style, mode, enabled, text1."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Previous'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<Previous> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='PrimaryButton'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|block|disabled|key|ref|className|style|children)$/]",
+        "message": "<PrimaryButton> doesn't accept that prop. Declared props: children, block, disabled."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ReaderControls'] > JSXAttribute > JSXIdentifier[name!=/^(?:theme|onThemeChange|fontScale|onFontScaleChange|key|ref|className|style|children)$/]",
+        "message": "<ReaderControls> doesn't accept that prop. Declared props: theme, onThemeChange, fontScale, onFontScaleChange."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ReaderControls'] > JSXAttribute[name.name='theme'] > Literal[value!=/^(?:escuro|claro)$/]",
+        "message": "<ReaderControls> theme must be one of 'escuro' | 'claro'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ReplaceButton'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|state|value|key|ref|className|style|children)$/]",
+        "message": "<ReplaceButton> doesn't accept that prop. Declared props: className, style, mode, state, value."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ReplaceButton'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<ReplaceButton> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ReplaceButton'] > JSXAttribute[name.name='state'] > Literal[value!=/^(?:default|disabled)$/]",
+        "message": "<ReplaceButton> state must be one of 'default' | 'disabled'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Search'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|size|key|ref|className|style|children)$/]",
+        "message": "<Search> doesn't accept that prop. Declared props: className, style, size."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Search'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:20|24|32|40|48|16)$/]",
+        "message": "<Search> size must be one of '20' | '24' | '32' | '40' | '48' | '16'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Searchbar'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|text1|icon1|key|ref|className|style|children)$/]",
+        "message": "<Searchbar> doesn't accept that prop. Declared props: className, style, text1, icon1."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SearchBar'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|onChange|onFocus|placeholder|key|ref|className|style|children)$/]",
+        "message": "<SearchBar> doesn't accept that prop. Declared props: value, onChange, onFocus, placeholder."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SearchEmoji'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|text1|text2|text3|key|ref|className|style|children)$/]",
+        "message": "<SearchEmoji> doesn't accept that prop. Declared props: className, style, mode, text1, text2, text3."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SearchEmoji'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<SearchEmoji> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SegmentedControl'] > JSXAttribute > JSXIdentifier[name!=/^(?:options|value|onChange|key|ref|className|style|children)$/]",
+        "message": "<SegmentedControl> doesn't accept that prop. Declared props: options, value, onChange."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SelectionRow'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|open|onToggle|children|key|ref|className|style|children)$/]",
+        "message": "<SelectionRow> doesn't accept that prop. Declared props: title, open, onToggle, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SongBadge'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|tone|key|ref|className|style|children)$/]",
+        "message": "<SongBadge> doesn't accept that prop. Declared props: children, tone."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SongBadge'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:solid|soft)$/]",
+        "message": "<SongBadge> tone must be one of 'solid' | 'soft'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SongListItem'] > JSXAttribute > JSXIdentifier[name!=/^(?:number|tone|title|snippet|query|divider|onClick|key|ref|className|style|children)$/]",
+        "message": "<SongListItem> doesn't accept that prop. Declared props: number, tone, title, snippet, query, divider, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SongListItem'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:solid|soft)$/]",
+        "message": "<SongListItem> tone must be one of 'solid' | 'soft'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='StatusBar'] > JSXAttribute > JSXIdentifier[name!=/^(?:time|tone|key|ref|className|style|children)$/]",
+        "message": "<StatusBar> doesn't accept that prop. Declared props: time, tone."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='StatusBar'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:dark|light)$/]",
+        "message": "<StatusBar> tone must be one of 'dark' | 'light'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Sun'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|size|key|ref|className|style|children)$/]",
+        "message": "<Sun> doesn't accept that prop. Declared props: className, style, size."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Sun'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:20|24|32|40|48|16)$/]",
+        "message": "<Sun> size must be one of '20' | '24' | '32' | '40' | '48' | '16'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Symbol'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|mode|text1|key|ref|className|style|children)$/]",
+        "message": "<Symbol> doesn't accept that prop. Declared props: className, style, mode, text1."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Symbol'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:light|dark)$/]",
+        "message": "<Symbol> mode must be one of 'light' | 'dark'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TextFields'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|key|ref|className|style|children)$/]",
+        "message": "<TextFields> doesn't accept that prop. Declared props: className, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TimeDark'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|color|key|ref|className|style|children)$/]",
+        "message": "<TimeDark> doesn't accept that prop. Declared props: className, style, color."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TimeDark'] > JSXAttribute[name.name='color'] > Literal[value!=/^(?:green|red|clear|blue)$/]",
+        "message": "<TimeDark> color must be one of 'green' | 'red' | 'clear' | 'blue'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TimeLight'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|color|key|ref|className|style|children)$/]",
+        "message": "<TimeLight> doesn't accept that prop. Declared props: className, style, color."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TimeLight'] > JSXAttribute[name.name='color'] > Literal[value!=/^(?:green|red|clear|blue)$/]",
+        "message": "<TimeLight> color must be one of 'green' | 'red' | 'clear' | 'blue'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='WiFiSignalDark'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|property1|key|ref|className|style|children)$/]",
+        "message": "<WiFiSignalDark> doesn't accept that prop. Declared props: className, style, property1."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='WiFiSignalDark'] > JSXAttribute[name.name='property1'] > Literal[value!=/^(?:0 bars|1 bars|2 bars|3 bars)$/]",
+        "message": "<WiFiSignalDark> property1 must be one of '0 bars' | '1 bars' | '2 bars' | '3 bars'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='WiFiSignalLight'] > JSXAttribute > JSXIdentifier[name!=/^(?:className|style|property1|key|ref|className|style|children)$/]",
+        "message": "<WiFiSignalLight> doesn't accept that prop. Declared props: className, style, property1."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='WiFiSignalLight'] > JSXAttribute[name.name='property1'] > Literal[value!=/^(?:0 bars|1 bars|2 bars|3 bars)$/]",
+        "message": "<WiFiSignalLight> property1 must be one of '0 bars' | '1 bars' | '2 bars' | '3 bars'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "ABCAndMike": {
+        "replaces": []
+      },
+      "AccessoryBarIPhoneFind": {
+        "replaces": []
+      },
+      "AccessoryBarIPhoneFindAnd": {
+        "replaces": []
+      },
+      "AccessoryBarIPhoneToolbar": {
+        "replaces": []
+      },
+      "AppHeader": {
+        "replaces": []
+      },
+      "Autocorrection": {
+        "replaces": []
+      },
+      "BackgroundIPhone": {
+        "replaces": []
+      },
+      "BatteryDark": {
+        "replaces": []
+      },
+      "BatteryLight": {
+        "replaces": []
+      },
+      "NavTab": {
+        "replaces": []
+      },
+      "ButtonSymbol": {
+        "replaces": []
+      },
+      "ChevronLeft": {
+        "replaces": []
+      },
+      "Copy": {
+        "replaces": []
+      },
+      "EmojiTabs": {
+        "replaces": []
+      },
+      "FieldBG": {
+        "replaces": []
+      },
+      "FieldFind": {
+        "replaces": []
+      },
+      "FieldReplace": {
+        "replaces": []
+      },
+      "Frame1": {
+        "replaces": []
+      },
+      "Group4": {
+        "replaces": []
+      },
+      "Icon": {
+        "replaces": []
+      },
+      "Indicator": {
+        "replaces": []
+      },
+      "Keyboard": {
+        "replaces": []
+      },
+      "KeyboardIPhoneLayouts": {
+        "replaces": []
+      },
+      "KeypadTile": {
+        "replaces": []
+      },
+      "KeysIPhone": {
+        "replaces": []
+      },
+      "KeysIPhoneNumeric": {
+        "replaces": []
+      },
+      "KeysIPhoneSpace": {
+        "replaces": []
+      },
+      "LiquidGlassRegularSmall": {
+        "replaces": []
+      },
+      "Logo": {
+        "replaces": []
+      },
+      "LyricsHeader": {
+        "replaces": []
+      },
+      "LyricsVerse": {
+        "replaces": []
+      },
+      "MaskCircle": {
+        "replaces": []
+      },
+      "MusicNote": {
+        "replaces": []
+      },
+      "NetworkSignalDark": {
+        "replaces": []
+      },
+      "NetworkSignalLight": {
+        "replaces": []
+      },
+      "Next": {
+        "replaces": []
+      },
+      "Notch": {
+        "replaces": []
+      },
+      "PageNav": {
+        "replaces": []
+      },
+      "Previous": {
+        "replaces": []
+      },
+      "PrimaryButton": {
+        "replaces": []
+      },
+      "ReaderControls": {
+        "replaces": []
+      },
+      "ReplaceButton": {
+        "replaces": []
+      },
+      "Search": {
+        "replaces": []
+      },
+      "Searchbar": {
+        "replaces": []
+      },
+      "SearchBar": {
+        "replaces": []
+      },
+      "SearchEmoji": {
+        "replaces": []
+      },
+      "SegmentedControl": {
+        "replaces": []
+      },
+      "SelectionRow": {
+        "replaces": []
+      },
+      "SongBadge": {
+        "replaces": []
+      },
+      "SongListItem": {
+        "replaces": []
+      },
+      "StatusBar": {
+        "replaces": []
+      },
+      "Sun": {
+        "replaces": []
+      },
+      "Symbol": {
+        "replaces": []
+      },
+      "TextFields": {
+        "replaces": []
+      },
+      "TimeDark": {
+        "replaces": []
+      },
+      "TimeLight": {
+        "replaces": []
+      },
+      "WiFiSignalDark": {
+        "replaces": []
+      },
+      "WiFiSignalLight": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--b",
+      "--background-brand-default",
+      "--bg-context",
+      "--border-brand",
+      "--border-hairline",
+      "--border-strong",
+      "--brand",
+      "--brand-100",
+      "--brand-800",
+      "--brand-b-800",
+      "--brand-contrast",
+      "--c1",
+      "--c2",
+      "--c3",
+      "--c4",
+      "--c5",
+      "--c6",
+      "--c7",
+      "--c8",
+      "--c9",
+      "--colors-blue",
+      "--colors-indigo",
+      "--component-fill",
+      "--component-stroke",
+      "--df",
+      "--ea",
+      "--fa",
+      "--fb",
+      "--fills-tertiary",
+      "--fills-vibrant-primary",
+      "--fills-vibrant-tertiary",
+      "--font-body",
+      "--font-display",
+      "--fs-body",
+      "--fs-caption",
+      "--fs-keypad",
+      "--fs-label",
+      "--fs-song",
+      "--fs-title",
+      "--fw-bold",
+      "--fw-medium",
+      "--fw-regular",
+      "--fw-semibold",
+      "--gray-900",
+      "--gray-900-2",
+      "--icon-brand",
+      "--icon-default",
+      "--icon-default-default",
+      "--icon-default-default-2",
+      "--l1",
+      "--labels-primary",
+      "--labels-secondary",
+      "--labels-vibrant-primary",
+      "--labels-vibrant-secondary",
+      "--labels-vibrant-tertiary",
+      "--lh-lyrics",
+      "--lh-tight",
+      "--miscellaneous-keyboards-emoji-mic",
+      "--miscellaneous-keyboards-glyphs-primary",
+      "--miscellaneous-keyboards-keys",
+      "--mode",
+      "--peach",
+      "--radius-badge",
+      "--radius-button",
+      "--radius-full",
+      "--radius-pill",
+      "--radius-tile",
+      "--schemes-on-surface",
+      "--scrim",
+      "--shadow-card",
+      "--shadow-nav",
+      "--shadow-search",
+      "--space-1",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-8",
+      "--subcomponent-fill",
+      "--subcomponent-stroke",
+      "--surface-app",
+      "--surface-brand",
+      "--surface-brand-tint",
+      "--surface-card",
+      "--surface-raised",
+      "--surface-sunken",
+      "--text-body",
+      "--text-muted",
+      "--text-on-brand",
+      "--text-placeholder",
+      "--text-primary",
+      "--text-secondary",
+      "--w",
+      "--white-1000",
+      "--white-1000-2"
+    ],
+    "tokenKinds": {
+      "--b": "color",
+      "--background-brand-default": "color",
+      "--bg-context": "color",
+      "--brand-100": "color",
+      "--brand-800": "color",
+      "--brand-b-800": "color",
+      "--c1": "color",
+      "--c2": "color",
+      "--c3": "color",
+      "--c4": "color",
+      "--c5": "color",
+      "--c6": "color",
+      "--c7": "color",
+      "--c8": "color",
+      "--c9": "color",
+      "--colors-blue": "color",
+      "--colors-indigo": "color",
+      "--component-fill": "color",
+      "--component-stroke": "color",
+      "--fills-tertiary": "color",
+      "--fills-vibrant-primary": "color",
+      "--fills-vibrant-tertiary": "color",
+      "--gray-900-2": "color",
+      "--gray-900": "color",
+      "--icon-default-default-2": "color",
+      "--icon-default-default": "color",
+      "--l1": "color",
+      "--labels-primary": "color",
+      "--labels-secondary": "color",
+      "--labels-vibrant-primary": "color",
+      "--labels-vibrant-secondary": "color",
+      "--labels-vibrant-tertiary": "color",
+      "--miscellaneous-keyboards-emoji-mic": "color",
+      "--miscellaneous-keyboards-glyphs-primary": "color",
+      "--miscellaneous-keyboards-keys": "color",
+      "--mode": "other",
+      "--schemes-on-surface": "color",
+      "--subcomponent-fill": "color",
+      "--subcomponent-stroke": "color",
+      "--w": "color",
+      "--white-1000-2": "color",
+      "--white-1000": "color",
+      "--fa": "color",
+      "--fb": "color",
+      "--ea": "color",
+      "--df": "color",
+      "--peach": "color",
+      "--surface-app": "color",
+      "--surface-card": "color",
+      "--surface-raised": "color",
+      "--surface-sunken": "color",
+      "--surface-brand": "color",
+      "--surface-brand-tint": "color",
+      "--text-primary": "font",
+      "--text-body": "font",
+      "--text-secondary": "font",
+      "--text-muted": "font",
+      "--text-placeholder": "font",
+      "--text-on-brand": "font",
+      "--border-hairline": "color",
+      "--border-strong": "color",
+      "--border-brand": "color",
+      "--brand": "color",
+      "--brand-contrast": "color",
+      "--icon-default": "color",
+      "--icon-brand": "color",
+      "--scrim": "color",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--fw-regular": "font",
+      "--fw-medium": "font",
+      "--fw-semibold": "font",
+      "--fw-bold": "font",
+      "--fs-keypad": "spacing",
+      "--fs-title": "spacing",
+      "--fs-song": "spacing",
+      "--fs-body": "spacing",
+      "--fs-label": "spacing",
+      "--fs-caption": "spacing",
+      "--lh-tight": "font",
+      "--lh-lyrics": "font",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-8": "spacing",
+      "--radius-button": "radius",
+      "--radius-tile": "radius",
+      "--radius-pill": "radius",
+      "--radius-badge": "radius",
+      "--radius-full": "radius",
+      "--shadow-search": "shadow",
+      "--shadow-nav": "shadow",
+      "--shadow-card": "shadow"
+    },
+    "fontFamilies": [
+      "Figtree",
+      "Ysabeau Office"
+    ]
+  }
+}

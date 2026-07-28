@@ -1,18 +1,22 @@
 import { Text, View } from "react-native";
 import { useFontSize } from "../../contexts/FontSizeContext";
+import { useTheme } from "../../contexts/ThemeContext";
+import TextoFormatado from "../ui/TextoFormatado";
 export default function LetraHino({ letra }) {
   const { fontSize } = useFontSize();
+  const { isDark } = useTheme();
   return (
     <View style={styles.container}>
       <Text
         style={[
           styles.text,
+          isDark && styles.textDark,
           {
             fontSize: fontSize,
           },
         ]}
       >
-        {letra}
+        <TextoFormatado texto={letra} />
       </Text>
     </View>
   );
@@ -26,5 +30,8 @@ const styles = {
     color: "#333",
     lineHeight: 24,
     fontFamily: "System",
+  },
+  textDark: {
+    color: "#eee",
   },
 };

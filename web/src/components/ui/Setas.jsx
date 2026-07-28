@@ -11,16 +11,18 @@ const Setas = () => {
       <button
         type="button"
         className="seta seta-anterior"
+        aria-label="Hino anterior"
         onClick={() => irParaAnterior(id, navigate)}
       >
-        <img src={SetasIcon} width={"30%"} alt="seta"></img>
+        <img src={SetasIcon} alt="" />
       </button>
       <button
         type="button"
         className="seta seta-proximo"
+        aria-label="Próximo hino"
         onClick={() => irParaProximo(id, navigate)}
       >
-        <img src={SetasIcon} width={"30%"} alt="seta"></img>
+        <img src={SetasIcon} alt="" />
       </button>
     </div>
   );

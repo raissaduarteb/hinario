@@ -1,8 +1,6 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
 import { fetchHinoPorIdentificador } from "../../utils/api/hinos";
-import { irParaAnterior, irParaProximo, useSwipe } from "../../utils/navegacao";
 
 import LetrasHinosBusca from "../ui/LetrasHinosBusca";
 import Loading from "../ui/Loading";
@@ -13,7 +11,6 @@ import Voltar from "./Voltar";
 
 const Hino = () => {
   const { id } = useParams(); // pega o id da rota
-  const queryClient = useQueryClient();
   const {
     data: hino,
     isLoading,
@@ -23,28 +20,6 @@ const Hino = () => {
     queryKey: ["hino", id],
     queryFn: () => fetchHinoPorIdentificador(id),
   });
-
-  const navigate = useNavigate();
-
-  const {
-    handleTouchStart,
-    handleTouchEnd,
-    handleTouchMove,
-    dragX,
-    exiting,
-    opacity,
-    setOpacity,
-  } = useSwipe(
-    () => irParaProximo(id, navigate),
-    () => irParaAnterior(id, navigate),
-  );
-  const isDragging = dragX !== 0 && !exiting;
-
-  useEffect(() => {
-    if (!isLoading && hino) {
-      setOpacity(1);
-    }
-  }, [isLoading, hino, setOpacity]);
 
   if (isLoading && !hino) return <Loading />;
 
@@ -60,19 +35,8 @@ const Hino = () => {
 
   return (
     <>
-      <div
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-        onTouchMove={handleTouchMove}
-        style={{
-          touchAction: "pan-y",
-          transform: `translateX(${dragX * 0.3}px)`,
-          opacity: opacity,
-          transition: isDragging
-            ? "none"
-            : "transform 0.3s ease, opacity 0.3s ease",
-        }}
-      >
+      {/* key={id} remonta o bloco a cada troca de hino, gerando o fade-in */}
+      <div key={id} className="hino-conteudo">
         <div
           className="hinos-separar margin"
           style={{

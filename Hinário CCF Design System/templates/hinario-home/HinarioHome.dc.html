@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Hinário — Home" description="Hymnal home screen: brand header, search, Hinário/Harpa toggle, keypad and Buscar" -->
+<helmet><script src="./ds-base.js"></script></helmet>
+<div style="width:402px;margin:0 auto;min-height:820px;display:flex;flex-direction:column;background:var(--surface-app);font-family:var(--font-body);border-radius:40px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2)">
+  <div style="padding-top:8px">
+    <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.StatusBar" tone="dark" hint-size="100%,47px"></x-import>
+  </div>
+  <div style="flex:1;padding:8px 24px 0">
+    <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.AppHeader" hint-size="100%,48px"></x-import>
+    <div style="padding:12px 0 20px">
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.SearchBar" hint-size="100%,43px"></x-import>
+    </div>
+    <div style="max-width:240px;margin:0 auto 24px">
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.SegmentedControl" hint-size="240px,48px"></x-import>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,68px);gap:22px;justify-content:center">
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.KeypadTile" hint-size="68px,73px">C</x-import>
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.KeypadTile" hint-size="68px,73px">H</x-import>
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.KeypadTile" hint-size="68px,73px">S</x-import>
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.KeypadTile" hint-size="68px,73px">1</x-import>
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.KeypadTile" hint-size="68px,73px">2</x-import>
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.KeypadTile" hint-size="68px,73px">3</x-import>
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.KeypadTile" hint-size="68px,73px">4</x-import>
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.KeypadTile" hint-size="68px,73px">5</x-import>
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.KeypadTile" hint-size="68px,73px">6</x-import>
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.KeypadTile" hint-size="68px,73px">7</x-import>
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.KeypadTile" hint-size="68px,73px">8</x-import>
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.KeypadTile" hint-size="68px,73px">9</x-import>
+    </div>
+    <div style="display:flex;justify-content:center;padding:22px 0 8px">
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.KeypadTile" hint-size="68px,73px">0</x-import>
+    </div>
+    <div style="display:flex;justify-content:center;padding:18px 0 24px">
+      <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.PrimaryButton" hint-size="120px,42px">Buscar</x-import>
+    </div>
+  </div>
+  <x-import component-from-global-scope="HinRioCCFDesignSystem_9cc2ad.BottomNav" active="home" hint-size="100%,88px"></x-import>
+</div>
+</x-dc>
+</body>
+</html>

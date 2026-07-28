@@ -1,10 +1,9 @@
 import React from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import AdminApp from "./admin/AdminApp";
 import Hino from "./components/hymn/Hino";
 import Teclado from "./components/keyboard/Teclado";
 import Selecao from "./components/selecao/Selecao";
-import BarraPesquisa from "./components/ui/BarraPesquisa";
 import BottomMenu from "./components/ui/BottomMenu";
 import Buscas from "./components/ui/Buscas";
 import ComponenteBuscaHino from "./components/ui/ComponenteBuscaHino";
@@ -17,12 +16,11 @@ import { useModoState } from "./hooks/useModoState";
 
 const App = () => {
   const tecladoRef = React.useRef();
-  const navigate = useNavigate();
   const location = useLocation();
 
   const { modo, setModo } = useModoState();
   const { busca, setBusca } = useBuscaState();
-  const { hinoSelecionado, setHinoSelecionado } = useHinoSelecionado();
+  const { setHinoSelecionado } = useHinoSelecionado();
 
   // Limpar busca quando voltando de rotas específicas
   React.useEffect(() => {
@@ -31,10 +29,6 @@ const App = () => {
     }
   }, [location.state, setBusca]);
 
-  const handleSwitch = () => {
-    tecladoRef.current.LimparTudo();
-  };
-
   if (location.pathname.startsWith("/admin")) {
     return <AdminApp />;
   }
@@ -42,24 +36,13 @@ const App = () => {
   return (
     <>
       <FontSizeProvider>
-        <Titulo />
+        <Titulo busca={busca} setBusca={setBusca} />
 
         <Routes>
           <Route
             path="/"
             element={
               <div>
-                <div>
-                  <BarraPesquisa
-                    value={busca}
-                    onChange={(texto) => {
-                      setBusca(texto);
-                      if (texto.length > 0) {
-                        navigate("/pesquisa");
-                      }
-                    }}
-                  />
-                </div>
                 <Switch
                   options={["Hinário", "Harpa Cristã"]}
                   selectedOption={modo}
