@@ -74,7 +74,7 @@ const Titulo = ({ busca, setBusca }) => {
             autoFocus
             type="text"
             className="header-busca-input"
-            placeholder="Pesquise por hinos, letras..."
+            placeholder="Pesquise por letras de hinos..."
             value={busca}
             onChange={(e) => {
               const texto = e.target.value;

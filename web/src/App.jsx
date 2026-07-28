@@ -36,13 +36,13 @@ const App = () => {
   return (
     <>
       <FontSizeProvider>
-        <Titulo busca={busca} setBusca={setBusca} />
-
         <Routes>
           <Route
             path="/"
             element={
               <div>
+                <Titulo busca={busca} setBusca={setBusca} />
+
                 <Switch
                   options={["Hinário", "Harpa Cristã"]}
                   selectedOption={modo}

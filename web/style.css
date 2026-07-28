@@ -20,7 +20,7 @@ body {
   padding: 10px 0;
   margin: 0;
   touch-action: pan-x pan-y;
-  height: 100vh;
+  height: 100%;
 }
 .main {
   display: flex;
