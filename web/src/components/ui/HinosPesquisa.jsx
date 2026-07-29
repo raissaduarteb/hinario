@@ -9,83 +9,114 @@ import LinhaBusca from "./LinhaBusca";
 const HinosPesquisa = ({ busca }) => {
   const [hinos, setHinos] = useState([]);
   const [carregando, setCarregando] = useState(false);
+  const [erro, setErro] = useState("");
   const abortControllerRef = useRef(null);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const termo = String(busca ?? "").trim();
 
   useEffect(() => {
-    if (busca.busca.length === 0) {
+    setErro("");
+
+    if (termo.length === 0) {
       setHinos([]);
       setCarregando(false);
       return;
     }
 
-    // Cancela a requisição anterior se ainda estiver pendente
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
     }
 
     const controller = new AbortController();
     abortControllerRef.current = controller;
+    let timedOut = false;
 
     setCarregando(true);
 
-    const timeout = setTimeout(() => {
-      fetch(
-        `https://hinario-api.onrender.com/api/Hino/pesquisar?texto=${busca.busca}`,
-        { signal: controller.signal },
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setHinos(data);
+    const requestTimeout = setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, 10000);
 
-          // Aproveita o retorno do endpoint de pesquisa para hidratar o cache do hino.
-          // Se o objeto não tiver `letra`, o `Hino.jsx` ainda pode buscar o detalhe completo.
-          for (const hino of data ?? []) {
-            if (!hino?.identificador) continue;
-            queryClient.setQueryData(["hino", hino.identificador], (prev) => ({
-              ...prev,
-              ...hino,
-            }));
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          `https://hinario-api.onrender.com/api/Hino/pesquisar?texto=${encodeURIComponent(
+            termo,
+          )}`,
+          { signal: controller.signal },
+        );
+
+        if (!res.ok) {
+          throw new Error("Erro na busca de hinos.");
+        }
+
+        const data = await res.json();
+        setHinos(data || []);
+
+        for (const hino of data ?? []) {
+          if (!hino?.identificador) continue;
+          queryClient.setQueryData(["hino", hino.identificador], (prev) => ({
+            ...prev,
+            ...hino,
+          }));
+        }
+      } catch (err) {
+        if (err.name === "AbortError") {
+          if (timedOut) {
+            setErro("A busca demorou muito. Tente novamente.");
           }
-        })
-        .catch((err) => {
-          if (err.name !== "AbortError") console.error(err);
-        })
-        .finally(() => {
-          if (!controller.signal.aborted) setCarregando(false);
-        });
-    }, 400); // aguarda 400ms após a última digitação
+        } else {
+          console.error(err);
+          setErro("Não foi possível buscar hinos no momento.");
+        }
+      } finally {
+        clearTimeout(requestTimeout);
+        if (!controller.signal.aborted || timedOut) {
+          setCarregando(false);
+        }
+      }
+    };
+
+    const debounce = setTimeout(fetchData, 400);
 
     return () => {
-      clearTimeout(timeout);
+      clearTimeout(debounce);
+      clearTimeout(requestTimeout);
       controller.abort();
     };
-  }, [busca]);
+  }, [termo, queryClient]);
 
   if (carregando) return <Loading />;
 
   return (
     <div className="hinos-busca">
-      {hinos.map((hino) => (
-        <div key={hino.id}>
-          <div
-            onClick={() =>
-              navigate(`/hino/${hino.identificador}`, {
-                state: { from: "pesquisa" },
-              })
-            }
-            className="hino-item"
-          >
-            <RefHino id={hino.identificador} />
-            <LetrasHinosBusca
-              tituloHino={hino.titulo}
-              letraHino={hino.trecho}
-            />
+      {erro ? (
+        <div className="mensagemErro">{erro}</div>
+      ) : termo.length === 0 ? null : hinos.length === 0 ? (
+        <div className="mensagemErro">Nenhum hino encontrado.</div>
+      ) : (
+        hinos.map((hino) => (
+          <div key={hino.id}>
+            <div
+              onClick={() =>
+                navigate(`/hino/${hino.identificador}`, {
+                  state: { from: "pesquisa" },
+                })
+              }
+              className="hino-item"
+            >
+              <RefHino id={hino.identificador} />
+              <LetrasHinosBusca
+                tituloHino={hino.titulo}
+                letraHino={hino.trecho}
+              />
+            </div>
+            <LinhaBusca />
           </div>
-          <LinhaBusca />
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 };

@@ -22,6 +22,17 @@ body {
   touch-action: pan-x pan-y;
   height: 100%;
 }
+/* Make root and body always fill the viewport so background covers short content
+   and the dark-mode background doesn't reveal the underlying html background. */
+#root,
+html,
+body {
+  min-height: 100vh;
+  height: 100%;
+}
+#root {
+  background-color: inherit;
+}
 .main {
   display: flex;
   flex-direction: column;
@@ -611,6 +622,12 @@ body {
   height: 20px;
   object-fit: contain;
   flex-shrink: 0;
+}
+.dark-mode .icon:active {
+  filter: brightness(0);
+}
+.dark-mode .icon {
+  filter: brightness(2);
 }
 
 .overlay {
