@@ -1,6 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useLimparAoSairDoApp } from "../../hooks/useLimparAoSairDoApp";
 import { fetchHinoPorIdentificador } from "../../utils/api/hinos";
 import ApagarBotao from "./ApagarBotao";
 import BotaoBusca from "./BotaoBusca";
@@ -22,12 +23,17 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
     }
   }, [location.state]);
 
+  const limparTudo = useCallback(() => {
+    setTextoPreview("");
+    setMensagemErro("");
+  }, []);
+
   React.useImperativeHandle(ref, () => ({
-    LimparTudo: () => {
-      setTextoPreview("");
-      setMensagemErro("");
-    },
+    LimparTudo: limparTudo,
   }));
+
+  // Ao reabrir o app, o número digitado não deve continuar na tela
+  useLimparAoSairDoApp(limparTudo);
 
   const teclas =
     modo === "Hinário"

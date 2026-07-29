@@ -531,7 +531,9 @@ body {
   font-size: 17px;
   text-align: start;
   width: 90%;
-  padding: 0.3rem 1.3rem 7rem 1.3rem;
+  /* Reserva exatamente a faixa das setas + menu, para a última estrofe
+     sempre poder ser rolada acima dos botões. */
+  padding: 0.3rem 1.3rem var(--seta-zona) 1.3rem;
 }
 
 .dark-mode .hino {
@@ -568,7 +570,7 @@ body {
 }
 
 .dark-mode .bottomMenu {
-  background: #2a2a2a;
+  background: #454545;
   color: #ffffff;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
 }
@@ -757,6 +759,15 @@ body {
   cursor: pointer;
 }
 
+/* Setas flutuantes do hino.
+   Tamanho e distância do rodapé ficam em variáveis para o texto do hino
+   reservar exatamente essa faixa (--seta-zona) e nunca ficar por baixo delas. */
+:root {
+  --seta-tamanho: 44px; /* mínimo de área de toque em mobile (Apple HIG / WCAG 2.5.5) */
+  --seta-bottom: 92px; /* menu inferior (16px + 60px) + 16px de folga */
+  --seta-zona: calc(var(--seta-bottom) + var(--seta-tamanho) + 1rem);
+}
+
 .setas {
   display: flex;
   flex-direction: row;
@@ -765,15 +776,17 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 92px;
-  padding: 0 1.5rem;
+  bottom: var(--seta-bottom);
+  padding: 0 1.25rem;
   pointer-events: none;
   z-index: 40;
 }
 .seta {
+  position: relative;
   pointer-events: auto;
-  width: 3rem;
-  height: 3rem;
+  box-sizing: border-box; /* a borda da "anterior" não aumenta o círculo */
+  width: var(--seta-tamanho);
+  height: var(--seta-tamanho);
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -783,14 +796,21 @@ body {
     transform 0.12s ease,
     background-color 0.15s ease;
 }
+/* Amplia a área de toque para 52px sem aumentar o círculo visível */
+.seta::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+}
 .seta img {
-  width: 30%;
+  width: 14px;
 }
 /* Anterior: contornado */
 .seta-anterior {
-  background-color: rgba(250, 250, 250, 0.85);
-  border: 1.5px solid #f15a24;
-  backdrop-filter: blur(2px);
+  background-color: #fafafa; /* sólido: a letra do hino não aparece por dentro do botão */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
 }
 /* Próximo: preenchido, chevron branco apontando para a direita */
 .seta-proximo {
@@ -996,8 +1016,9 @@ body.dark-mode,
 }
 
 .dark-mode .seta-anterior {
-  background-color: rgba(255, 255, 255, 0);
+  background-color: #3838387e; /* sólido: a letra do hino não aparece por dentro do botão */
   border-color: rgb(244, 240, 239);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 .dark-mode .seta img {
   filter: brightness(100);
