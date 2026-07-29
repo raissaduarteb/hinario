@@ -5,6 +5,7 @@ import { fetchHinoPorIdentificador } from "../../utils/api/hinos";
 import LetrasHinosBusca from "../ui/LetrasHinosBusca";
 import Loading from "../ui/Loading";
 import Setas from "../ui/Setas";
+import Compartilhar from "../ui/Compartilhar";
 import LetraHino from "./LetraHino";
 import RefHino from "./RefHino";
 import Voltar from "./Voltar";
@@ -45,9 +46,10 @@ const Hino = () => {
         >
           <Voltar style={{ flexGrow: 1 }} />
           <RefHino style={{ flexGrow: 2 }} id={hino.identificador} />
-          <h3 style={{ margin: 0, flexGrow: 12 }}>
+          <h3 style={{ margin: 0, flexGrow: 12, minWidth: 0 }}>
             <LetrasHinosBusca tituloHino={hino.titulo} />
           </h3>
+          <Compartilhar hino={hino} />
         </div>
         {hino?.letra ? <LetraHino letra={hino.letra} /> : Loading()}
       </div>
