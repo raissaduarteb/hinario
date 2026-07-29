@@ -532,11 +532,11 @@ body {
   text-align: start;
   width: 90%;
   padding: 0.3rem 1.3rem 7rem 1.3rem;
-  height: 100%;
 }
 
 .dark-mode .hino {
   color: #ffffff;
+  background-color: transparent;
 }
 .hino-refrao {
   font-weight: 500;
@@ -604,6 +604,9 @@ body {
   color: #e94e1a;
   white-space: nowrap;
 }
+.dark-mode .menu-item .label {
+  color: #ececec;
+}
 
 .menu-item.active .menu-item-inner {
   background: rgba(251, 222, 212, 1);
@@ -628,6 +631,11 @@ body {
 }
 .dark-mode .icon {
   filter: brightness(2);
+}
+/* O item ativo já usa o ícone laranja: não clarear para não virar amarelo */
+.dark-mode .menu-item.active .icon,
+.dark-mode .menu-item.active .icon:active {
+  filter: none;
 }
 
 .overlay {
@@ -883,8 +891,9 @@ body {
 
 /* Modo Escuro */
 .dark-mode,
-.dark-mode html,
-.dark-mode body {
+html.dark-mode,
+body.dark-mode,
+#root.dark-mode {
   background-color: #383838 !important;
   color: #ffffff;
 }
@@ -933,9 +942,24 @@ body {
   background-color: transparent;
 }
 
-html.dark-mode {
+html.dark-mode,
+body.dark-mode,
+#root.dark-mode {
   background-color: #383838;
 }
+
+.dark-mode .hino-conteudo,
+.dark-mode .hino,
+.dark-mode .hino-estrofe,
+.dark-mode .main,
+.dark-mode .hinos-busca,
+.dark-mode .hinos-separar,
+.dark-mode .repertorios,
+.dark-mode .lista-hinos-inner,
+.dark-mode .hino-item {
+  background-color: #383838;
+}
+
 .dark-mode .modal {
   background-color: #2a2a2a;
   color: white;
