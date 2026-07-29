@@ -559,7 +559,7 @@ body {
   justify-content: space-around;
   align-items: center;
   padding: 0 10px;
-  border-radius: 22px;
+  border-radius: 32px;
   box-shadow:
     0 8px 28px rgba(0, 0, 0, 0.16),
     0 1px 0 rgba(0, 0, 0, 0.02);
@@ -567,6 +567,7 @@ body {
   color: rgba(74, 74, 74, 1);
   box-sizing: border-box;
   z-index: 50;
+  margin-inline: 2rem;
 }
 
 .dark-mode .bottomMenu {
