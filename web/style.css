@@ -20,15 +20,14 @@ body {
   padding: 10px 0;
   margin: 0;
   touch-action: pan-x pan-y;
-  height: 100%;
 }
-/* Make root and body always fill the viewport so background covers short content
-   and the dark-mode background doesn't reveal the underlying html background. */
+/* Root e body preenchem no mínimo a viewport (para conteúdo curto) mas crescem
+   junto com o conteúdo: com `height: 100%` a caixa parava em 100vh e tudo que
+   fosse rolado abaixo disso revelava o fundo do <html>. */
 #root,
 html,
 body {
   min-height: 100vh;
-  height: 100%;
 }
 #root {
   background-color: inherit;
@@ -419,6 +418,7 @@ body {
   color: #a0a0a0;
 }
 
+.dark-mode .selecao-page,
 .dark-mode .selecaoalign,
 .dark-mode .repertorios,
 .dark-mode .lista-hinos-inner,
@@ -470,6 +470,11 @@ body {
   justify-content: left;
   margin: 1rem 1.5rem 3rem 1rem;
   text-align: initial;
+}
+/* Reserva a faixa do menu inferior no fim da lista, para o último hino da
+   seleção sempre poder ser rolado acima do menu. */
+.selecao-page {
+  padding-bottom: var(--menu-zona);
 }
 .repertorios {
   display: flex;
@@ -549,11 +554,11 @@ body {
 }
 .bottomMenu {
   position: fixed;
-  bottom: 16px;
+  bottom: var(--menu-bottom);
   left: 16px;
   right: 16px;
   width: auto;
-  height: 60px;
+  height: var(--menu-altura);
   background: #ffffff;
   display: flex;
   justify-content: space-around;
@@ -764,8 +769,13 @@ body {
    Tamanho e distância do rodapé ficam em variáveis para o texto do hino
    reservar exatamente essa faixa (--seta-zona) e nunca ficar por baixo delas. */
 :root {
+  --menu-altura: 60px;
+  --menu-bottom: 16px;
+  /* Faixa ocupada pelo menu inferior + folga. Listas roláveis reservam essa
+     altura no fim para o último item nunca ficar por baixo do menu. */
+  --menu-zona: calc(var(--menu-bottom) + var(--menu-altura) + 1rem);
   --seta-tamanho: 44px; /* mínimo de área de toque em mobile (Apple HIG / WCAG 2.5.5) */
-  --seta-bottom: 92px; /* menu inferior (16px + 60px) + 16px de folga */
+  --seta-bottom: var(--menu-zona);
   --seta-zona: calc(var(--seta-bottom) + var(--seta-tamanho) + 1rem);
 }
 

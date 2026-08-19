@@ -44,7 +44,7 @@ const Selecao = () => {
   };
 
   return (
-    <>
+    <div className="selecao-page">
       <div className="selecaoalign margin">
         <div className="tituloSelecao">SELEÇÕES DE HINOS</div>
       </div>
@@ -97,7 +97,7 @@ const Selecao = () => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 

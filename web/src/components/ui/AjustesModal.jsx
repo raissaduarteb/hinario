@@ -17,11 +17,11 @@ const AjustesModal = ({ open, onClose }) => {
 
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
-    if (darkMode) {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
+    // A classe precisa ir também no <html>: é o fundo dele que pinta toda a área
+    // de rolagem. Aplicada só no <body>, o fim da página (os últimos hinos da
+    // seleção, por exemplo) aparecia com o fundo claro por baixo.
+    document.documentElement.classList.toggle("dark-mode", darkMode);
+    document.body.classList.toggle("dark-mode", darkMode);
     document.documentElement.style.setProperty("--font-size", fontSize + "px");
   }, [darkMode, fontSize]);
 
