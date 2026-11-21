@@ -125,9 +125,8 @@ const Teclado = React.forwardRef(({ modo }, ref) => {
               onClickTecla={() => tratarEntrada(v)}
             />
           ))}
+          <BotaoBusca onClickBusca={clickBusca} loading={buscando} />
         </div>
-
-        <BotaoBusca onClickBusca={clickBusca} loading={buscando} />
       </div>
     </div>
   );

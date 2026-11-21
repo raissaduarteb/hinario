@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useLayoutEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchHinoPorIdentificador } from "../../utils/api/hinos";
 
@@ -21,6 +22,11 @@ const Hino = () => {
     queryKey: ["hino", id],
     queryFn: () => fetchHinoPorIdentificador(id),
   });
+
+  // Ao trocar de hino, volta para o topo e mostra o título
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (isLoading && !hino) return <Loading />;
 

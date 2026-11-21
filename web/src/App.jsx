@@ -29,6 +29,14 @@ const App = () => {
     }
   }, [location.state, setBusca]);
 
+  // A tela do teclado cabe inteira na viewport e não rola
+  const isTelaTeclado = location.pathname === "/";
+  React.useLayoutEffect(() => {
+    if (!isTelaTeclado) return undefined;
+    document.documentElement.classList.add("tela-travada");
+    return () => document.documentElement.classList.remove("tela-travada");
+  }, [isTelaTeclado]);
+
   if (location.pathname.startsWith("/admin")) {
     return <AdminApp />;
   }
@@ -40,7 +48,7 @@ const App = () => {
           <Route
             path="/"
             element={
-              <div>
+              <div className="tela-teclado">
                 <Titulo busca={busca} setBusca={setBusca} />
 
                 <Switch
