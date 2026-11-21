@@ -185,8 +185,12 @@ html.tela-travada #root {
 .botaoBusca svg {
   width: 100%;
   height: 33%;
-  /* color: rgba(233, 78, 26, 1); */
+  color: rgba(233, 78, 26, 1);
 }
+.dark-mode .botaoBusca svg {
+  color: white;
+}
+
 .botaoBusca-loading {
   box-sizing: border-box;
   width: 38%;
