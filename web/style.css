@@ -175,16 +175,17 @@ html.tela-travada #root {
   height: var(--tecla);
   cursor: pointer;
   border-radius: calc(var(--tecla-menor) * 0.27);
-  background-color: rgba(233, 78, 26, 1);
+  background-color: transparent;
   color: white;
   justify-content: center;
   align-items: center;
   transition: 0.3s;
-  border: none;
+  border: 4px solid rgba(233, 78, 26, 1);
 }
 .botaoBusca svg {
-  width: 42%;
-  height: 42%;
+  width: 100%;
+  height: 33%;
+  /* color: rgba(233, 78, 26, 1); */
 }
 .botaoBusca-loading {
   box-sizing: border-box;
@@ -422,7 +423,7 @@ html.tela-travada #root {
   height: 48px;
   margin: 0 auto;
   padding: 0 4px 0 14px;
-  border: 2px solid #e94e1a;
+  border: 2px solid #e3e3e3;
   border-radius: 14px;
   background: #ffffff;
   cursor: text;
@@ -430,6 +431,9 @@ html.tela-travada #root {
 }
 .campo-pesquisa:focus-within {
   box-shadow: 0 0 0 3px rgba(233, 78, 26, 0.25);
+}
+.dark-mode .campo-pesquisa:focus-within {
+  box-shadow: 0 0 0 3px rgba(249, 249, 249, 0.25);
 }
 .campo-pesquisa-icone {
   width: 22px;
@@ -469,10 +473,10 @@ html.tela-travada #root {
 }
 .dark-mode .campo-pesquisa {
   background: #484848;
-  border-color: #f15a24;
+  border-color: #484848;
 }
 .dark-mode .campo-pesquisa-icone {
-  color: #ff8a5f;
+  color: #ff642c;
 }
 .dark-mode .campo-pesquisa-input {
   background: transparent;
